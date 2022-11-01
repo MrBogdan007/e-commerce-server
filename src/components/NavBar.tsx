@@ -1,16 +1,20 @@
 import React from 'react'
 
 import {BrowserRouter, Route, Routes, Link} from 'react-router-dom'
+import PalleteButton from './PalleteButton'
 const NavBar = () => {
   return (
    <>
-   <nav>
+   <div className="header-nav">
+   <nav >
+    
    <Link to={''}>Home page</Link>
-   <Link to={'about'}>About page</Link>
-   <Link to={'contact'}>Contact page</Link>
-   <Link to={'users'}>Users page</Link>
+   <Link to={'product'}>Product page</Link>
+   <Link to={'profile'}>Profile page</Link>
+   <Link to={'cart'}>Cart page</Link>
    
    </nav>
+   </div>
    </>
   )
   
