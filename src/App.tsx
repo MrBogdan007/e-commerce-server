@@ -14,7 +14,8 @@ import { red } from "@mui/material/colors";
 import React, { useState, useEffect, createContext } from "react";
 import logo from "./logo.svg";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Link, Form } from "react-router-dom";
+
 
 import { Box, ThemeProvider } from "@mui/material";
 import { userSchema } from "./schema/userForm";
@@ -22,6 +23,8 @@ import { createTheme } from "@mui/material/styles";
 import { green, purple } from "@mui/material/colors";
 import IconButton from "@mui/material/IconButton";
 import PalleteButton from "./components/PalleteButton";
+import { setForm } from "./redux/reducers/formReducer";
+import { useAppSelector } from "./hooks/reduxHooks";
 
 export const ThemeContext = createContext({ toggleMode: () => {} });
 const App = () => {
@@ -64,19 +67,23 @@ const App = () => {
     },
   };
 
+  
   //modal
   const [signIn, setSignIn] = useState(false);
   const registerSign = () => {
     setSignIn((current) => !current);
+
   };
+
+
   return (
     <ThemeContext.Provider value={manageTheme}>
       <ThemeProvider theme={theme}>
         <Box
-          sx={{ background:'url(./imgs/header/ecommerce.jpg)',backgroundColor: "background.default", color: "text.primary" }}
+          sx={{ backgroundColor: "background.default", color: "text.primary" }}
           className="App"
         >
-          <img src={require('./img/e-commerce.jpg')} alt="dfsd" />
+         
           <BrowserRouter>
             <div className="container">
               <div className="header">
@@ -91,8 +98,16 @@ const App = () => {
               style={{ display: signIn ? "block" : "none" }}
               className="header__modal" 
             >
-              <Modal />
+              <Modal signIn={signIn} />
             </div>
+           <div className="container">
+
+         
+            <main className="main">
+    
+            </main>
+            </div>
+            
             <Routes>
               <Route path="/" element={<Home />}></Route>
               <Route path="/product" element={<Product />}></Route>
