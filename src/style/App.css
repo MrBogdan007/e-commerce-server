@@ -55,7 +55,8 @@
 .overlay {
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
+  top: 0;
   background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
@@ -64,7 +65,7 @@
 }
 
 .modal {
-  position: relative;
+  position: fixed;
   padding: 100px;
   background-color: #fff;
   color: #000;
