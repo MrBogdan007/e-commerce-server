@@ -10,13 +10,12 @@ import Profile from "./components/Profile";
 import Cart from "./components/Cart";
 import Modal from "./components/interface/Modal";
 
+import StarIcon from '@mui/icons-material/Star';
 import { red } from "@mui/material/colors";
 import React, { useState, useEffect, createContext } from "react";
 import logo from "./logo.svg";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { BrowserRouter, Route, Routes, Link, Form } from "react-router-dom";
-
-
 import { Box, ThemeProvider } from "@mui/material";
 import { userSchema } from "./schema/userForm";
 import { createTheme } from "@mui/material/styles";
@@ -112,7 +111,7 @@ const App = () => {
             
             <section className="guarantee">
               <h2 className="section-header">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque asperiores ab fuga animi. Quod nulla quibusdam tempore. Enim, necessitatibus ratione!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. <br /> Cumque asperiores ab fuga animi.
               </h2>
               <div className="guarantee-block">
                 <div className="guarantee-element">
@@ -133,8 +132,41 @@ const App = () => {
               </div>
             </section>
             </div>
-           
-            
+           <section className="images"> 
+              <div className="images-block">
+                <img src={require('./img/img1.jpg')} alt="chair" /><img src={require('./img/img2.jpg')} alt="chair" /><img src={require('./img/img3.jpg')} alt="chair" />
+              </div>
+           </section>
+           <div className="container">
+            <section className="newProducts">
+              <div className="section-header">
+                Newest Products
+              </div>
+              <div className="newProducts-block">
+                <div className="newProducts-element">
+                  <div className="newProducts-element__img"><img src={require('./img/new/new1.jpg')}  alt="watch" /></div>
+                  <div className="newProducts-element__description">Product title goes here</div>
+                  <div className="newProducts-element__stars"><StarIcon/><StarIcon/><StarIcon/><StarIcon/><StarIcon/></div>
+                  <div className="newProducts-element__text"><span>$235.45</span><span ><s>$300</s> </span></div>
+                </div>
+                <div className="newProducts-element">
+                  <div className="newProducts-element__img"><img src={require('./img/new/new2.jpg')} alt="watch" /></div>
+                  <div className="newProducts-element__description">Product title goes here</div>
+                  <div className="newProducts-element__stars"><StarIcon/><StarIcon/><StarIcon/><StarIcon/><StarIcon/></div>
+                  <div className="newProducts-element__text"><span>$420</span><span><s>$500</s></span></div>
+                </div>
+                <div className="newProducts-element">
+                  <div className="newProducts-element__img"><img src={require('./img/new/new3.jpg')} alt="watch" /></div>
+                  <div className="newProducts-element__description">Product title goes here</div>
+                  <div className="newProducts-element__stars"><StarIcon/><StarIcon/><StarIcon/><StarIcon/><StarIcon/></div>
+                  <div className="newProducts-element__text"><span>$300</span><span><s>$432</s></span></div>
+                </div>
+              </div>
+              <div className="newProducts-button">
+                <button>Explore more</button>
+              </div>
+            </section>
+            </div>
             <Routes>
               <Route path="/" element={<Home />}></Route>
               <Route path="/product" element={<Product />}></Route>
