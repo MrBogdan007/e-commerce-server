@@ -29,7 +29,6 @@
 }
 .header-nav {
   width: 76%;
-  vertical-align: middle;
   text-align: center;
 }
 .header-nav nav {
@@ -38,11 +37,13 @@
   justify-content: space-between;
 }
 .header-nav nav a {
+  color: #fff !important;
   text-decoration: none;
   color: #000;
 }
 .header__signIn {
   padding-top: 5px;
+  color: #fff;
 }
 .header__signIn:hover {
   cursor: pointer;
@@ -60,7 +61,7 @@
   background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
-  z-index: 3;
+  z-index: 99;
   align-items: center;
 }
 
@@ -69,6 +70,24 @@
   padding: 100px;
   background-color: #fff;
   color: #000;
+}
+
+.button {
+  margin-top: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button button {
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 20px 40px 20px 40px;
+  color: #000;
+  font-weight: bold;
+}
+.button button:hover {
+  cursor: pointer;
 }
 
 section h2 {
@@ -173,27 +192,44 @@ section h2 {
   width: 144px;
   background-color: #DDB84A;
 }
-.newProducts-button {
-  margin-top: 65px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.newProducts-button button {
-  border-radius: 20px;
-  text-transform: uppercase;
-  font-size: 14px;
-  padding: 20px 40px 20px 40px;
-  color: #000;
-  font-weight: bold;
-}
-.newProducts-button button:hover {
-  cursor: pointer;
-}
 
-.header {
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background: url("../img/ex.jpg") no-repeat center top;
   background-size: cover;
   width: 100%;
   height: 100vh;
+  z-index: 20;
+  position: relative;
+}
+.main::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: -1;
+}
+.main-block {
+  font-size: 35px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-button {
+  margin-bottom: 240px;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-button button {
+  background-color: #007ABB;
+  border-radius: 10px;
+  color: #e0e0e0;
+  border: none;
 }

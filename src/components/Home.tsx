@@ -18,13 +18,26 @@ const Home = () => {
  
   return (
     <>
-        <div className="header">
+   
+            <main className="main">
+            <div className="header">
                 <NavBar />
                 <span className="header__signIn" onClick={registerSign}>
                   Sign In
                 </span>
                 <PalleteButton />
+                </div>   
+              <div className="main-block">
+                <h2 className="main-block__header">Get the our most innovating product</h2>
               </div>
+              <div className="main-block">
+                <div className="button main-button">
+                <a href="#newProduct"><button >Start Shopping</button></a>
+                </div>
+              
+              </div>
+            </main>
+              
         
             <div
               style={{ display: signIn ? "block" : "none" }}
@@ -34,11 +47,7 @@ const Home = () => {
             </div>
            
 
-         
-            <main className="main">
 
-            
-            </main>
             <div className="container">
 
             
@@ -71,7 +80,8 @@ const Home = () => {
               </div>
            </section>
            <div className="container">
-            <section className="newProducts">
+            <section id='newProduct' className="newProducts">
+              
               <div className="section-header">
                 Newest Products
               </div>
@@ -95,7 +105,7 @@ const Home = () => {
                   <div className="newProducts-element__text"><span>$300</span><span><s>$432</s></span></div>
                 </div>
               </div>
-              <div className="newProducts-button">
+              <div className="button newProducts-button">
                 <button>Explore more</button>
               </div>
             </section>
