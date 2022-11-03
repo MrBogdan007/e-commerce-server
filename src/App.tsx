@@ -22,11 +22,15 @@ import { createTheme } from "@mui/material/styles";
 import { green, purple } from "@mui/material/colors";
 import IconButton from "@mui/material/IconButton";
 import PalleteButton from "./components/PalleteButton";
-import { setForm } from "./redux/reducers/formReducer";
-import { useAppSelector } from "./hooks/reduxHooks";
+import { fetchProducts, setForm } from "./redux/reducers/productReducer";
+import { useAppDispatch, useAppSelector } from "./hooks/reduxHooks";
 
 export const ThemeContext = createContext({ toggleMode: () => {} });
 const App = () => {
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(fetchProducts())
+  },[])
   const [mode, setMode] = useState<"dark" | "light">("light");
   const theme = createTheme({
     palette: {
