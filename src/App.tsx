@@ -85,7 +85,7 @@ const App = () => {
         >
          
           <BrowserRouter>
-            <div className="container">
+
               <div className="header">
                 <NavBar />
                 <span className="header__signIn" onClick={registerSign}>
@@ -93,20 +93,47 @@ const App = () => {
                 </span>
                 <PalleteButton />
               </div>
-            </div>
+        
             <div
               style={{ display: signIn ? "block" : "none" }}
               className="header__modal" 
             >
               <Modal signIn={signIn} />
             </div>
-           <div className="container">
+           
 
          
             <main className="main">
-    
+
+            
             </main>
+            <div className="container">
+
+            
+            <section className="guarantee">
+              <h2 className="section-header">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque asperiores ab fuga animi. Quod nulla quibusdam tempore. Enim, necessitatibus ratione!
+              </h2>
+              <div className="guarantee-block">
+                <div className="guarantee-element">
+                  <div className="guarantee-element__numbers">01</div>
+                  <div className="guarantee-element__reassurance">24/7 Customer Care</div>
+                  <span className="guarantee-element__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, dolorem.</span>
+                </div>
+                <div className="guarantee-element">
+                  <div className="guarantee-element__numbers">02</div>
+                  <div className="guarantee-element__reassurance">Safe payment</div>
+                  <span className="guarantee-element__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, dolorem.</span>
+                </div>
+                <div className="guarantee-element">
+                  <div className="guarantee-element__numbers">03</div>
+                  <div className="guarantee-element__reassurance">Money Back guarantee</div>
+                  <span className="guarantee-element__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, dolorem.</span>
+                </div>
+              </div>
+            </section>
             </div>
+           
             
             <Routes>
               <Route path="/" element={<Home />}></Route>
