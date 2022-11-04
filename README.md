@@ -1,1 +1,1 @@
-link  [github-pages ](https://e-commerce-three-xi.vercel.app/)
+link  [vercel](https://e-commerce-three-xi.vercel.app/)
