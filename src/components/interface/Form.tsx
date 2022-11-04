@@ -33,7 +33,7 @@ const Form = ({signIn}: ModalInt) => {
         <form  onSubmit={handleSubmit(onSubmit)}>
           <div className="form-item">
           <div className="modal-title">
-            Registration
+            Sign in
           </div>
             <label htmlFor="email">Enter your email</label>
             <input type="password" name="email" id="email" />
@@ -57,6 +57,9 @@ const Form = ({signIn}: ModalInt) => {
         </form>
        : 
         <form style={{display: 'block'}} onSubmit={handleSubmit(onSubmit)}>
+                    <div className="modal-title">
+            Registration
+          </div>
           <div className="form-item">
             <label htmlFor="firstname">Enter your first name</label>
             <input

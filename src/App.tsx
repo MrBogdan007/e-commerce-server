@@ -70,6 +70,8 @@ const App = () => {
     },
   };
 
+ 
+  
   return (
     <ThemeContext.Provider value={manageTheme}>
       <ThemeProvider theme={theme}>

@@ -5,26 +5,41 @@ import NavBar from "./NavBar";
 import PalleteButton from "./PalleteButton";
 import Modal from "./interface/Modal";
 import { useLocation } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
+import { setModal } from "../redux/reducers/modalClose";
 
 
 const Home = () => {
+  const dispatch = useAppDispatch()
+  const modalState = useAppSelector((state) => state.modalReducer)
+
   const location = useLocation()
-  console.log(location);
-  console.log(location.pathname);
-  //modal
+
   const [signIn, setSignIn] = useState(false);
   const registerSign = () => {
     setSignIn((current) => !current);
-  };
 
+    if(modalState===false){
+      dispatch(setModal({modal: !modalState}));
+      setSignIn((current) => !current);
+    }
+    
+  };
+  //  after x press , sign in true; modal state false
+  //after 1 click at sign in
+ //signIn false and modalState true
+ //after 2 click sign in true modalState true
+
+  
 
   return (
     <>
       <main className="main">
         <div className="header">
           <NavBar />
-          <span className="header__signIn" onClick={registerSign}>
+          <span className="header__signIn" onClick={() => {registerSign(); }}>
             Sign In
+            
           </span>
           <PalleteButton />
         </div>
@@ -42,7 +57,7 @@ const Home = () => {
         </div>
       </main>
       <div
-        style={{ display: signIn ? "block" : "none" }}
+        style={{ display: signIn && modalState ? "block" : "none" }}
         className="header__modal"
       >
         <Modal signIn={signIn} />
