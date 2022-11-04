@@ -1,11 +1,11 @@
 import Home from "./components/Home";
-import About from "./components/Product";
+// import About from "./components/Product";
 import Contact from "./components/Profile";
 import NavBar from "./components/NavBar";
 import Users from "./components/Users";
 import SingleUser from "./components/SingleUser";
 import "./style/App.css";
-import Product from "./components/Product";
+// import Product from "./components/Product";
 import Profile from "./components/Profile";
 import Cart from "./components/Cart";
 import Modal from "./components/interface/Modal";
@@ -22,15 +22,15 @@ import { createTheme } from "@mui/material/styles";
 import { green, purple } from "@mui/material/colors";
 import IconButton from "@mui/material/IconButton";
 import PalleteButton from "./components/PalleteButton";
-import { fetchProducts, setForm } from "./redux/reducers/productReducer";
+// import { fetchProducts, setForm } from "./redux/reducers/productReducer";
 import { useAppDispatch, useAppSelector } from "./hooks/reduxHooks";
 
 export const ThemeContext = createContext({ toggleMode: () => {} });
 const App = () => {
-  const dispatch = useAppDispatch()
-  useEffect(() => {
-    dispatch(fetchProducts())
-  },[])
+  // const dispatch = useAppDispatch()
+  // useEffect(() => {
+  //   dispatch(fetchProducts())
+  // },[])
   const [mode, setMode] = useState<"dark" | "light">("light");
   const theme = createTheme({
     palette: {
@@ -86,7 +86,7 @@ const App = () => {
           
             <Routes>
               <Route path="/" element={<Home />}></Route>
-              <Route path="/product" element={<Product />}></Route>
+              {/* <Route path="/product" element={<Product />}></Route> */}
               <Route path="/profile" element={<Profile />}></Route>
               <Route path="/cart" element={<Cart />}></Route>
               <Route path="/users">
