@@ -10,9 +10,21 @@
    align-items: center
 .modal
    position: fixed
-   padding: 100px
+   padding: 40px
+   border-radius: 15px
    background-color: #fff
    color: #000
+   &-close
+      position: absolute
+      top: 0px
+      right: 10px
+      background-color: #fff
+      svg
+         fill: #808080
+   &-title
+      font-weight: bold
+      font-size: 20px
+      margin-bottom: 20px
 .button
    margin-top: 65px
    display: flex
@@ -27,7 +39,8 @@
       font-weight: bold
       &:hover
          cursor: pointer 
-
+.button_registrate
+   margin-top: 0 !important
 section
    h2
       font-size: 25px

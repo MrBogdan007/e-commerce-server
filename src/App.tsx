@@ -10,7 +10,7 @@ import Profile from "./components/Profile";
 import Cart from "./components/Cart";
 import Modal from "./components/interface/Modal";
 
-import StarIcon from '@mui/icons-material/Star';
+import StarIcon from "@mui/icons-material/Star";
 import { red } from "@mui/material/colors";
 import React, { useState, useEffect, createContext } from "react";
 import logo from "./logo.svg";
@@ -27,10 +27,10 @@ import { useAppDispatch, useAppSelector } from "./hooks/reduxHooks";
 
 export const ThemeContext = createContext({ toggleMode: () => {} });
 const App = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(fetchProducts())
-  },[])
+    dispatch(fetchProducts());
+  }, []);
   const [mode, setMode] = useState<"dark" | "light">("light");
   const theme = createTheme({
     palette: {
@@ -70,9 +70,6 @@ const App = () => {
     },
   };
 
-  
-
-
   return (
     <ThemeContext.Provider value={manageTheme}>
       <ThemeProvider theme={theme}>
@@ -80,10 +77,7 @@ const App = () => {
           sx={{ backgroundColor: "background.default", color: "text.primary" }}
           className="App"
         >
-         
           <BrowserRouter>
-
-          
             <Routes>
               <Route path="/" element={<Home />}></Route>
               <Route path="/product" element={<Product />}></Route>

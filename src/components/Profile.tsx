@@ -1,8 +1,13 @@
+import NavBar from "./NavBar";
 
 const Profile = () => {
   return (
-    <div>Profile</div>
-  )
-}
+    <>
+      {" "}
+      <NavBar />
+      <div>Profile</div>
+    </>
+  );
+};
 
-export default Profile
+export default Profile;

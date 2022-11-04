@@ -1,24 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ModalInt } from '../../types/form'
 import Form from './Form'
+import CloseIcon from '@mui/icons-material/Close';
 const Modal = ({signIn}:ModalInt) => {
-  console.log(signIn);
-  
+  const [modalCloseValue,modalCloseValueSet] = useState(true)
+
+
   return (
     <div className='overlay'>
     <div className="modal">
-    <div className="modal-close">
-   &#x2613;
+    <div onClick={() => modalCloseValueSet(prev => !prev)} className="modal-close">
+  <CloseIcon/>
    </div> 
-    <div className="modal-title">
-      Sign in
-   </div>
+
 
    <div className="modal-form">
     <Form signIn={signIn}/>
    </div>
     </div>
-
     </div>
   )
 }

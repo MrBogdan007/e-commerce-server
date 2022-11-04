@@ -32,22 +32,25 @@ const Form = ({signIn}: ModalInt) => {
       {modalReg ? 
         <form  onSubmit={handleSubmit(onSubmit)}>
           <div className="form-item">
+          <div className="modal-title">
+            Registration
+          </div>
             <label htmlFor="email">Enter your email</label>
             <input type="password" name="email" id="email" />
-          </div>modalReg
+          </div>
           <div className="form-item">
             <label htmlFor="password">Enter your password</label>
             <input type="password" name="password" id="password" />
           </div>
 
           <div className="form-item">
-            <button type="submit" className="button button_sm">
+            <button type="submit" className="button button_sm button_registrate">
               Sign In
             </button>
           </div>
           <div className="form-item">
             <span>You don't have an account?</span>
-            <button type="button" onClick={() => registrationModal() } className="button button_sm">
+            <button type="button" onClick={() => registrationModal() } className="button button_sm button_registrate">
               Create your account
             </button>
           </div>
@@ -94,8 +97,14 @@ const Form = ({signIn}: ModalInt) => {
             </select>
           </div>
           <div className="form-item">
-            <button type="submit" className="button button_sm">
-              Add
+            <button type="submit" className="button button_sm  button_registrate">
+              Registrate
+            </button>
+          </div>
+          <div className="form-item">
+            <span>You already have an account?</span>
+            <button type="button" onClick={() => registrationModal() } className="button button_sm button_registrate">
+              Sign in
             </button>
           </div>
         </form>

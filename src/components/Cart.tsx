@@ -1,8 +1,12 @@
+import NavBar from "./NavBar";
 
 const Cart = () => {
   return (
-    <div>Cart</div>
-  )
-}
+    <>
+  <NavBar />
+      <div>Cart</div>
+    </>
+  );
+};
 
-export default Cart
+export default Cart;

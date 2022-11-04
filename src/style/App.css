@@ -37,9 +37,8 @@
   justify-content: space-between;
 }
 .header-nav nav a {
-  color: #fff !important;
+  color: #fff;
   text-decoration: none;
-  color: #000;
 }
 .header__signIn {
   padding-top: 5px;
@@ -51,6 +50,20 @@
 .header-nav__button {
   display: inline-block !important;
   width: 10%;
+}
+
+.header-dif {
+  width: 76%;
+  text-align: center;
+}
+.header-dif nav {
+  display: flex;
+  padding-top: 5px;
+  justify-content: space-between;
+}
+.header-dif nav a {
+  color: #000;
+  text-decoration: none;
 }
 
 .overlay {
@@ -67,9 +80,24 @@
 
 .modal {
   position: fixed;
-  padding: 100px;
+  padding: 40px;
+  border-radius: 15px;
   background-color: #fff;
   color: #000;
+}
+.modal-close {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  background-color: #fff;
+}
+.modal-close svg {
+  fill: #808080;
+}
+.modal-title {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 
 .button {
@@ -88,6 +116,10 @@
 }
 .button button:hover {
   cursor: pointer;
+}
+
+.button_registrate {
+  margin-top: 0 !important;
 }
 
 section h2 {
@@ -232,4 +264,8 @@ section h2 {
   border-radius: 10px;
   color: #e0e0e0;
   border: none;
+}
+
+.form-item:last-child {
+  margin-top: 20px;
 }
