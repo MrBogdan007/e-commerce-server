@@ -28,7 +28,7 @@ const Home = () => {
                 <PalleteButton />
                 </div>   
               <div className="main-block">
-                <h2 className="main-block__header">Get the our most innovating product</h2>
+                <h2 className="main-block__header">Get our most innovating product</h2>
               </div>
               <div className="main-block">
                 <div className="button main-button">
