@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 
 import React, { useState } from "react";
 import { ModalInt } from "../../types/form";
-// import formReducer, { setForm } from "../../redux/reducers/productReducer";
+import formReducer, { setForm } from "../../redux/reducers/productReducer";
 
 const Form = ({signIn}: ModalInt) => {
 
