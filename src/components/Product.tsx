@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import {setOffsetReducer} from "../redux/reducers/productOffset"
 import { fetchPagination,  } from "../redux/reducers/productReducer";
@@ -20,10 +21,10 @@ const Product = () => {
   },[offset])
 
   console.log(products);
-  
+  const navigate = useNavigate()
   const detailsShow = (id:number) => {
     console.log('clicked');
-    
+    navigate('/cart')
     dispatch(singleProduct(id))
   }
 

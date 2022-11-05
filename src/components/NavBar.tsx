@@ -20,6 +20,7 @@ const NavBar = () => {
    <Link to={'profile'}>Profile page</Link>
    <Link to={'cart'}>Cart page</Link>
    
+ 
    </nav>
   
    </div>

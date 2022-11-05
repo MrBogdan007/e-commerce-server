@@ -15,7 +15,7 @@ import { red } from "@mui/material/colors";
 import React, { useState, useEffect, createContext } from "react";
 import logo from "./logo.svg";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { BrowserRouter, Route, Routes, Link, Form } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Link, Form, Navigate } from "react-router-dom";
 import { Box, ThemeProvider } from "@mui/material";
 import { userSchema } from "./schema/userForm";
 import { createTheme } from "@mui/material/styles";
@@ -24,6 +24,7 @@ import IconButton from "@mui/material/IconButton";
 import PalleteButton from "./components/PalleteButton";
 import { fetchProducts, setForm } from "./redux/reducers/productReducer";
 import { useAppDispatch, useAppSelector } from "./hooks/reduxHooks";
+import SingleProduct from "./components/SingleProduct";
 
 export const ThemeContext = createContext({ toggleMode: () => {} });
 const App = () => {
@@ -82,15 +83,19 @@ const App = () => {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Home />}></Route>
-              <Route path="/product" element={<Product />}></Route>
+              <Route path="/product" element={<Product/>}>
+              <Route path=":id" element={<SingleProduct />}></Route>
+              </Route>
               <Route path="/profile" element={<Profile />}></Route>
               <Route path="/cart" element={<Cart />}></Route>
               <Route path="/users">
                 <Route path="" element={<Users />}>
                   {" "}
                 </Route>
-                <Route path=":id" element={<SingleUser />}></Route>
+                <Route path=":id" element={ <SingleUser />}></Route>
               </Route>
+              <Route path='/redirect' element={<Navigate to="/cart" />}/>
+              
             </Routes>
           </BrowserRouter>
         </Box>
