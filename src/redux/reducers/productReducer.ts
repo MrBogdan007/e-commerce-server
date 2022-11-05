@@ -26,6 +26,7 @@ export const fetchPagination = createAsyncThunk("fetchPagination", async (offset
    return data
 } )
 
+
 const productSlicer = createSlice({
    name: "incomes",
    initialState,
@@ -44,6 +45,7 @@ const productSlicer = createSlice({
       .addCase(fetchPagination.fulfilled, (state,action) =>{
          return action.payload
       })
+
    }
 })
 // Points to global state withous s at the end

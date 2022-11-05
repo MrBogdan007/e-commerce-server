@@ -278,3 +278,9 @@ section h2 {
 .product__image img {
   width: 248px;
 }
+
+.productSingle {
+  z-index: 99;
+  position: absolute;
+  top: 0;
+}
