@@ -1,9 +1,19 @@
-import { useAppSelector } from "../hooks/reduxHooks";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
+import {setOffsetReducer} from "../redux/reducers/productOffset"
+import { fetchPagination } from "../redux/reducers/productReducer";
+
 import AppPagination from "./AppPagination";
 import NavBar from "./NavBar";
 
 const Product = () => {
   const products = useAppSelector((state) => state.productReducer);
+  const [offset,setOffset] = useState(0);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchPagination(offset));
+  },[])
   return (
     <>
       {" "}
@@ -25,7 +35,7 @@ const Product = () => {
         ))}
       </div>
       </div>
-      <AppPagination/>
+      <AppPagination setPage={setOffset} page={offset}/>
     </>
   );
 };

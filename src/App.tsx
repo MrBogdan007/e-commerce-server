@@ -28,9 +28,9 @@ import { useAppDispatch, useAppSelector } from "./hooks/reduxHooks";
 export const ThemeContext = createContext({ toggleMode: () => {} });
 const App = () => {
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchProducts());
+  // }, []);
   const [mode, setMode] = useState<"dark" | "light">("light");
   const theme = createTheme({
     palette: {
