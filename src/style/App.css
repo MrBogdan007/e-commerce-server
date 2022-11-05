@@ -269,3 +269,12 @@ section h2 {
 .form-item:last-child {
   margin-top: 20px;
 }
+
+.product {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.product__image img {
+  width: 248px;
+}

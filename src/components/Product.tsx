@@ -7,9 +7,19 @@ const Product = () => {
     <>
       {" "}
       <NavBar />
-      <div>
+      <div className="product">
         {products.map((item) => (
-          <li key={item.id}>{item.title}</li>
+          <div key={item.id} className="product-item">
+            {" "}
+            <div className="product__title">{item.title}</div>{" "}
+            <div className="product__price">{item.price} </div>{" "}
+            <div className="product__image">
+              {<img src={item.category.image} alt="shoes" />}
+            </div>
+            <button className="product__button">Add to cart</button>
+            <button className="product__button">Details</button>
+          </div>
+          
         ))}
       </div>
     </>
