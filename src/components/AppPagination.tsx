@@ -1,5 +1,6 @@
 import React from "react";
 import Pagination from "@mui/material/Pagination";
+import { PaginationTypes } from "../types/pagination";
 
 const style: any = {
   root: {
@@ -20,8 +21,8 @@ const style: any = {
 };
 
 
-const AppPagination = ({ setPage, page }) => {
-   const handleChange = (page) => {
+const AppPagination = ({ setPage, page }:PaginationTypes) => {
+   const handleChange = (page:number) => {
       setPage(page)
       window.scroll(0,0)
    }
@@ -29,7 +30,7 @@ const AppPagination = ({ setPage, page }) => {
     <div style={style.container} className="container">
       <div style={style.root} className="root">
         <Pagination
-        onChange={(e) => handleChange(e.target.textContent)}
+        onChange={(e:any) => handleChange(e.target.textContent)}
           style={{ display: "flex", justifyContent: "center" }}
           variant="outlined"
           count={200}
