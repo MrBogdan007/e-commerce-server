@@ -1,1 +1,1 @@
-link  [vercel](https://e-commerce-izno30rlu-mrbogdan007.vercel.app/)
+link  [vercel](https://e-commerce-mrbogdan007.vercel.app/)
