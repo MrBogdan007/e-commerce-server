@@ -5,7 +5,7 @@ const style: any = {
   root: {
     bottom: 0,
     zIndex: 200,
-    backgroundColor: "yellow",
+    backgroundColor: "#f1f1f1",
     padding: "10px 80px",
     color: "white",
     width: "100%",
@@ -32,7 +32,7 @@ const AppPagination = ({ setPage, page }) => {
         onChange={(e) => handleChange(e.target.textContent)}
           style={{ display: "flex", justifyContent: "center" }}
           variant="outlined"
-          count={page}
+          count={200}
         />
       </div>
     </div>

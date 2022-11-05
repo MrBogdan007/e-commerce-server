@@ -13,7 +13,7 @@ const Product = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchPagination(offset));
-  },[])
+  },[offset])
   return (
     <>
       {" "}
