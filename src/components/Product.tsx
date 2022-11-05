@@ -1,4 +1,5 @@
 import { useAppSelector } from "../hooks/reduxHooks";
+import AppPagination from "./AppPagination";
 import NavBar from "./NavBar";
 
 const Product = () => {
@@ -7,6 +8,7 @@ const Product = () => {
     <>
       {" "}
       <NavBar />
+      <div className="container">
       <div className="product">
         {products.map((item) => (
           <div key={item.id} className="product-item">
@@ -22,6 +24,8 @@ const Product = () => {
           
         ))}
       </div>
+      </div>
+      <AppPagination/>
     </>
   );
 };
