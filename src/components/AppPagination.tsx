@@ -1,6 +1,7 @@
 import React from "react";
 import Pagination from "@mui/material/Pagination";
 import { PaginationTypes } from "../types/pagination";
+import { useAppSelector } from "../hooks/reduxHooks";
 
 const style: any = {
   root: {
@@ -22,9 +23,14 @@ const style: any = {
 
 
 const AppPagination = ({ setPage, page }:PaginationTypes) => {
+  const productsAll = useAppSelector((state) => state.productAllReducer);
    const handleChange = (page:number) => {
-      setPage(page)
-      window.scroll(0,0)
+    if(page === 1 ){
+      setPage(0)
+    }else{
+      setPage(page*12)
+    }
+      
    }
   return (
     <div style={style.container} className="container">
@@ -33,7 +39,7 @@ const AppPagination = ({ setPage, page }:PaginationTypes) => {
         onChange={(e:any) => handleChange(e.target.textContent)}
           style={{ display: "flex", justifyContent: "center" }}
           variant="outlined"
-          count={200}
+          count={Math.floor(productsAll.length / 12) }
         />
       </div>
     </div>

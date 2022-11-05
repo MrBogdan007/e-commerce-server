@@ -22,16 +22,18 @@ import { createTheme } from "@mui/material/styles";
 import { green, purple } from "@mui/material/colors";
 import IconButton from "@mui/material/IconButton";
 import PalleteButton from "./components/PalleteButton";
-import { fetchProducts, setForm } from "./redux/reducers/productReducer";
+
 import { useAppDispatch, useAppSelector } from "./hooks/reduxHooks";
 import SingleProduct from "./components/SingleProduct";
+import { fetchProducts } from "./redux/reducers/productAll";
 
 export const ThemeContext = createContext({ toggleMode: () => {} });
 const App = () => {
+  
   const dispatch = useAppDispatch();
-  // useEffect(() => {
-  //   dispatch(fetchProducts());
-  // }, []);
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
   const [mode, setMode] = useState<"dark" | "light">("light");
   const theme = createTheme({
     palette: {
@@ -82,10 +84,11 @@ const App = () => {
         >
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Home />}></Route>
+              <Route path="/" element={<Home/>}></Route>
               <Route path="/product" element={<Product/>}>
-              <Route path=":id" element={<SingleProduct />}></Route>
+              
               </Route>
+              <Route path="/product/:id" element={<SingleProduct />}></Route>
               <Route path="/profile" element={<Profile />}></Route>
               <Route path="/cart" element={<Cart />}></Route>
               <Route path="/users">

@@ -10,18 +10,17 @@ import { RootState } from "../store";
 const initialState: Product[] = []
  
    
-
-export const fetchPagination = createAsyncThunk("fetchPagination", async (offset:number) => {
+export const fetchProducts = createAsyncThunk("fetchAll", async () => {
    
-   const result = await axios.get(`https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=12`)
+   const result = await axios.get("https://api.escuelajs.co/api/v1/products")
    //"https://api.escuelajs.co/api/v1/products"
-   //`https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=10}`
    const data = result.data
    return data
 } )
 
 
-const productSlicer = createSlice({
+
+const productAllSlicer = createSlice({
    name: "incomes",
    initialState,
    reducers: {
@@ -33,17 +32,17 @@ const productSlicer = createSlice({
    },
    extraReducers : (build) => {
       build
-
-      .addCase(fetchPagination.fulfilled, (state,action) =>{
+      .addCase(fetchProducts.fulfilled, (state,action) =>{
          return action.payload
       })
+
 
    }
 })
 // Points to global state withous s at the end
-const productReducer = productSlicer.reducer
+const productAllReducer = productAllSlicer.reducer
 
 
-export const { setForm} = productSlicer.actions
+export const { setForm} = productAllSlicer.actions
 
-export default productReducer
+export default productAllReducer

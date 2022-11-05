@@ -13,6 +13,7 @@ import SingleProduct from "./SingleProduct";
 
 const Product = () => {
   const products = useAppSelector((state) => state.productReducer);
+ 
   const singleProductValue = useAppSelector((state) => state.singleProductReducer);
   const [offset,setOffset] = useState(0);
   const dispatch = useAppDispatch();
@@ -20,11 +21,10 @@ const Product = () => {
     dispatch(fetchPagination(offset));
   },[offset])
 
-  console.log(products);
   const navigate = useNavigate()
   const detailsShow = (id:number) => {
     console.log('clicked');
-    navigate('/cart')
+    navigate(`/product/${id}`)
     dispatch(singleProduct(id))
   }
 
@@ -49,7 +49,7 @@ const Product = () => {
         ))}
       </div>
       </div>
-      {singleProductValue?<SingleProduct/> : ''} 
+      
       <AppPagination setPage={setOffset} page={offset}/>
     </>
   );
