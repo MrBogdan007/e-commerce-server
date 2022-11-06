@@ -1,10 +1,10 @@
 import NavBar from "./NavBar";
+import NavbarOther from "./NavbarOther";
 
 const Profile = () => {
   return (
     <>
-      {" "}
-      <NavBar />
+      <NavbarOther/>
       <div>Profile</div>
     </>
   );

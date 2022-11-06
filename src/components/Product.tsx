@@ -10,6 +10,7 @@ import {  singleProduct } from "../redux/reducers/singleProductReducer";
 import AppPagination from "./AppPagination";
 import Modal from "./interface/Modal";
 import NavBar from "./NavBar";
+import NavbarOther from "./NavbarOther";
 import SingleProduct from "./SingleProduct";
 
 const Product = () => {
@@ -29,8 +30,8 @@ const categoryAll = () => {
 
   return (
     <>
-      {" "}
-      <NavBar />
+
+      <NavbarOther/>
       <div className="container">
       <div className="product product-fetch">
         {products.map((item) => (

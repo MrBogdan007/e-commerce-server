@@ -1,9 +1,10 @@
 import NavBar from "./NavBar";
+import NavbarOther from "./NavbarOther";
 
 const Cart = () => {
   return (
     <>
-  <NavBar />
+ <NavbarOther/>
       <div>Cart</div>
     </>
   );
