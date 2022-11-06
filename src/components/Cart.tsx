@@ -1,11 +1,19 @@
-import { useAppSelector } from "../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
+import { removeCartItem } from "../redux/reducers/cartReducer";
 import NavBar from "./NavBar";
 import NavbarOther from "./NavbarOther";
 
 const Cart = () => {
   const cart = useAppSelector((state) => state.cartReducer);
-  console.log(cart.map((item) => item.image));
   
+  
+  
+  
+ const dispatch = useAppDispatch();
+
+  const removeCart = (id:number) => {
+    dispatch(removeCartItem(id));
+  }
   return (
     <>
  <NavbarOther/>
@@ -23,11 +31,12 @@ const Cart = () => {
           <div className="product__image">
             {<img src={item.image} alt="shoes" />}
           </div>
-          
+          <button onClick={() => removeCart(item.id)} className="button button_cart"> Remove</button>
         </div>
         
       ))}
     </div>
+   
     </div>
 
   }

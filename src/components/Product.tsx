@@ -20,8 +20,8 @@ const Product = () => {
 const categoryAll = () => {
   dispatch(fetchProducts());
 }
-const addToCart = (title:string,price:number,image:string) => {
-  dispatch(addCartItem({title:title,price:price,image:image}))
+const addToCart = (id:number,title:string,price:number,image:string) => {
+  dispatch(addCartItem({id:id,title:title,price:price,image:image}))
 }
   return (
     <>
@@ -37,7 +37,7 @@ const addToCart = (title:string,price:number,image:string) => {
             <div className="product__image">
               {<img src={item.images[0]} alt="shoes" />}
             </div>
-            <button className="product__button" onClick={() => addToCart(item.title,item.price,item.images[0])}>Add to cart</button>
+            <button className="product__button" onClick={() => addToCart(item.id,item.title,item.price,item.images[0])}>Add to cart</button>
             
           </div>
           

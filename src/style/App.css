@@ -101,7 +101,6 @@
 }
 
 .button {
-  margin-top: 65px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -176,6 +175,9 @@ section h2 {
 
 .newProducts {
   padding-bottom: 120px;
+}
+.newProducts-button {
+  margin-top: 65px;
 }
 .newProducts-block {
   padding-top: 120px;
