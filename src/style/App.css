@@ -275,12 +275,29 @@ section h2 {
   justify-content: space-between;
   flex-wrap: wrap;
 }
+.product-category {
+  position: fixed;
+  padding: 30px;
+  background-color: #fff;
+  top: 200px;
+  left: 100px;
+  border-radius: 15px;
+}
+.product-ul {
+  font-size: 25px;
+}
+.product-ul li {
+  margin-top: 20px;
+  list-style: none;
+}
+.product-ul li:hover {
+  cursor: pointer;
+  background-color: rgba(176, 212, 247, 0.4235294118);
+}
 .product__image img {
   width: 248px;
 }
 
-.productSingle {
-  z-index: 99;
-  position: absolute;
-  top: 0;
+.product-fetch {
+  margin-top: 80px;
 }

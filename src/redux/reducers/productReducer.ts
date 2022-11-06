@@ -35,6 +35,7 @@ const productSlicer = createSlice({
       build
 
       .addCase(fetchPagination.fulfilled, (state,action) =>{
+       
          return action.payload
       })
 

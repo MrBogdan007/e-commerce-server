@@ -33,7 +33,7 @@ const Product = () => {
       {" "}
       <NavBar />
       <div className="container">
-      <div className="product">
+      <div className="product product-fetch">
         {products.map((item) => (
           <div key={item.id} className="product-item">
             {" "}
@@ -48,6 +48,16 @@ const Product = () => {
           
         ))}
       </div>
+      </div>
+      <div className="product-category">
+        <ul className="product-ul">
+          <li>All products</li>
+          <li>Clothes</li>
+          <li>Electronics</li>
+          <li>Furniture</li>
+          <li>Shoes</li>
+          <li>Others</li>
+        </ul>
       </div>
       
       <AppPagination setPage={setOffset} page={offset}/>

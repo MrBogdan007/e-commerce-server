@@ -20,8 +20,8 @@ const singleProductSlicer = createSlice({
    initialState,
    reducers: {
       //methods of reducers object
-      setForm: (state,action: PayloadAction<boolean>) => {
-
+      sortFetch: (state,action) => {
+         state.sort((a,b) => a.price - b.price )
       },
 
    },
@@ -36,6 +36,6 @@ const singleProductSlicer = createSlice({
 const singleProductReducer = singleProductSlicer.reducer
 
 
-export const { setForm} = singleProductSlicer.actions
+export const { sortFetch} = singleProductSlicer.actions
 
 export default singleProductReducer

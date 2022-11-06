@@ -7,7 +7,7 @@ const SingleProduct = () => {
    console.log(singleProductValue);
    return(
    <div className="container">
-   <div className="product ">
+   <div className="product product-single ">
      {singleProductValue.map(item => (
        <div key={item.id} className="product-item">
          {" "}
