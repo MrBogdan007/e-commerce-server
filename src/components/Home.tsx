@@ -1,12 +1,16 @@
-import React, { useState } from "react";
-
-import StarIcon from "@mui/icons-material/Star";
 import NavBar from "./NavBar";
 import PalleteButton from "./PalleteButton";
 import Modal from "./interface/Modal";
+
+import React, { useState } from "react";
+import StarIcon from "@mui/icons-material/Star";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useLocation } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { setModal } from "../redux/reducers/modalClose";
+
+
+
 
 
 const Home = () => {

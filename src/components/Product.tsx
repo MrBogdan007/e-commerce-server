@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
+import { addCartItem } from "../redux/reducers/cartReducer";
 import { fetchProducts } from "../redux/reducers/productAll";
 import {setOffsetReducer} from "../redux/reducers/productOffset"
 import { fetchCategory, fetchPagination,  } from "../redux/reducers/productReducer";
@@ -15,19 +16,13 @@ import SingleProduct from "./SingleProduct";
 
 const Product = () => {
   const products = useAppSelector((state) => state.productAllReducer);
-  
-
   const dispatch = useAppDispatch();
-
-
-
-
-
 const categoryAll = () => {
   dispatch(fetchProducts());
-
 }
-
+const addToCart = (title:string,price:number,image:string) => {
+  dispatch(addCartItem({title:title,price:price,image:image}))
+}
   return (
     <>
 
@@ -42,7 +37,7 @@ const categoryAll = () => {
             <div className="product__image">
               {<img src={item.images[0]} alt="shoes" />}
             </div>
-            <button className="product__button">Add to cart</button>
+            <button className="product__button" onClick={() => addToCart(item.title,item.price,item.images[0])}>Add to cart</button>
             
           </div>
           
