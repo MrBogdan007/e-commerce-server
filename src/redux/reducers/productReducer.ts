@@ -19,6 +19,14 @@ export const fetchPagination = createAsyncThunk("fetchPagination", async (offset
    const data = result.data
    return data
 } )
+export const fetchCategory = createAsyncThunk("fetchCategory", async (id:number) => {
+   
+   const result = await axios.get(`https://api.escuelajs.co/api/v1/products`)
+   const data = result.data
+
+   return data.filter(item =>  id === item.category.id );
+    
+} )
 
 
 const productSlicer = createSlice({
@@ -33,9 +41,11 @@ const productSlicer = createSlice({
    },
    extraReducers : (build) => {
       build
-
       .addCase(fetchPagination.fulfilled, (state,action) =>{
-       
+         return action.payload
+      })
+      .addCase(fetchCategory.fulfilled, (state,action) =>{
+         
          return action.payload
       })
 
