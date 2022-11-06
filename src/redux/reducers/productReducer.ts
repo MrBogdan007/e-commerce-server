@@ -1,10 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import axios from "axios";
 import { useState } from "react";
+
 import { useAppSelector } from "../../hooks/reduxHooks";
 
 import { ModalInt } from "../../types/form";
 import { Product } from "../../types/product";
+
 import { RootState } from "../store";
 
 const initialState: Product[] = []
@@ -24,7 +26,7 @@ export const fetchCategory = createAsyncThunk("fetchCategory", async (id:number)
    const result = await axios.get(`https://api.escuelajs.co/api/v1/products`)
    const data = result.data
 
-   return data.filter(item =>  id === item.category.id );
+   return data.filter((item: { category: { id: number; }; }) =>  id === item.category.id );
     
 } )
 

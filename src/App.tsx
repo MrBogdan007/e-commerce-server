@@ -26,6 +26,7 @@ import PalleteButton from "./components/PalleteButton";
 import { useAppDispatch, useAppSelector } from "./hooks/reduxHooks";
 import SingleProduct from "./components/SingleProduct";
 import { fetchProducts } from "./redux/reducers/productAll";
+import Category from "./components/Category";
 
 export const ThemeContext = createContext({ toggleMode: () => {} });
 const App = () => {
@@ -85,10 +86,9 @@ const App = () => {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Home/>}></Route>
-              <Route path="/product" element={<Product/>}>
-              
-              </Route>
-              <Route path="/product/:id" element={<SingleProduct />}></Route>
+              <Route path="/category" element={<Category/>}></Route>
+              <Route path="/product" element={<Product/>}/> 
+              <Route path="/category/:id" element={<SingleProduct />}></Route>
               <Route path="/profile" element={<Profile />}></Route>
               <Route path="/cart" element={<Cart />}></Route>
               <Route path="/users">
