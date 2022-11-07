@@ -6,7 +6,7 @@ import NavbarOther from "./NavbarOther";
 const Cart = () => {
   const cart = useAppSelector((state) => state.cartReducer);
   
-  
+
   
   
  const dispatch = useAppDispatch();

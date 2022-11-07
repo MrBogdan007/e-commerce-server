@@ -4,46 +4,48 @@ import Modal from "./interface/Modal";
 
 import React, { useState } from "react";
 import StarIcon from "@mui/icons-material/Star";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useLocation } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { setModal } from "../redux/reducers/modalClose";
-
-
-
-
+import { Box, useTheme } from "@mui/material";
 
 const Home = () => {
-  const dispatch = useAppDispatch()
-  const modalState = useAppSelector((state) => state.modalReducer)
+  const theme = useTheme();
+  const dispatch = useAppDispatch();
+  const modalState = useAppSelector((state) => state.modalReducer);
 
-  const location = useLocation()
+  const location = useLocation();
 
   const [signIn, setSignIn] = useState(false);
   const registerSign = () => {
     setSignIn((current) => !current);
 
-    if(modalState===false){
-      dispatch(setModal({modal: !modalState}));
+    if (modalState === false) {
+      dispatch(setModal({ modal: !modalState }));
       setSignIn((current) => !current);
     }
-    
   };
   //  after x press , sign in true; modal state false
   //after 1 click at sign in
- //signIn false and modalState true
- //after 2 click sign in true modalState true
-
-  
+  //signIn false and modalState true
+  //after 2 click sign in true modalState true
 
   return (
     <>
-      <main className="main">
+      <Box
+     
+        className="main"
+      >
         <div className="header">
           <NavBar />
-          <span className="header__signIn" onClick={() => {registerSign(); }}>
+          <span
+            className="header__signIn"
+            onClick={() => {
+              registerSign();
+            }}
+          >
             Sign In
-            
           </span>
           <PalleteButton />
         </div>
@@ -59,7 +61,7 @@ const Home = () => {
             </a>
           </div>
         </div>
-      </main>
+      </Box>
       <div
         style={{ display: signIn && modalState ? "block" : "none" }}
         className="header__modal"

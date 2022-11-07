@@ -18,19 +18,20 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { BrowserRouter, Route, Routes, Link, Form, Navigate } from "react-router-dom";
 import { Box, ThemeProvider } from "@mui/material";
 import { userSchema } from "./schema/userForm";
-import { createTheme } from "@mui/material/styles";
+import { createTheme, useTheme } from "@mui/material/styles";
 import { green, purple } from "@mui/material/colors";
 import IconButton from "@mui/material/IconButton";
 import PalleteButton from "./components/PalleteButton";
 
 import { useAppDispatch, useAppSelector } from "./hooks/reduxHooks";
 import SingleProduct from "./components/SingleProduct";
-import { fetchProducts } from "./redux/reducers/productAll";
+
 import Category from "./components/Category";
+import { fetchProducts } from "./redux/reducers/productReducer";
 
 export const ThemeContext = createContext({ toggleMode: () => {} });
 const App = () => {
-  
+
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchProducts());
@@ -74,7 +75,7 @@ const App = () => {
     },
   };
 
- 
+  
   
   return (
     <ThemeContext.Provider value={manageTheme}>

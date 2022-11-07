@@ -30,6 +30,15 @@ export const fetchCategory = createAsyncThunk("fetchCategory", async (id:number)
     
 } )
 
+export const fetchProducts = createAsyncThunk("fetchAll", async () => {
+   
+   const result = await axios.get("https://api.escuelajs.co/api/v1/products")
+   //"https://api.escuelajs.co/api/v1/products"
+   const data = result.data
+   return data
+} )
+
+
 
 const productSlicer = createSlice({
    name: "incomes",
@@ -47,10 +56,11 @@ const productSlicer = createSlice({
          return action.payload
       })
       .addCase(fetchCategory.fulfilled, (state,action) =>{
-         
          return action.payload
       })
-
+      .addCase(fetchProducts.fulfilled, (state,action) =>{
+         return action.payload
+      })
    }
 })
 // Points to global state withous s at the end

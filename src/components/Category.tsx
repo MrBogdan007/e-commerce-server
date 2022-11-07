@@ -1,26 +1,31 @@
+import { Pagination } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
+import { addCartItem } from "../redux/reducers/cartReducer";
 import {setOffsetReducer} from "../redux/reducers/productOffset"
-import { fetchCategory, fetchPagination,  } from "../redux/reducers/productReducer";
+import { fetchCategory, fetchPagination, fetchProducts,  } from "../redux/reducers/productReducer";
 import {  singleProduct } from "../redux/reducers/singleProductReducer";
+import { Product } from "../types/product";
 
-import AppPagination from "./AppPagination";
+
 import Modal from "./interface/Modal";
 import NavBar from "./NavBar";
 import NavbarOther from "./NavbarOther";
+import PaginationCustom from "./pagination/PaginationCustom";
 import SingleProduct from "./SingleProduct";
 
-const Product = () => {
-  const products = useAppSelector((state) => state.productReducer);
+const Category = () => {
+  const fetchPaginationValue = useAppSelector((state) => state.productReducer);
   
-  const singleProductValue = useAppSelector((state) => state.singleProductReducer);
+  // const products = useAppSelector((state) => state.productAllReducer);
+  const [products, setProducts] = useState<Product[]>([])
   const [offset,setOffset] = useState(0);
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(fetchPagination(offset));
-  },[offset])
+  // useEffect(() => {
+  //   dispatch(fetchPagination(offset));
+  // },[offset])
 
 
   const navigate = useNavigate()
@@ -31,7 +36,7 @@ const Product = () => {
   }
 
 const categoryAll = () => {
-  dispatch(fetchPagination(offset));
+  dispatch(fetchProducts());
   navigate(`/category`)
 }
 const categoryCloth = () => {
@@ -49,6 +54,10 @@ const categoryShoes = () => {
 const categoryOthers = () => {
   dispatch(fetchCategory(5));
 }
+
+const addToCart = (id:number,title:string,price:number,image:string) => {
+  dispatch(addCartItem({id:id,title:title,price:price,image:image}))
+}
   return (
     <>
     
@@ -63,7 +72,7 @@ const categoryOthers = () => {
             <div className="product__image">
               {<img src={item.images[0]} alt="shoes" />}
             </div>
-            <button className="product__button">Add to cart</button>
+            <button  onClick={() => addToCart(item.id,item.title,item.price,item.images[0])} className="product__button">Add to cart</button>
             <button onClick={()=> detailsShow(item.id)} className="product__button">Details</button>
           </div>
           
@@ -80,10 +89,10 @@ const categoryOthers = () => {
           <li onClick={() => categoryOthers()}>Others</li>
         </ul>
       </div>
-      
-      <AppPagination setPage={setOffset} page={offset}/>
+      <PaginationCustom setProducts={setProducts}/>
+    
     </>
   );
 };
 
-export default Product;
+export default Category;

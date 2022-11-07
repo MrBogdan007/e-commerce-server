@@ -3,23 +3,21 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { addCartItem } from "../redux/reducers/cartReducer";
-import { fetchProducts } from "../redux/reducers/productAll";
+
 import {setOffsetReducer} from "../redux/reducers/productOffset"
 import { fetchCategory, fetchPagination,  } from "../redux/reducers/productReducer";
 import {  singleProduct } from "../redux/reducers/singleProductReducer";
 
-import AppPagination from "./AppPagination";
+
 import Modal from "./interface/Modal";
 import NavBar from "./NavBar";
 import NavbarOther from "./NavbarOther";
 import SingleProduct from "./SingleProduct";
 
 const Product = () => {
-  const products = useAppSelector((state) => state.productAllReducer);
+  const products = useAppSelector((state) => state.productReducer);
   const dispatch = useAppDispatch();
-const categoryAll = () => {
-  dispatch(fetchProducts());
-}
+
 const addToCart = (id:number,title:string,price:number,image:string) => {
   dispatch(addCartItem({id:id,title:title,price:price,image:image}))
 }
