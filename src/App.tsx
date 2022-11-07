@@ -61,7 +61,7 @@ const App = () => {
             secondary: { main: "#1564BF" },
             text: {
               primary: "white",
-              secondary: "blue",
+              secondary: "black",
             },
             background: {
               default: "#000000",
@@ -81,7 +81,7 @@ const App = () => {
     <ThemeContext.Provider value={manageTheme}>
       <ThemeProvider theme={theme}>
         <Box
-          sx={{ backgroundColor: "background.default", color: "text.primary" }}
+          sx={{ backgroundColor: "background.default", color: 'text.primary' }}
           className="App"
         >
           <BrowserRouter>

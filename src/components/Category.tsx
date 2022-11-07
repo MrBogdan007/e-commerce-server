@@ -1,4 +1,5 @@
-import { Pagination } from "@mui/material";
+
+import { Pagination,useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -27,7 +28,7 @@ const Category = () => {
   //   dispatch(fetchPagination(offset));
   // },[offset])
 
-
+  const theme = useTheme()
   const navigate = useNavigate()
   const detailsShow = (id:number) => {
     console.log('clicked');
@@ -80,7 +81,7 @@ const addToCart = (id:number,title:string,price:number,image:string) => {
       </div>
       </div>
       <div className="product-category">
-        <ul className="product-ul">
+        <ul className="product-ul" style={{ color: theme.palette.mode === "light" ? "black"  : "black"}}>
           <li onClick={() => categoryAll()}>All products</li>
           <li onClick={() => categoryCloth()} >Clothes</li>
           <li onClick={() => categoryElectronics()}>Electronics</li>
@@ -89,7 +90,9 @@ const addToCart = (id:number,title:string,price:number,image:string) => {
           <li onClick={() => categoryOthers()}>Others</li>
         </ul>
       </div>
+      <div className="pagination">
       <PaginationCustom setProducts={setProducts}/>
+      </div>
     
     </>
   );

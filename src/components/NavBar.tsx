@@ -11,7 +11,7 @@ const NavBar = () => {
   return (
    <>
    
-   <div className= {location.pathname === '/'? "header-nav": "header-dif" } >
+   <div className= "header-dif"  >
  
    <nav  >
     
