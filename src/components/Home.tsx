@@ -34,7 +34,19 @@ const Home = () => {
   return (
     <>
       <Box
-     
+        sx={{
+          "&::before ": {
+            content: '""',
+            position: "absolute",
+            width: "100%",
+            height: "100vh",
+            padding: 0,
+            backgroundColor: theme.palette.mode === "dark" ? "red" : "black",
+            zIndex: -1,
+            
+          },
+
+        }}
         className="main"
       >
         <div className="header">
