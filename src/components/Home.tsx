@@ -34,6 +34,7 @@ const Home = () => {
   return (
     <>
       <Box
+      className="main"
         sx={{
           "&::before ": {
             content: '""',
@@ -41,13 +42,12 @@ const Home = () => {
             width: "100%",
             height: "100vh",
             padding: 0,
-            backgroundColor: theme.palette.mode === "dark" ? "red" : "black",
+            backgroundColor: theme.palette.mode === "light" ? "rgba(0,0,0,.4)" : "rgba(0,0,0,.7)",
             zIndex: -1,
-            
           },
 
         }}
-        className="main"
+        
       >
         <div className="header">
           <NavBar />
