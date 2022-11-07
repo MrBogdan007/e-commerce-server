@@ -50,6 +50,9 @@ const Home = () => {
         
       >
         <div className="header">
+          <div className="header__logo">
+            <img src={require('../img/logo.png')} alt="logo" width={250} height={40} />
+          </div>
           <NavBar />
           <span
             className="header__signIn"
