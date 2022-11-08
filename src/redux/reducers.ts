@@ -7,6 +7,7 @@ import offSetReducer from './reducers/productOffset'
 
 import productReducer from './reducers/productReducer'
 import singleProductReducer from './reducers/singleProductReducer'
+import userReducer from './reducers/users'
 
 
 
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   modalReducer,
   offSetReducer,
   singleProductReducer,
-  cartReducer
+  cartReducer,
+  userReducer
   
 })
 

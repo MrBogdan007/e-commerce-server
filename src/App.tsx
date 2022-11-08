@@ -28,13 +28,16 @@ import SingleProduct from "./components/SingleProduct";
 
 import Category from "./components/Category";
 import { fetchProducts } from "./redux/reducers/productReducer";
+import { authenticate } from "./redux/reducers/users";
 
 export const ThemeContext = createContext({ toggleMode: () => {} });
 const App = () => {
 
   const dispatch = useAppDispatch();
+  const token = localStorage.getItem("token")
   useEffect(() => {
     dispatch(fetchProducts());
+    if(token) { dispatch(authenticate(token))}
   }, []);
   const [mode, setMode] = useState<"dark" | "light">("light");
   const theme = createTheme({

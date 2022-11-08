@@ -14,6 +14,7 @@ import { singleProduct } from "../redux/reducers/singleProductReducer";
 import { Product } from "../types/product";
 
 import Modal from "./interface/Modal";
+import Login from "./Login";
 import NavBar from "./NavBar";
 import NavbarOther from "./NavbarOther";
 import PaginationCustom from "./pagination/PaginationCustom";
@@ -153,6 +154,7 @@ const Category = () => {
       <div className="pagination">
         <PaginationCustom setProducts={setProducts} />
       </div>
+      <Login/>
     </>
   );
 };
