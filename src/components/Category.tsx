@@ -32,7 +32,17 @@ const Category = () => {
   // },[offset])
   const [search,setSearch] = useState('');
   const tempList =  products.filter(item => item.title.includes(search))
+  switch (select) {
+    case 'naming': 
+    products.sort((a,b) => a.title > b.title ? 1 : -1)
+    break
+    case'expensive':
+    products.sort((a,b) => b.price - a.price)
+    break;
+    case'cheap': 
+    products.sort((a,b) => a.price-b.price)
 
+  }
   
 
   const theme = useTheme();
@@ -75,7 +85,7 @@ const Category = () => {
   const inputHandler = (e:any) => {
     setSearch(e);
   }
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     setSelect(e.target.value); 
   }
   console.log(select);
