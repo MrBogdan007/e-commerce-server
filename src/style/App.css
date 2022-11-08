@@ -290,6 +290,18 @@ section h2 {
   justify-content: space-between;
   flex-wrap: wrap;
 }
+.product-search input {
+  display: inline-block;
+}
+.product-search button {
+  display: inline-block;
+}
+.product-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 40px;
+}
 .product-category {
   position: fixed;
   padding: 30px;
@@ -314,7 +326,7 @@ section h2 {
 }
 
 .product-fetch {
-  margin-top: 80px;
+  margin-top: 30px;
 }
 
 .App {
