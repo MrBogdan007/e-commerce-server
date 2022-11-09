@@ -14,7 +14,6 @@ const NavBar = () => {
    <div className= "header-dif"  >
    <nav  >
    <Link  to={'/'}>Home page</Link>
-   <Link to={'category'}>Category page</Link>
    <Link to={'product'}>Product page</Link>
    <Link to={'profile'}>Profile page</Link>
    <Link to={'cart'}><ShoppingCartIcon/></Link>

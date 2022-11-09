@@ -6,45 +6,66 @@ import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import React, { useState } from "react";
 import { ModalInt } from "../../types/form";
 import formReducer, { setForm } from "../../redux/reducers/productReducer";
+import axios from "axios";
+import { authenticate } from "../../redux/reducers/users";
 
 const Form = ({signIn}: ModalInt) => {
-
+  const [email,setEmail] = useState('');
+  const [password,setPassword] = useState('');
 
   const [modalReg,setModalReg] = useState(true)
   interface IFormInput {
     firstname: string;
   }
+ 
+  const dispatch = useAppDispatch()
   const { register, handleSubmit } = useForm<IFormInput>({
     resolver: yupResolver(userSchema),
   });
-  const onSubmit: SubmitHandler<IFormInput> = data => {
-  console.log(data);
+  // const onSubmit: SubmitHandler<IFormInput> = async data => {
   
-  };
+  
+  // };
 
   const registrationModal = () => {
     setModalReg((current) => !current)
   }
-
+  
+  const onSubmit = async(e:any) => {
+    e.preventDefault()
+    try{
+      const responce = await axios.post("https://api.escuelajs.co/api/v1/auth/login",{email,password})
+      const token = responce.data
+      console.log(token);
+      
+      localStorage.setItem("token", token.access_token)
+      dispatch(authenticate(token.access_token))
+   }
+  catch (e) {
+   console.log(e);
+   
+  }
+ 
+ }
   
   return (
     <>
       {modalReg ? 
-        <form  onSubmit={handleSubmit(onSubmit)}>
+        <form action="" onSubmit={onSubmit}>
           <div className="form-item">
           <div className="modal-title">
             Sign in
           </div>
             <label htmlFor="email">Enter your email</label>
-            <input type="password" name="email" id="email" />
+            <input type="password" onChange={(e) => setEmail(e.target.value)} name="email" id="email" />
           </div>
           <div className="form-item">
             <label htmlFor="password">Enter your password</label>
-            <input type="password" name="password" id="password" />
+            <input type="password" onChange={(e) => setPassword(e.target.value)} name="password" id="password" />
           </div>
 
           <div className="form-item">
-            <button type="submit" className="button button_sm button_registrate">
+            <button type="submit"  className="button button_sm button_registrate">
               Sign In
             </button>
           </div>

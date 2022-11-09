@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Cart } from "../../types/cart";
-import { Product } from "../../types/product";
+import { ProductType } from "../../types/product";
 
 const initialState: Cart[] = []
 
@@ -19,7 +19,7 @@ const cartSlicer = createSlice({
          counter++;
         
           state.map(item=>{ if(item.id ===action.payload.id){ 
-           return item.price = action.payload.price + item.price} else{return item.price} } )
+           return item.price = action.payload.price } else{return item.price} } )
       },
       priceRemove: (state,action) => {
         

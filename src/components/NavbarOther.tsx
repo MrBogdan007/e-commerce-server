@@ -19,11 +19,10 @@ const NavBar = () => {
    
    <div  className= "navbar-other__main">
    <nav  >
-   <Link style={{ color: theme.palette.mode === "light" ? "black "  : "white"}} to={'/'}>Home page</Link>
-   <Link style={{ color: theme.palette.mode === "light" ? "black "  : "white"}} to={'../category'}>Category page</Link>
-   <Link style={{ color: theme.palette.mode === "light" ? "black "  : "white"}} to={'../product'}>Product page</Link>
-   <Link style={{ color: theme.palette.mode === "light" ? "black "  : "white"}} to={'../Profile'}>Profile page</Link>
-   <Link  style={{ color: theme.palette.mode === "light" ? "black "  : "white"}} to={'../Cart'}><ShoppingCartIcon/></Link>
+   <Link style={{ color: theme.palette.mode === "light" ? "black "  : "black"}} to={'/'}>Home page</Link>
+   <Link style={{ color: theme.palette.mode === "light" ? "black "  : "black"}} to={'../product'}>Product page</Link>
+   <Link style={{ color: theme.palette.mode === "light" ? "black "  : "black"}} to={'../profile'}>Profile page</Link>
+   <Link  style={{ color: theme.palette.mode === "light" ? "black "  : "black"}} to={'../cart'}><ShoppingCartIcon/></Link>
  
  
    </nav> 

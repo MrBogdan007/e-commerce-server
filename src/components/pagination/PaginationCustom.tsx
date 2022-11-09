@@ -1,11 +1,11 @@
 import { Box, Pagination } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { Product } from "../../types/product";
+import {  ProductType } from "../../types/product";
 
 
 const pageSize = 12;
-const PaginationCustom = ({setProducts}:{setProducts: (value: Product[]) => void}) => {
+const PaginationCustom = ({setProducts}:{setProducts: (value: ProductType[]) => void}) => {
   const [pagination, setPagination] = useState({
     count: 0,
     from: 0,
@@ -18,7 +18,7 @@ const PaginationCustom = ({setProducts}:{setProducts: (value: Product[]) => void
    
     getData: ({from,to}:{from:number, to: number}) => {
       const data = products.slice(from, to);
-       return new Promise<{count: number, data: Product[]}>((resolve,reject) => {
+       return new Promise<{count: number, data: ProductType[]}>((resolve,reject) => {
          resolve({
              count: products.length,
              data: data
@@ -47,15 +47,12 @@ const PaginationCustom = ({setProducts}:{setProducts: (value: Product[]) => void
       justifyContent={"center"}
       alignItems="center"
       display={"flex"}
-      sx={{ margin: "20px 0px" }}
+      sx={{ margin: "0px 0px" }}
     >
       <Pagination
       count={Math.ceil(pagination.count / pageSize)}
       onChange={handlePageChange}
       />
-
-   
-
     </Box>
   );
 };

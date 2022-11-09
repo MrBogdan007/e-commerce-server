@@ -5,11 +5,11 @@ import { useState } from "react";
 import { useAppSelector } from "../../hooks/reduxHooks";
 
 import { ModalInt } from "../../types/form";
-import { Product } from "../../types/product";
+import { ProductType } from "../../types/product";
 
 import { RootState } from "../store";
 
-const initialState: Product[] = []
+const initialState: ProductType[] = []
  
    
 

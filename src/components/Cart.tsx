@@ -6,11 +6,27 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useState } from "react";
 import { counterSet } from "../redux/reducers/counter";
+import PalleteButton from "./PalleteButton";
+import Modal from "./interface/Modal";
+import { setModal } from "../redux/reducers/modalClose";
 const Cart = () => {
   const cart = useAppSelector((state) => state.cartReducer);
  const [counter,setCounter] = useState(0);
  const [initial,setInitial] = useState(0);
-  
+ 
+ const modalState = useAppSelector((state) => state.modalReducer);
+
+ 
+
+ const [signIn, setSignIn] = useState(false);
+ const registerSign = () => {
+   setSignIn((current) => !current);
+
+   if (modalState === false) {
+     dispatch(setModal({ modal: !modalState }));
+     setSignIn((current) => !current);
+   }
+ };
  const dispatch = useAppDispatch();
  
   const removeCart = (id:number) => {
@@ -30,7 +46,16 @@ const Cart = () => {
  }
   return (
     <>
- <NavbarOther/>
+              <div className="header header_dif">
+          <div className="header__logo">
+            <img src={require('../img/logo.png')} alt="logo" width={250} height={40} />
+          </div>
+          <NavbarOther />
+
+          <PalleteButton />
+        </div>
+
+ 
   {
     cart.length<=0? <div>Cart is empty</div> 
     :

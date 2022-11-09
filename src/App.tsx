@@ -26,7 +26,7 @@ import PalleteButton from "./components/PalleteButton";
 import { useAppDispatch, useAppSelector } from "./hooks/reduxHooks";
 import SingleProduct from "./components/SingleProduct";
 
-import Category from "./components/Category";
+
 import { fetchProducts } from "./redux/reducers/productReducer";
 import { authenticate } from "./redux/reducers/users";
 
@@ -40,6 +40,8 @@ const App = () => {
     if(token) { dispatch(authenticate(token))}
   }, []);
   const [mode, setMode] = useState<"dark" | "light">("light");
+  console.log(mode);
+  
   const theme = createTheme({
     palette: {
       mode,
@@ -90,10 +92,10 @@ const App = () => {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Home/>}></Route>
-              <Route path="/category" element={<Category/>}></Route>
+
               <Route path="/product" element={<Product/>}/> 
-              <Route path="/category/:id" element={<SingleProduct />}></Route>
-              <Route path="/profile" element={<Profile />}></Route>
+              <Route path="/product/:id" element={<SingleProduct />}></Route>
+              <Route path="/profile" element={<Profile/>}></Route>
               <Route path="/cart" element={<Cart />}></Route>
               <Route path="/users">
                 <Route path="" element={<Users />}>
