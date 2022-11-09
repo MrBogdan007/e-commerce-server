@@ -1,9 +1,10 @@
 import { Pagination, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { addCartItem } from "../redux/reducers/cartReducer";
+import { setModal } from "../redux/reducers/modalClose";
 import { setOffsetReducer } from "../redux/reducers/productOffset";
 import {
   fetchCategory,
@@ -18,6 +19,7 @@ import Login from "./Login";
 import NavBar from "./NavBar";
 import NavbarOther from "./NavbarOther";
 import PaginationCustom from "./pagination/PaginationCustom";
+import PalleteButton from "./PalleteButton";
 import SingleProduct from "./SingleProduct";
 
 const Category = () => {
@@ -45,11 +47,10 @@ const Category = () => {
 
   }
   
-
+  const productsReducer = useAppSelector((state) => state.productReducer);
   const theme = useTheme();
   const navigate = useNavigate();
   const detailsShow = (id: number) => {
-    console.log("clicked");
     navigate(`/category/${id}`);
     dispatch(singleProduct(id));
   };
@@ -89,11 +90,38 @@ const Category = () => {
   const handleChange = (e:any) => {
     setSelect(e.target.value); 
   }
-  console.log(select);
+  const location = useLocation()
+
+  const modalState = useAppSelector((state) => state.modalReducer);
+
+  console.log(modalState);
   
+
+  const [signIn, setSignIn] = useState(false);
+  const registerSign = () => {
+    setSignIn((current) => !current);
+
+    if (modalState === false) {
+      dispatch(setModal({ modal: !modalState }));
+      setSignIn((current) => !current);
+    }}
   return (
     <>
-      <NavbarOther />
+              <div className="header">
+          <div className="header__logo">
+            <img src={require('../img/logo.png')} alt="logo" width={250} height={40} />
+          </div>
+          <NavBar />
+          <span
+            className="header__signIn"
+            onClick={() => {
+              registerSign();
+            }}
+          >
+            Sign In
+          </span>
+          <PalleteButton />
+        </div>
       <div className="container">
         <div className="product-header">
           <div className="product-search">
@@ -104,7 +132,7 @@ const Category = () => {
           <div className="product__select">
             <select name="properties" id="properties" onChange={handleChange}>
               {" "}
-              <option selected value="naming">by naming</option>{" "}
+              <option value="naming">by naming</option>{" "}
               <option value="cheap">from cheap</option>{" "}
               <option value="expensive">from expensive</option>
             </select>

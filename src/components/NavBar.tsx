@@ -10,7 +10,7 @@ const NavBar = () => {
 
   return (
    <>
-   
+
    <div className= "header-dif"  >
  
    <nav  >
@@ -20,7 +20,7 @@ const NavBar = () => {
    <Link to={'product'}>Product page</Link>
    <Link to={'profile'}>Profile page</Link>
    <Link to={'cart'}><ShoppingCartIcon/></Link>
-   
+
  
    </nav>
   

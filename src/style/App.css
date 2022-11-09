@@ -34,6 +34,7 @@
 .header__logo {
   margin-top: 10px;
   margin-left: 15px;
+  width: 20%;
 }
 .header__logo img::hover {
   cursor: pointer;
@@ -86,6 +87,27 @@
   color: #fff !important;
   margin-left: 60px;
   margin-top: 10px;
+}
+
+.navbar-other__main {
+  text-align: center;
+  display: flex;
+  justify-content: flex-end;
+  width: 80%;
+}
+.navbar-other__main nav {
+  display: flex;
+  padding-top: 5px;
+  justify-content: space-between;
+}
+.navbar-other__main nav a {
+  margin-left: 60px;
+  margin-top: 10px;
+  text-decoration: none;
+}
+.navbar-other__main nav a:nth-child(5) {
+  margin-top: 15px;
+  padding-right: 5px;
 }
 
 .overlay {
@@ -147,6 +169,10 @@ section h2 {
   font-size: 25px;
   text-align: center;
   margin-bottom: 40px;
+}
+
+.header__signIn_navbar {
+  margin-left: 30px;
 }
 
 .guarantee {
@@ -289,6 +315,9 @@ section h2 {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 40px;
 }
 .product-search input {
   display: inline-block;
@@ -300,7 +329,6 @@ section h2 {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 40px;
 }
 .product-category {
   position: fixed;

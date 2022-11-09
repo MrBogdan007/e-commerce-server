@@ -18,7 +18,6 @@ const PaginationCustom = ({setProducts}:{setProducts: (value: Product[]) => void
    
     getData: ({from,to}:{from:number, to: number}) => {
       const data = products.slice(from, to);
-      console.log(data);
        return new Promise<{count: number, data: Product[]}>((resolve,reject) => {
          resolve({
              count: products.length,
