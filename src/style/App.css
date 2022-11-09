@@ -93,7 +93,7 @@
   text-align: center;
   display: flex;
   justify-content: flex-end;
-  width: 80%;
+  width: 62%;
 }
 .navbar-other__main nav {
   display: flex;
@@ -171,8 +171,8 @@ section h2 {
   margin-bottom: 40px;
 }
 
-.header__signIn_navbar {
-  margin-left: 30px;
+.button_cart {
+  margin-right: 40px;
 }
 
 .guarantee {
@@ -317,7 +317,7 @@ section h2 {
   flex-wrap: wrap;
   background-color: #fff;
   border-radius: 10px;
-  padding: 40px;
+  padding: 20px 10px 20px 10px;
 }
 .product-search input {
   display: inline-block;
@@ -355,6 +355,18 @@ section h2 {
 
 .product-fetch {
   margin-top: 30px;
+}
+
+.cart {
+  margin-top: 120px;
+  display: flex;
+  justify-content: space-around;
+}
+.cart__image img {
+  width: 244px;
+}
+.cart-item__bottom {
+  display: flex;
 }
 
 .App {

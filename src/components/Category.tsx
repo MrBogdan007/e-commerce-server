@@ -107,21 +107,28 @@ const Category = () => {
     }}
   return (
     <>
-              <div className="header">
+          <div className="header">
           <div className="header__logo">
             <img src={require('../img/logo.png')} alt="logo" width={250} height={40} />
           </div>
-          <NavBar />
+          <NavbarOther />
           <span
             className="header__signIn"
             onClick={() => {
               registerSign();
             }}
+           style={{color: 'black'}}
           >
             Sign In
           </span>
           <PalleteButton />
         </div>
+        <div
+        style={{ display: signIn && modalState ? "block" : "none" }}
+        className="header__modal"
+      >
+        <Modal signIn={signIn} />
+      </div>
       <div className="container">
         <div className="product-header">
           <div className="product-search">

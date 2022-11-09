@@ -13,11 +13,22 @@ const cartSlicer = createSlice({
       },
       removeCartItem: (state,action) => {
         return state.filter(item => item.id !== action.payload)
+      },
+      priceUpdate: (state,action ) => {
+         let counter = 0;
+         counter++;
+        
+          state.map(item=>{ if(item.id ===action.payload.id){ 
+           return item.price = action.payload.price + item.price} else{return item.price} } )
+      },
+      priceRemove: (state,action) => {
+        
+          state.map(item=> item.id ===action.payload.id ? item.price = action.payload.price - item.price : item.price )
       }
    }
 })
 const cartReducer = cartSlicer.reducer
 
-export const {addCartItem,removeCartItem } = cartSlicer.actions
+export const {addCartItem,removeCartItem,priceUpdate,priceRemove } = cartSlicer.actions
 
 export default cartReducer;

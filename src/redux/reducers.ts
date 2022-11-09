@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import cartReducer from './reducers/cartReducer'
+import counterReducer from './reducers/counter'
 import modalReducer from './reducers/modalClose'
 
 import offSetReducer from './reducers/productOffset'
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   offSetReducer,
   singleProductReducer,
   cartReducer,
-  userReducer
+  userReducer,
+  counterReducer
   
 })
 
