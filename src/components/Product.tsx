@@ -83,8 +83,9 @@ const Product = () => {
     title: string,
     price: number,
     image: string
+    
   ) => {
-    dispatch(addCartItem({ id: id, title: title, price: price, image: image }));
+    dispatch(addCartItem({ id: id, title: title, price: price, image: image, quantity: 1}));
   };
 
   const inputHandler = (e:any) => {
@@ -99,8 +100,6 @@ const Product = () => {
 
   const onDelete = (id:number) => {
     dispatch(deleteProducts(id))
-    alert('product has been removed')
-    
   }
   
  

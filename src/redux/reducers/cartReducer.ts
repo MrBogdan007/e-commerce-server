@@ -14,27 +14,39 @@ const cartSlicer = createSlice({
     removeCartItem: (state, action) => {
       return state.filter((item) => item.id !== action.payload);
     },
-    priceUpdate: (state, action) => {
+    increaseQuantity: (state, action) => {
+      console.log(action.payload.id);
+      
       state.map((item) => {
         if (item.id === action.payload.id) {
-          return (item.price = action.payload.price + action.payload.price);
+          item.quantity = item.quantity + 1
+          console.log(item.quantity);
+          
+            return item
         } else {
-          return item.price;
+          return item;
         }
       });
     },
-    priceRemove: (state, action) => {
-      state.map((item) =>
-        item.id === action.payload.id
-          ? (item.price = action.payload.price - item.price)
-          : item.price
-      );
+    decreaseQuantity: (state, action) => {
+      console.log(action.payload.id);
+      
+      state.map((item) => {
+        if (item.id === action.payload.id) {
+          item.quantity = item.quantity - 1
+   
+          
+            return item
+        } else {
+          return item;
+        }
+      });
     },
   },
 });
 const cartReducer = cartSlicer.reducer;
 
-export const { addCartItem, removeCartItem, priceUpdate, priceRemove } =
+export const { addCartItem, removeCartItem, increaseQuantity, decreaseQuantity } =
   cartSlicer.actions;
 
 export default cartReducer;

@@ -39,10 +39,8 @@ export const fetchProducts = createAsyncThunk("fetchAll", async () => {
 } )
 export const deleteProducts = createAsyncThunk("delete", async (id:number) => {
    
-   const result = await axios.delete(`https://api.escuelajs.co/api/v1/products/${id}`)
-   //"https://api.escuelajs.co/api/v1/products"
-   const data = result.data
-   return data
+  
+
 } )
 
 
@@ -69,7 +67,7 @@ const productSlicer = createSlice({
          return action.payload
       })
       .addCase(deleteProducts.fulfilled, (state,action)=> {
-         return state
+         
       })
    }
 })

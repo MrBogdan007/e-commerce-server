@@ -12,7 +12,7 @@ const PaginationCustom = ({setProducts}:{setProducts: (value: ProductType[]) => 
     to: pageSize
   });
   const products = useAppSelector((state) => state.productReducer);
-  console.log(products);
+
   
   const dispatch = useAppDispatch()
   

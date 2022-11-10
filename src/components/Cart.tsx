@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
-import { priceRemove, priceUpdate, removeCartItem } from "../redux/reducers/cartReducer";
+import { decreaseQuantity, increaseQuantity, removeCartItem } from "../redux/reducers/cartReducer";
 import NavBar from "./NavBar";
 import NavbarOther from "./NavbarOther";
 import AddIcon from '@mui/icons-material/Add';
@@ -17,6 +17,7 @@ const Cart = () => {
  const modalState = useAppSelector((state) => state.modalReducer);
 
  
+console.log(cart);
 
  const [signIn, setSignIn] = useState(false);
  const registerSign = () => {
@@ -32,16 +33,13 @@ const Cart = () => {
   const removeCart = (id:number) => {
     dispatch(removeCartItem(id));
   }
- const setPriceAdd = (price:number,id:number) => {
- 
-   dispatch(priceUpdate({price:price,id:id}))
-  
-  
-   setCounter(prev => prev + 1)
+ const setPriceAdd = (id:number) => {
+   dispatch(increaseQuantity({id:id}))
+   console.log(id);
    
  }
- const setPriceRemove = (price:number,id:number) => {
-  dispatch(priceRemove({price:price,id:id}))
+ const setPriceRemove = (id:number) => {
+  dispatch(decreaseQuantity({id:id}))
  }
   return (
     <>
@@ -69,13 +67,13 @@ const Cart = () => {
             {<img src={item.image} alt="shoes" />}
           </div>
           <div className="product__title">{item.title}</div>{" "}
-          <div className="product__price">{`${item.price}$`}</div>{" "}
+          <div className="product__price">{`${item.price * item.quantity}$`}</div>{" "}
 
           <div className="cart-item__bottom"> 
           <button onClick={() => removeCart(item.id)} className="button button_cart"> Remove</button>
-          <div className="cart-block__remove" onClick={() => { setPriceRemove(item.price,item.id)}}> <RemoveIcon/> </div>
-            <div className="cart-block__counter">{counter}</div>
-            <div className="cart-block__add" onClick={() => { setPriceAdd(item.price,item.id); }} ><AddIcon/></div>
+          <div className="cart-block__remove" onClick={() => { setPriceRemove(item.id)}}> <RemoveIcon/> </div>
+            <div className="cart-block__counter">{item.quantity}</div>
+            <div className="cart-block__add" onClick={() => { setPriceAdd(item.id); }} ><AddIcon/></div>
           </div>
 
           </div>

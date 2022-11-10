@@ -2,5 +2,6 @@ export interface Cart {
    id: number,
    title: string,
    price: number,
-   image: string
+   image: string,
+   quantity: number
 }
