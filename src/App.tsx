@@ -42,7 +42,7 @@ const App = () => {
     if(token) { dispatch(authenticate(token))}
   }, []);
   const [mode, setMode] = useState<"dark" | "light">("light");
-  console.log(mode);
+ 
   
   const theme = createTheme({
     palette: {

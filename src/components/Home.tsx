@@ -81,7 +81,7 @@ const Home = () => {
         style={{ display: signIn && modalState ? "block" : "none" }}
         className="header__modal"
       >
-        <Modal signIn={signIn} />
+        <Modal signIn={signIn} setSignIn={setSignIn} />
       </div>
       <div className="container">
         <section className="guarantee">

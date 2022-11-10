@@ -10,7 +10,7 @@ import axios from "axios";
 import { authenticate } from "../../redux/reducers/users";
 import { useNavigate } from "react-router-dom";
 
-const Form = ({ signIn }: ModalInt) => {
+const Form = ({ signIn,setSignIn }: ModalInt) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name,setName] = useState('')
@@ -61,17 +61,22 @@ const Form = ({ signIn }: ModalInt) => {
       );
       const result = responce.data;
       console.log(result);
+      if(setSignIn)
+      setSignIn(false)
+      navigate("/");
       return result
 
     } catch (e) {
       console.log(e);
     }
-   
+ 
   };
+ 
+  
   const signInSubmit = () => {
     console.log("asd");
   };
-  console.log(signIn);
+
 
   return (
     <>

@@ -7,6 +7,7 @@ import { addCartItem } from "../redux/reducers/cartReducer";
 import { setModal } from "../redux/reducers/modalClose";
 import { setOffsetReducer } from "../redux/reducers/productOffset";
 import {
+  deleteProducts,
   fetchCategory,
   fetchPagination,
   fetchProducts,
@@ -30,6 +31,7 @@ const Product = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [select, setSelect] = useState('');
   const [offset, setOffset] = useState('0');
+  const user = useAppSelector(state => state.userReducer.currentUser)
   const dispatch = useAppDispatch();
   // useEffect(() => {
   //   dispatch(fetchPagination(offset));
@@ -95,9 +97,13 @@ const Product = () => {
 
   const modalState = useAppSelector((state) => state.modalReducer);
 
-  console.log(modalState);
+  const onDelete = (id:number) => {
+    dispatch(deleteProducts(id))
+    alert('product has been removed')
+    
+  }
   
-
+ 
   const [signIn, setSignIn] = useState(false);
   const registerSign = () => {
     setSignIn((current) => !current);
@@ -162,13 +168,13 @@ const Product = () => {
                 }
                 className="product__button"
               >
-                Add to cart
+                {user?.role ==='admin' ? 'Edit product': 'Add to cart'  } 
               </button>
               <button
-                onClick={() => detailsShow(item.id)}
+                onClick={() => { if(user?.role ==='admin'){onDelete(item.id)} else{detailsShow(item.id)} }}
                 className="product__button"
               >
-                Details
+                {user?.role ==='admin' ? 'Delete': 'Details'  }
               </button>
             </div>
           ))}

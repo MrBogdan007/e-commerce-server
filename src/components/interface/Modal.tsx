@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch } from 'react-redux';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { setModal } from '../../redux/reducers/modalClose';
-const Modal = ({signIn}:ModalInt) => {
+const Modal = ({signIn,setSignIn}:ModalInt) => {
 const [modalCloseValue,modalCloseValueSet] = useState(true)
 const dispatch =  useAppDispatch()
 
@@ -19,7 +19,7 @@ const dispatch =  useAppDispatch()
 
 
    <div className="modal-form">
-    <Form signIn={signIn}/>
+    <Form signIn={signIn} setSignIn={setSignIn}/>
    </div>
     </div>
     </div>

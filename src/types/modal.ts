@@ -1,3 +1,4 @@
 export interface Modal {
-   modal: boolean
+   modal: boolean,
+   
 }

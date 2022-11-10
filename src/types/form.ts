@@ -1,3 +1,4 @@
 export interface ModalInt{
-   signIn?: boolean
+   signIn?: boolean,
+   setSignIn?: (value: boolean) => void
 }

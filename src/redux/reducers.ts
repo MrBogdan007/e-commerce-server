@@ -8,7 +8,7 @@ import offSetReducer from './reducers/productOffset'
 
 import productReducer from './reducers/productReducer'
 import singleProductReducer from './reducers/singleProductReducer'
-import singleUserReducer from './reducers/singleUser'
+
 import userReducer from './reducers/users'
 
 
@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
   cartReducer,
   userReducer,
   counterReducer,
-  singleUserReducer
+ 
   
 })
 
