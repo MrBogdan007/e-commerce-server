@@ -149,7 +149,7 @@ const Product = () => {
 
         <div className="product product-fetch">
           {tempList.map((item) => (
-            <div key={item.id} className="product-item">
+            <div key={item.id} style={{color: theme.palette.mode === "light" ? "black" : "black"}}  className="product-item">
               {" "}
               <div className="product__title">{item.title}</div>{" "}
               <div className="product__price">{`${item.price}$`} </div>{" "}

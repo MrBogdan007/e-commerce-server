@@ -28,7 +28,7 @@ import SingleProduct from "./components/SingleProduct";
 
 
 import { fetchProducts } from "./redux/reducers/productReducer";
-import { authenticate } from "./redux/reducers/users";
+import { authenticate, fetchAllUsers } from "./redux/reducers/users";
 import Login from "./components/Login";
 
 export const ThemeContext = createContext({ toggleMode: () => {} });
@@ -37,6 +37,7 @@ const App = () => {
   const dispatch = useAppDispatch();
   const token = localStorage.getItem("token")
   useEffect(() => {
+    dispatch(fetchAllUsers())
     dispatch(fetchProducts());
     if(token) { dispatch(authenticate(token))}
   }, []);

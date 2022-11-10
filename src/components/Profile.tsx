@@ -9,6 +9,9 @@ import PalleteButton from "./PalleteButton";
 
 const Profile = () => {
   const user = useAppSelector(state => state.userReducer.currentUser)
+  const userList = useAppSelector(state => state.userReducer.users)
+  console.log(userList);
+  
   console.log(user);
   const navigate = useNavigate()
   useEffect( () => {
@@ -16,7 +19,6 @@ const Profile = () => {
       navigate("/login")
     }
   }
-
   )
   
   
@@ -46,6 +48,7 @@ const Profile = () => {
         
        
       {user && (
+    
          <div className="profile-block" >
           <div className="profile-item">
           <div className="profile-block__avatar"><img src={user.avatar} alt="avatar" /> </div>
@@ -59,8 +62,32 @@ const Profile = () => {
          </div>
           
          </div>
-         
+        
       )}
+      {
+        user?.role === 'admin'  && (
+         <div>
+          <h3>Site users list: </h3>
+          {userList.map(item => 
+          <div className="profile-block" >
+          <div className="profile-item">
+          <div className="profile-block__avatar"><img src={item.avatar} alt="avatar" /> </div>
+          </div>
+         <div className="profile-item">
+         <div className="profile-block__name"><span>Users name:</span> {item.name}</div>
+         <div className="profile-block__email"><span>Users email: </span> {item.email}</div>
+          
+          <div className="profile-block__password"><span>Users password:</span>  {item.password}</div>
+          <div className="profile-block__role"><span>Users role:</span>  {item.role}</div>
+          
+         </div>
+          
+         </div>
+         
+         )}
+         </div>
+          )
+      }
       
       </div>
     </>
