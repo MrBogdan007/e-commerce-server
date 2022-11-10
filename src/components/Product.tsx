@@ -1,5 +1,5 @@
 import { Pagination, useTheme } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
@@ -8,6 +8,7 @@ import { setModal } from "../redux/reducers/modalClose";
 import { setOffsetReducer } from "../redux/reducers/productOffset";
 import {
   deleteProducts,
+  editProduct,
   fetchCategory,
   fetchPagination,
   fetchProducts,
@@ -18,6 +19,7 @@ import { ProductType } from "../types/product";
 
 
 import Modal from "./interface/Modal";
+import ModalEdit from "./interface/ModalEdit";
 import Login from "./Login";
 import NavBar from "./NavBar";
 import NavbarOther from "./NavbarOther";
@@ -31,7 +33,7 @@ const Product = () => {
   // const products = useAppSelector((state) => state.productAllReducer);
   const [products, setProducts] = useState<ProductType[]>([]);
   const [select, setSelect] = useState('');
-  const [offset, setOffset] = useState('0');
+  const [modalShow, setModalShow] = useState(false);
   const user = useAppSelector(state => state.userReducer.currentUser)
   const dispatch = useAppDispatch();
   // useEffect(() => {
@@ -96,6 +98,13 @@ const Product = () => {
     dispatch(deleteProducts(id))
   }
   
+  const onEdit = useCallback((id:number)=>{
+      // dispatch(editProduct(id,))
+      navigate(`/product/${id}`);
+      dispatch(singleProduct(id));
+  }
+    ,[]); 
+  
  
   const [signIn, setSignIn] = useState(false);
   const registerSign = () => {
@@ -156,13 +165,19 @@ const Product = () => {
                 {<img src={item.images[0]} alt="shoes" />}
               </div>
               <button
-                onClick={() =>
-                  addToCart(item.id, item.title, item.price, item.images[0])
+                onClick={() =>{
+                  if(user?.role ==='admin'){onEdit(item.id)} else{addToCart(item.id, item.title, item.price, item.images[0])} }
                 }
                 className="product__button"
               >
                 {user?.role ==='admin' ? 'Edit product': 'Add to cart'  } 
               </button>
+              <div
+        style={{ display: modalShow ? "block" : "none" }}
+        className="header__modal"
+      >
+        
+      </div>
               <button
                 onClick={() => { if(user?.role ==='admin'){onDelete(item.id)} else{detailsShow(item.id)} }}
                 className="product__button"
@@ -171,6 +186,7 @@ const Product = () => {
               </button>
             </div>
           ))}
+          {/* <ModalEdit  /> */}
         </div>
       </div>
       <div className="product-category">

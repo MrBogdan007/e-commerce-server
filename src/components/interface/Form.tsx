@@ -73,8 +73,8 @@ const Form = ({ signIn,setSignIn }: ModalInt) => {
   };
  
   
-  const signInSubmit = () => {
-    console.log("asd");
+  const backHome = () => {
+    navigate('/')
   };
 
 
@@ -113,6 +113,15 @@ const Form = ({ signIn,setSignIn }: ModalInt) => {
             >
               Sign In
             </button>
+            { signIn === undefined &&
+              <button
+              className="button"
+              onClick={backHome}
+              >
+              Go back
+              </button>
+            }
+           
           </div>
           <div className="form-item">
             <span>You don't have an account?</span>

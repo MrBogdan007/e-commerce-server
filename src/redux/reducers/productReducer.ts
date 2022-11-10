@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useAppSelector } from "../../hooks/reduxHooks";
 
 import { ModalInt } from "../../types/form";
-import { ProductType } from "../../types/product";
+import { EditType, ProductType } from "../../types/product";
 
 import { RootState } from "../store";
 
@@ -36,6 +36,13 @@ export const fetchProducts = createAsyncThunk("fetchAll", async () => {
    //"https://api.escuelajs.co/api/v1/products"
    const data = result.data
    return data
+} )
+export const editProduct = createAsyncThunk("edit", async ({id, data}: {id: number, data: ProductType}) => {
+   
+   const result = await axios.put(`https://api.escuelajs.co/api/v1/products/${id}`,data)
+ 
+   const finalData = result.data
+   return finalData
 } )
 export const deleteProducts = createAsyncThunk("delete", async (id:number) => {
    
@@ -85,6 +92,15 @@ const productSlicer = createSlice({
       })
       .addCase(deleteProducts.fulfilled, (state,action)=> {
          return state.filter(item => item.id !== action.payload)
+      })
+      .addCase(editProduct.fulfilled,(state,action) => {
+        return state.map(item =>{
+            if(item.id === action.payload.id){
+               item = action.payload
+            }
+            return item
+             
+         })
       })
    }
 })
