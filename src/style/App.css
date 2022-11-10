@@ -379,6 +379,9 @@ section h2 {
   color: #000;
   height: 50vh;
 }
+.profile-admin__h3 {
+  margin-left: 8px;
+}
 .profile-title {
   font-size: 30px;
   margin-left: 20px;
@@ -391,7 +394,7 @@ section h2 {
 .profile-block span {
   font-weight: bold;
   display: block;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 .profile-block__avatar img {
   max-width: 100%;
@@ -400,15 +403,11 @@ section h2 {
   font-size: 20px;
 }
 .profile-block__button {
-  margin-top: 30px;
+  margin-top: 15px;
 }
 .profile-item:nth-child(1) {
-  width: 20%;
+  width: 25%;
 }
 .profile-item:nth-child(2) {
-  width: 75%;
-}
-
-.App {
-  min-height: 100vh;
+  width: 70%;
 }

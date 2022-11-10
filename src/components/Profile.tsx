@@ -24,8 +24,6 @@ const Profile = () => {
   
 
   const dispatch = useAppDispatch()
-  
-
   const logOutProfile = () => {
     dispatch(logOut())
   }
@@ -40,7 +38,7 @@ const Profile = () => {
           <PalleteButton />
         </div>
     
-      
+      <div className="container">
       <div className="profile">
         <div className="profile-title">
         Profile
@@ -67,7 +65,7 @@ const Profile = () => {
       {
         user?.role === 'admin'  && (
          <div>
-          <h3>Site users list: </h3>
+          <h3 className="profile-admin__h3" >Site users list: </h3>
           {userList.map(item => 
           <div className="profile-block" >
           <div className="profile-item">
@@ -89,6 +87,7 @@ const Profile = () => {
           )
       }
       
+      </div>
       </div>
     </>
   );
