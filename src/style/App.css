@@ -336,7 +336,24 @@ section h2 {
   flex-wrap: wrap;
   background-color: #fff;
   border-radius: 10px;
-  padding: 20px 10px 20px 10px;
+  padding: 30px 40px 30px 40px;
+}
+.product-item {
+  margin-top: 20px;
+}
+.product__select {
+  position: absolute;
+  top: 110px;
+  right: 540px;
+}
+.product__select select {
+  font-size: 18px;
+  padding: 5px;
+}
+.product-search {
+  position: absolute;
+  top: 110px;
+  left: 540px;
 }
 .product-search input {
   display: inline-block;

@@ -49,7 +49,7 @@ const PaginationCustom = ({setProducts}:{setProducts: (value: ProductType[]) => 
       justifyContent={"center"}
       alignItems="center"
       display={"flex"}
-      sx={{ margin: "0px 0px" }}
+      sx={{ padding: "10px"}}
     >
       <Pagination
       count={Math.ceil(pagination.count / pageSize)}

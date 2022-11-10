@@ -89,10 +89,11 @@ const productSlicer = createSlice({
          return action.payload
       })
       .addCase(fetchCategory.fulfilled, (state,action) =>{
-         return action.payload
+         return action.payload.sort((a:ProductType,b:ProductType) => a.title > b.title ? 1 : -1)
       })
       .addCase(fetchProducts.fulfilled, (state,action) =>{
-         return action.payload
+         
+         return action.payload.sort((a:ProductType,b:ProductType) => a.title > b.title ? 1 : -1)
       })
       .addCase(deleteProducts.fulfilled, (state,action)=> {
          return state.filter(item => item.id !== action.payload)

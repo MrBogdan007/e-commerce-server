@@ -15,7 +15,6 @@ const cartSlicer = createSlice({
       return state.filter((item) => item.id !== action.payload);
     },
     increaseQuantity: (state, action) => {
-      console.log(action.payload.id);
       
       state.map((item) => {
         if (item.id === action.payload.id) {
