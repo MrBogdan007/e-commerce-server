@@ -39,7 +39,16 @@ export const fetchProducts = createAsyncThunk("fetchAll", async () => {
 } )
 export const deleteProducts = createAsyncThunk("delete", async (id:number) => {
    
-  
+   const result = await axios.delete(`https://api.escuelajs.co/api/v1/products/${id}`)
+   //"https://api.escuelajs.co/api/v1/products"
+   const data = result.data
+   console.log('Data returned from delete: ', data);
+   if(data.rta ){
+   return id
+}
+else {
+   throw Error('Cannot delete');
+}
 
 } )
 
@@ -67,7 +76,7 @@ const productSlicer = createSlice({
          return action.payload
       })
       .addCase(deleteProducts.fulfilled, (state,action)=> {
-         
+         return state.filter(item => item.id !== action.payload)
       })
    }
 })
