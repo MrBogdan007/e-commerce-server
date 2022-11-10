@@ -88,7 +88,7 @@ const App = () => {
     <ThemeContext.Provider value={manageTheme}>
       <ThemeProvider theme={theme}>
         <Box
-          sx={{ backgroundColor: "background.default", color: 'text.primary' }}
+          sx={{ backgroundColor: "background.default",  height:"100vh",  color: 'text.primary' }}
           className="App"
         >
           <BrowserRouter>

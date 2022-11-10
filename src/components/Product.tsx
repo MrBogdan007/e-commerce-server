@@ -117,7 +117,7 @@ const Product = () => {
   return (
     <>
           <div className="header header_dif">
-          <div className="header__logo">
+          <div onClick={() => navigate('/')} className="header__logo">
             <img src={require('../img/logo.png')} alt="logo" width={250} height={40} />
           </div>
           <NavbarOther />

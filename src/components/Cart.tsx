@@ -9,13 +9,14 @@ import { counterSet } from "../redux/reducers/counter";
 import PalleteButton from "./PalleteButton";
 import Modal from "./interface/Modal";
 import { setModal } from "../redux/reducers/modalClose";
+import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const cart = useAppSelector((state) => state.cartReducer);
  const [counter,setCounter] = useState(0);
  const [initial,setInitial] = useState(0);
  
  const modalState = useAppSelector((state) => state.modalReducer);
-
+const navigate = useNavigate()
  
 console.log(cart);
 
@@ -41,10 +42,11 @@ console.log(cart);
  const setPriceRemove = (id:number) => {
   dispatch(decreaseQuantity({id:id}))
  }
+ 
   return (
     <>
               <div className="header header_dif">
-          <div className="header__logo">
+          <div onClick={() => navigate('/')} className="header__logo">
             <img src={require('../img/logo.png')} alt="logo" width={250} height={40} />
           </div>
           <NavbarOther />
@@ -57,17 +59,21 @@ console.log(cart);
     cart.length<=0? <div>Cart is empty</div> 
     :
     <div className="container">
+      <h2>Cart</h2>
+      
+      <div className="cart__back" ><button className="button cart__button"> Make an order</button></div>
     <div className="cart ">
+      
       {cart.map((item) => (
         
         <div key={item.id} className="cart-block">
-          {" "}
+          <h3><div className="product__title">{`${item.title}:`}</div>{" "}</h3>
           <div className="cart-item">
           <div className="cart__image">
             {<img src={item.image} alt="shoes" />}
           </div>
-          <div className="product__title">{item.title}</div>{" "}
-          <div className="product__price">{`${item.price * item.quantity}$`}</div>{" "}
+          
+          <div className="cart__price">{`${item.price * item.quantity}$`}</div>{" "}
 
           <div className="cart-item__bottom"> 
           <button onClick={() => removeCart(item.id)} className="button button_cart"> Remove</button>
@@ -80,8 +86,9 @@ console.log(cart);
           </div>
               
       ))}
+      
     </div>
-   
+    
     </div>
 
   }

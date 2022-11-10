@@ -21,23 +21,15 @@ const SingleProduct = () => {
   ) => {
     dispatch(addCartItem({ id: id, title: title, price: price, image: image }));
   };
-  const onEdit = (id: number, title: string, price: number) => {
-    console.log(title);
-    console.log(price);
-    
-    
-    const newtitle = titleValue;
-    const newprice = priceValue;
-    console.log(price);
-    console.log(title);
+  const onEdit = (id: number, title: string, price: number, images:string) => {
 
     dispatch(
       editProduct({
         id: id,
         data: {
           id: id,
-          title: newtitle,
-          price: newprice,
+          title: titleValue,
+          price: Number(priceValue),
           description:
             "The Football Is Good For Training And Recreational Purposes",
           category: {
@@ -46,7 +38,7 @@ const SingleProduct = () => {
             image: "https://api.lorem.space/image/shoes?w=640&h=480&r=4133"
           },
           images: [
-            "https://api.lorem.space/image/shoes?w=640&h=480&r=9038",
+            images,
             "https://api.lorem.space/image/shoes?w=640&h=480&r=401",
             "https://api.lorem.space/image/shoes?w=640&h=480&r=8527"
             ]
@@ -67,17 +59,20 @@ const SingleProduct = () => {
               {<img src={item.category.image} alt="shoes" />}
             </div>
             <div className="product__title">{item.title}</div>{" "}
+            <div style={{ display: user?.role ==="admin" ? 'block' : 'none'}} className="product__admin">
             <input type="text" onChange={(e) => setTitle(e.target.value)} />
             <div className="product__price">{item.price} </div>{" "}
             <input
               type="number"
               onChange={(e) => setPrice(Number(e.target.value))}
             />
+            </div>
+   
             <button
               style={{ display: "block" }}
               onClick={() => {
                 if (user?.role === "admin") {
-                  onEdit(item.id, item.title, item.price);
+                  onEdit(item.id, item.title, item.price,item.images[0]);
                 } else {
                   addToCart(item.id, item.title, item.price, item.images[0]);
                 }

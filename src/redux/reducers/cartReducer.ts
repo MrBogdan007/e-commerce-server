@@ -20,9 +20,8 @@ const cartSlicer = createSlice({
       state.map((item) => {
         if (item.id === action.payload.id) {
           item.quantity = item.quantity + 1
-          console.log(item.quantity);
-          
-            return item
+      
+          return item
         } else {
           return item;
         }
@@ -33,8 +32,11 @@ const cartSlicer = createSlice({
       
       state.map((item) => {
         if (item.id === action.payload.id) {
-          item.quantity = item.quantity - 1
-   
+          if(item.quantity===0){
+            item.quantity= 0
+          }
+          else {item.quantity = item.quantity - 1}
+     
           
             return item
         } else {
