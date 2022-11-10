@@ -29,6 +29,7 @@ import SingleProduct from "./components/SingleProduct";
 
 import { fetchProducts } from "./redux/reducers/productReducer";
 import { authenticate } from "./redux/reducers/users";
+import Login from "./components/Login";
 
 export const ThemeContext = createContext({ toggleMode: () => {} });
 const App = () => {
@@ -104,7 +105,7 @@ const App = () => {
                 <Route path=":id" element={ <SingleUser />}></Route>
               </Route>
               <Route path='/redirect' element={<Navigate to="/cart" />}/>
-              
+              <Route path="/login" element={<Login/>}/>
             </Routes>
           </BrowserRouter>
         </Box>

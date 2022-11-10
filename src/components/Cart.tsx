@@ -33,8 +33,7 @@ const Cart = () => {
     dispatch(removeCartItem(id));
   }
  const setPriceAdd = (price:number,id:number) => {
-  console.log(cart.map((item) =>{ console.log(` price - ${item.price}`);
-   }));
+ 
    dispatch(priceUpdate({price:price,id:id}))
   
   

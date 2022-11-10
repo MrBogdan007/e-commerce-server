@@ -1,3 +1,3 @@
 export interface ModalInt{
-   signIn: boolean
+   signIn?: boolean
 }

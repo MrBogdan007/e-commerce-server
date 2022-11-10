@@ -1,4 +1,5 @@
 import { Modal } from "@mui/material";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { logOut } from "../redux/reducers/users";
@@ -7,14 +8,21 @@ import NavbarOther from "./NavbarOther";
 import PalleteButton from "./PalleteButton";
 
 const Profile = () => {
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch()
   const user = useAppSelector(state => state.userReducer.currentUser)
   console.log(user);
-  
-  if (!user) {
-    navigate("/login")
+  const navigate = useNavigate()
+  useEffect( () => {
+    if (!user) {
+      navigate("/login")
+    }
   }
+
+  )
+  
+  
+
+  const dispatch = useAppDispatch()
+  
 
   const logOutProfile = () => {
     dispatch(logOut())
