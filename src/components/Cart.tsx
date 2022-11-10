@@ -46,7 +46,7 @@ console.log(cart);
   return (
     <>
               <div className="header header_dif">
-          <div onClick={() => navigate('/')} className="header__logo">
+          <div onClick={() => navigate('/')}  className="header__logo">
             <img src={require('../img/logo.png')} alt="logo" width={250} height={40} />
           </div>
           <NavbarOther />
@@ -61,7 +61,7 @@ console.log(cart);
     <div className="container">
       <h2>Cart</h2>
       
-      <div className="cart__back" ><button className="button cart__button"> Make an order</button></div>
+      <div className="cart__back" ><button style={{cursor:"pointer"}} className="button cart__button"> Make an order</button></div>
     <div className="cart ">
       
       {cart.map((item) => (

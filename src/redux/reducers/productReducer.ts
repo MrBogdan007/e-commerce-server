@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import axios from "axios";
+import { stat } from "fs";
 import { useState } from "react";
 
 import { useAppSelector } from "../../hooks/reduxHooks";
@@ -77,6 +78,9 @@ const productSlicer = createSlice({
             state.sort((a,b) => b.price - a.price)
          }
       },
+      setSearchDispatch: (state,action) =>{
+       return state.filter(item => item.title.includes(action.payload))
+      }
 
    },
    extraReducers : (build) => {
@@ -108,6 +112,6 @@ const productSlicer = createSlice({
 const productReducer = productSlicer.reducer
 
 
-export const { setProduct} = productSlicer.actions
+export const { setProduct,setSearchDispatch} = productSlicer.actions
 
 export default productReducer

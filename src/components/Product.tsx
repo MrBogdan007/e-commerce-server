@@ -13,6 +13,7 @@ import {
   fetchPagination,
   fetchProducts,
   setProduct,
+  setSearchDispatch,
 } from "../redux/reducers/productReducer";
 import { singleProduct } from "../redux/reducers/singleProductReducer";
 import { ProductType } from "../types/product";
@@ -40,11 +41,15 @@ const Product = () => {
   //   dispatch(fetchPagination(offset));
   // },[offset])
   const [search,setSearch] = useState('');
-  const tempList =  products.filter(item => item.title.includes(search))
+
   useEffect(() => {
     dispatch(setProduct(select));
+    
   },[select])
-  
+  useEffect(() => {
+    // dispatch(fetchProducts());
+    
+  },[search])
   
   const productsReducer = useAppSelector((state) => state.productReducer);
   const theme = useTheme();
@@ -105,7 +110,10 @@ const Product = () => {
   }
     ,[]); 
   
- 
+   const onSearch = () => {
+    dispatch(setSearchDispatch(search));
+    setSearch('');
+   }
   const [signIn, setSignIn] = useState(false);
   const registerSign = () => {
     setSignIn((current) => !current);
@@ -141,8 +149,8 @@ const Product = () => {
       <div className="container">
         <div className="product-header">
           <div className="product-search">
-            <input onChange={(e) => inputHandler(e.target.value)} className="product__input" type="text" />
-              <button className="button">Search</button>{" "}
+            <input value={search} onChange={(e) => inputHandler(e.target.value)} className="product__input" type="text" />
+              <button onClick={onSearch} className="button">Search</button>{" "}
           </div>
 
           <div className="product__select">
@@ -156,7 +164,7 @@ const Product = () => {
         </div>
 
         <div className="product product-fetch">
-          {tempList.map((item) => (
+          {products.map((item) => (
             <div key={item.id} style={{color: theme.palette.mode === "light" ? "black" : "black"}}  className="product-item">
               {" "}
               <div className="product__title">{item.title}</div>{" "}
