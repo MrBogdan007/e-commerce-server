@@ -59,8 +59,16 @@ const productSlicer = createSlice({
    initialState,
    reducers: {
       //methods of reducers object
-      setForm: (state,action: PayloadAction<boolean>) => {
-
+      setProduct: (state,action: PayloadAction<string>) => {
+         if(action.payload === 'naming') {
+            state.sort((a,b) => a.title > b.title ? 1 : -1)
+         }
+         if(action.payload === 'cheap') {
+            state.sort((a,b) => a.price-b.price)
+         }
+         if(action.payload === 'expensive'){
+            state.sort((a,b) => b.price - a.price)
+         }
       },
 
    },
@@ -84,6 +92,6 @@ const productSlicer = createSlice({
 const productReducer = productSlicer.reducer
 
 
-export const { setForm} = productSlicer.actions
+export const { setProduct} = productSlicer.actions
 
 export default productReducer

@@ -11,6 +11,7 @@ import {
   fetchCategory,
   fetchPagination,
   fetchProducts,
+  setProduct,
 } from "../redux/reducers/productReducer";
 import { singleProduct } from "../redux/reducers/singleProductReducer";
 import { ProductType } from "../types/product";
@@ -38,17 +39,10 @@ const Product = () => {
   // },[offset])
   const [search,setSearch] = useState('');
   const tempList =  products.filter(item => item.title.includes(search))
-  switch (select) {
-    case 'naming': 
-    products.sort((a,b) => a.title > b.title ? 1 : -1)
-    break
-    case'expensive':
-    products.sort((a,b) => b.price - a.price)
-    break;
-    case'cheap': 
-    products.sort((a,b) => a.price-b.price)
-
-  }
+  useEffect(() => {
+    dispatch(setProduct(select));
+  },[select])
+  
   
   const productsReducer = useAppSelector((state) => state.productReducer);
   const theme = useTheme();

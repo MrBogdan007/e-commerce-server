@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 
 import React, { useState } from "react";
 import { ModalInt } from "../../types/form";
-import formReducer, { setForm } from "../../redux/reducers/productReducer";
+
 import axios from "axios";
 import { authenticate } from "../../redux/reducers/users";
 import { useNavigate } from "react-router-dom";
