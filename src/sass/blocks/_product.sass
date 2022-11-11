@@ -4,40 +4,63 @@
    flex-wrap: wrap
    background-color: #fff
    border-radius: 10px
-   padding: 30px 40px 30px 40px
+   padding: 20px 40px 20px 40px
+   &__button
+      margin-right: 10px
+      padding: 10px
+      background-color: #2DA44E
+   &__title
+      font-size: 19px
+      margin-bottom: 3px
+   &__price
+      font-size: 17px
+      font-weight: semi-bold
    &-item
       margin-top: 20px
    &__select
-      position: absolute
-      top: 110px
+      position: absolute !important
+      top: 100px
       right: 540px
       select
-         font-size: 18px
-         padding: 5px
+         font-size: 17px
+         padding: 4px
    &-search
       position: absolute
-      top: 110px
+      top: 100px
       left: 540px
       input
          display: inline-block
+         width: 300px
+         border: 3px solid #1E93E0
+         overflow: none
+         outline: none
       button
          display: inline-block
+         border-radius: 0px
    &-header
       display: flex
       justify-content: space-around
       align-items: center
    &-category
       position: fixed
-      padding: 30px
+      padding: 20px
       background-color: #fff
-      top: 200px
-      left: 100px
+      top: 280px
+      left: 230px
       border-radius: 15px
+      ul
+         text-align: left
    &-ul
-      font-size: 25px
+      font-size: 22px
+      padding: 0
+      fill: blue
       li
          margin-top: 20px
          list-style: none
+         text-align: left
+         svg
+            fill: #1E93E0
+            margin-right: 10px
          &:hover
             cursor: pointer
             background-color: #b0d4f76c

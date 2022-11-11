@@ -165,6 +165,17 @@ section h2 {
   display: inline-block;
 }
 
+.button {
+  background-color: #007ABB;
+  border-radius: 10px;
+  color: #fff;
+  border: none;
+  padding: 4px;
+}
+.button:hover {
+  cursor: pointer;
+}
+
 .guarantee {
   padding-bottom: 120px;
 }
@@ -318,14 +329,6 @@ section h2 {
   cursor: pointer;
 }
 
-.button {
-  background-color: #007ABB;
-  border-radius: 10px;
-  color: #fff;
-  border: none;
-  padding: 4px;
-}
-
 .form-item:last-child {
   margin-top: 20px;
 }
@@ -336,30 +339,48 @@ section h2 {
   flex-wrap: wrap;
   background-color: #fff;
   border-radius: 10px;
-  padding: 30px 40px 30px 40px;
+  padding: 20px 40px 20px 40px;
+}
+.product__button {
+  margin-right: 10px;
+  padding: 10px;
+  background-color: #2DA44E;
+}
+.product__title {
+  font-size: 19px;
+  margin-bottom: 3px;
+}
+.product__price {
+  font-size: 17px;
+  font-weight: semi-bold;
 }
 .product-item {
   margin-top: 20px;
 }
 .product__select {
-  position: absolute;
-  top: 110px;
+  position: absolute !important;
+  top: 100px;
   right: 540px;
 }
 .product__select select {
-  font-size: 18px;
-  padding: 5px;
+  font-size: 17px;
+  padding: 4px;
 }
 .product-search {
   position: absolute;
-  top: 110px;
+  top: 100px;
   left: 540px;
 }
 .product-search input {
   display: inline-block;
+  width: 300px;
+  border: 3px solid #1E93E0;
+  overflow: none;
+  outline: none;
 }
 .product-search button {
   display: inline-block;
+  border-radius: 0px;
 }
 .product-header {
   display: flex;
@@ -368,18 +389,28 @@ section h2 {
 }
 .product-category {
   position: fixed;
-  padding: 30px;
+  padding: 20px;
   background-color: #fff;
-  top: 200px;
-  left: 100px;
+  top: 280px;
+  left: 230px;
   border-radius: 15px;
 }
+.product-category ul {
+  text-align: left;
+}
 .product-ul {
-  font-size: 25px;
+  font-size: 22px;
+  padding: 0;
+  fill: blue;
 }
 .product-ul li {
   margin-top: 20px;
   list-style: none;
+  text-align: left;
+}
+.product-ul li svg {
+  fill: #1E93E0;
+  margin-right: 10px;
 }
 .product-ul li:hover {
   cursor: pointer;

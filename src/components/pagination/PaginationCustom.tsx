@@ -45,17 +45,21 @@ const PaginationCustom = ({setProducts}:{setProducts: (value: ProductType[]) => 
   }
    
   return (
+    <div className="container">
     <Box
       justifyContent={"center"}
       alignItems="center"
       display={"flex"}
-      sx={{ padding: "10px"}}
-    >
-      <Pagination
+      sx={{ padding: "11px"}}
+    > 
+     <Pagination
       count={Math.ceil(pagination.count / pageSize)}
-      onChange={handlePageChange}
+      onChange={handlePageChange} color="secondary"
       />
+   
+ 
     </Box>
+    </div>
   );
 };
 

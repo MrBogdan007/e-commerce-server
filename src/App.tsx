@@ -53,11 +53,11 @@ const App = () => {
               main: "#F0F0F1",
             },
             secondary: {
-              main: "#BCCEF8",
+              main: "#1976D2",
             },
             text: {
               primary: "black",
-              secondary: "blue",
+              secondary: "#1976D2",
             },
             background: {
               default: "#F0F0F1",
@@ -65,10 +65,10 @@ const App = () => {
           }
         : {
             primary: { main: "#003B8E" },
-            secondary: { main: "#1564BF" },
+            secondary: { main: "#1976D2" },
             text: {
               primary: "white",
-              secondary: "black",
+              secondary: "#1976D2",
             },
             background: {
               default: "#000000",

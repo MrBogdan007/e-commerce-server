@@ -1,10 +1,16 @@
-import { Pagination, useTheme } from "@mui/material";
+import { MenuItem, Pagination, Select, useTheme } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { addCartItem } from "../redux/reducers/cartReducer";
 import { setModal } from "../redux/reducers/modalClose";
+import CategoryIcon from '@mui/icons-material/Category';
+import CheckroomIcon from '@mui/icons-material/Checkroom';
+import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
+import BedIcon from '@mui/icons-material/Bed';
+import IceSkatingIcon from '@mui/icons-material/IceSkating';
+import AltRouteIcon from '@mui/icons-material/AltRoute';
 import { setOffsetReducer } from "../redux/reducers/productOffset";
 import {
   deleteProducts,
@@ -147,7 +153,7 @@ const Product = () => {
         <Modal signIn={signIn} />
       </div>
       <div className="container">
-        <div className="product-header">
+       
           <div className="product-search">
             <input value={search} onChange={(e) => inputHandler(e.target.value)} className="product__input" type="text" />
               <button onClick={onSearch} className="button">Search</button>{" "}
@@ -161,7 +167,7 @@ const Product = () => {
               <option value="expensive">from expensive</option>
             </select>
           </div>
-        </div>
+        
 
         <div className="product product-fetch">
           {products.map((item) => (
@@ -176,7 +182,7 @@ const Product = () => {
                 onClick={() =>{
                   if(user?.role ==='admin'){onEdit(item.id)} else{addToCart(item.id, item.title, item.price, item.images[0])} }
                 }
-                className="product__button"
+                className="button product__button"
               >
                 {user?.role ==='admin' ? 'Edit product': 'Add to cart'  } 
               </button>
@@ -188,7 +194,7 @@ const Product = () => {
       </div>
               <button
                 onClick={() => { if(user?.role ==='admin'){onDelete(item.id)} else{detailsShow(item.id)} }}
-                className="product__button"
+                className="button product__button"
               >
                 {user?.role ==='admin' ? 'Delete': 'Details'  }
               </button>
@@ -202,12 +208,12 @@ const Product = () => {
           className="product-ul"
           style={{ color: theme.palette.mode === "light" ? "black" : "black" }}
         >
-          <li onClick={() => categoryAll()}>All products</li>
-          <li onClick={() => categoryCloth()}>Clothes</li>
-          <li onClick={() => categoryElectronics()}>Electronics</li>
-          <li onClick={() => categoryFurniture()}>Furniture</li>
-          <li onClick={() => categoryShoes()}>Shoes</li>
-          <li onClick={() => categoryOthers()}>Others</li>
+          <li onClick={() => categoryAll()}><CategoryIcon/> All products</li>
+          <li onClick={() => categoryCloth()}><CheckroomIcon/> Clothes</li>
+          <li onClick={() => categoryElectronics()}><ElectricBoltIcon/> Electronics</li>
+          <li onClick={() => categoryFurniture()}><BedIcon/> Furniture</li>
+          <li onClick={() => categoryShoes()}><IceSkatingIcon/> Shoes</li>
+          <li onClick={() => categoryOthers()}><AltRouteIcon/> Others</li>
         </ul>
       </div>
       <div className="pagination">
