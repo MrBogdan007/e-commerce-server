@@ -10,9 +10,7 @@ import PalleteButton from "./PalleteButton";
 const Profile = () => {
   const user = useAppSelector(state => state.userReducer.currentUser)
   const userList = useAppSelector(state => state.userReducer.users)
-  console.log(userList);
-  
-  console.log(user);
+
   const navigate = useNavigate()
   useEffect( () => {
     if (!user) {

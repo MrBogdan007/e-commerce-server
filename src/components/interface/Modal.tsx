@@ -8,7 +8,7 @@ import { setModal } from '../../redux/reducers/modalClose';
 const Modal = ({signIn,setSignIn,item}:ModalInt ) => {
 const [modalCloseValue,modalCloseValueSet] = useState(true)
 const dispatch =  useAppDispatch()
-
+console.log(item);
 
 
   return (
@@ -17,7 +17,7 @@ const dispatch =  useAppDispatch()
 
     <div className='overlay'>
     <div className="modal">
-    <div onClick={() => {dispatch(setModal({modal: !modalCloseValue}));  } } className="modal-close">
+    <div onClick={() => {if(setSignIn){setSignIn(!true)}}} className="modal-close">
   <CloseIcon/>
    </div> 
 

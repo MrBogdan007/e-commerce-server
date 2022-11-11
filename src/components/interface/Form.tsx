@@ -8,7 +8,7 @@ import { ModalInt } from "../../types/form";
 
 import axios from "axios";
 import { authenticate } from "../../redux/reducers/users";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Form = ({ signIn,setSignIn }: ModalInt) => {
   const [email, setEmail] = useState("");
@@ -19,7 +19,7 @@ const Form = ({ signIn,setSignIn }: ModalInt) => {
   interface IFormInput {
     firstname: string;
   }
-
+  const location = useLocation()
   const dispatch = useAppDispatch();
   const { register, handleSubmit } = useForm<IFormInput>({
     resolver: yupResolver(userSchema),
@@ -47,8 +47,15 @@ const Form = ({ signIn,setSignIn }: ModalInt) => {
     } catch (e) {
       console.log(e);
     }
-    if (signIn === undefined && email != "" && password != "") {
-      navigate("/");
+    if (email != "" && password != "") {
+      if(setSignIn)
+      setSignIn(false)
+      if(location.pathname === '/product'){
+        navigate('/product')
+      }else{
+        navigate("/");
+      }
+      
     }
   };
   const onSubmit2 = async (e: any) => {
@@ -81,7 +88,7 @@ const Form = ({ signIn,setSignIn }: ModalInt) => {
   return (
     <>
       {modalReg ? (
-        <form action="" onSubmit={onSubmit}>
+        <form className={signIn === undefined ?"form": '' }  action="" onSubmit={onSubmit}>
           <div className="form-item">
             <div className="modal-title">
               {signIn === undefined

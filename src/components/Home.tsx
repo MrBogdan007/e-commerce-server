@@ -14,10 +14,14 @@ const Home = () => {
   const theme = useTheme();
   const dispatch = useAppDispatch();
   const modalState = useAppSelector((state) => state.modalReducer);
-
+ 
+  
   const location = useLocation();
 
   const [signIn, setSignIn] = useState(false);
+  console.log(signIn);
+  console.log(modalState);
+  
   const registerSign = () => {
     setSignIn((current) => !current);
 
@@ -56,9 +60,7 @@ const Home = () => {
           <NavBar />
           <span
             className="header__signIn"
-            onClick={() => {
-              registerSign();
-            }}
+            onClick={() => setSignIn(prev=> !prev)}
           >
             Sign In
           </span>
@@ -78,8 +80,9 @@ const Home = () => {
         </div>
       </Box>
       <div
-        style={{ display: signIn && modalState ? "block" : "none" }}
+        style={{ display: signIn  ? "block" : "none" }}
         className="header__modal"
+        
       >
         <Modal signIn={signIn} setSignIn={setSignIn} />
       </div>

@@ -11,8 +11,10 @@ const Login = () => {
  
  
   return (
-    <div>
+    <div className='login'>
+    
       <Form/>
+    
       </div>
   )
 }

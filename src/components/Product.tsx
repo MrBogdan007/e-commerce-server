@@ -124,10 +124,14 @@ const Product = () => {
   const registerSign = () => {
     setSignIn((current) => !current);
 
-    if (modalState === false) {
-      dispatch(setModal({ modal: !modalState }));
-      setSignIn((current) => !current);
-    }}
+    // if (modalState === false) {
+    //   dispatch(setModal({ modal: !modalState }));
+    //   setSignIn((current) => !current);
+    // }
+  
+  }
+  console.log(signIn);
+  console.log(modalState);
   return (
     <>
           <div className="header header_dif">
@@ -147,10 +151,10 @@ const Product = () => {
           <PalleteButton />
         </div>
         <div
-        style={{ display: signIn && modalState ? "block" : "none" }}
+        style={{ display: signIn  ? "block" : "none" }}
         className="header__modal"
       >
-        <Modal signIn={signIn} />
+        <Modal signIn={signIn} setSignIn={setSignIn} />
       </div>
       <div className="container">
        
@@ -200,7 +204,6 @@ const Product = () => {
               </button>
             </div>
           ))}
-          {/* <ModalEdit  /> */}
         </div>
       </div>
       <div className="product-category">
