@@ -1,9 +1,9 @@
-import { Modal } from "@mui/material";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
+
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { logOut } from "../redux/reducers/users";
-import NavBar from "./NavBar";
 import NavbarOther from "./NavbarOther";
 import PalleteButton from "./PalleteButton";
 

@@ -2,33 +2,18 @@ import NavBar from "./NavBar";
 import PalleteButton from "./PalleteButton";
 import Modal from "./interface/Modal";
 
-import React, { useState } from "react";
+import  { useState } from "react";
 import StarIcon from "@mui/icons-material/Star";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
-import { setModal } from "../redux/reducers/modalClose";
+import { useNavigate } from "react-router-dom";
 import { Box, useTheme } from "@mui/material";
 
 const Home = () => {
   const theme = useTheme();
-  const dispatch = useAppDispatch();
-  const modalState = useAppSelector((state) => state.modalReducer);
-  
   const navigate = useNavigate()
-  const location = useLocation();
-
   const [signIn, setSignIn] = useState(false);
-  console.log(signIn);
-  console.log(modalState);
-  
+
   const registerSign = () => {
     setSignIn((current) => !current);
-
-    if (modalState === false) {
-      dispatch(setModal({ modal: !modalState }));
-      setSignIn((current) => !current);
-    }
   };
   //  after x press , sign in true; modal state false
   //after 1 click at sign in

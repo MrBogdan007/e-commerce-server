@@ -2,11 +2,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { userSchema } from "../../schema/userForm";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-
-import React, { useState } from "react";
-import { ModalInt } from "../../types/form";
-
 import axios from "axios";
+import React, { useState } from "react";
+
+
+import { ModalInt } from "../../types/form";
 import { authenticate } from "../../redux/reducers/users";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -40,7 +40,7 @@ const Form = ({ signIn,setSignIn }: ModalInt) => {
         { email, password }
       );
       const token = responce.data;
-      console.log(token);
+
 
       localStorage.setItem("token", token.access_token);
       dispatch(authenticate(token.access_token));
@@ -67,7 +67,7 @@ const Form = ({ signIn,setSignIn }: ModalInt) => {
         { email, password,name,avatar }
       );
       const result = responce.data;
-      console.log(result);
+      
       if(setSignIn)
       setSignIn(false)
       navigate("/");

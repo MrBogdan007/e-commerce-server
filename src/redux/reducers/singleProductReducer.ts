@@ -12,7 +12,6 @@ const initialState: ProductType[] = []
 export const singleProduct = createAsyncThunk("singleProduct", async (id:number) => {
    const result = await axios.get(`https://api.escuelajs.co/api/v1/products/${id}`)
    const data = result.data
-   console.log(data);
    
    return data
 } )
@@ -30,8 +29,6 @@ const singleProductSlicer = createSlice({
    extraReducers : (build) => {
       build
       .addCase(singleProduct.fulfilled, (state,action) =>{
-         console.log(action.payload);
-         
          return [action.payload]
       })
    }

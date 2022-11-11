@@ -1,35 +1,32 @@
+
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useTheme } from "@mui/material";
+
+import PalleteButton from "./PalleteButton";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { decreaseQuantity, increaseQuantity, removeCartItem } from "../redux/reducers/cartReducer";
 import NavBar from "./NavBar";
 import NavbarOther from "./NavbarOther";
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import { useState } from "react";
-import { counterSet } from "../redux/reducers/counter";
-import PalleteButton from "./PalleteButton";
-import Modal from "./interface/Modal";
-import { setModal } from "../redux/reducers/modalClose";
-import { useNavigate } from "react-router-dom";
-import { useTheme } from "@mui/material";
+
+
 const Cart = () => {
   const cart = useAppSelector((state) => state.cartReducer);
   const user = useAppSelector(state => state.userReducer.currentUser)
- const [counter,setCounter] = useState(0);
- const [initial,setInitial] = useState(0);
+
+
   const theme = useTheme()
  const modalState = useAppSelector((state) => state.modalReducer);
 const navigate = useNavigate()
  
-console.log(cart);
+
 
  const [signIn, setSignIn] = useState(false);
  const registerSign = () => {
    setSignIn((current) => !current);
-
-   if (modalState === false) {
-     dispatch(setModal({ modal: !modalState }));
-     setSignIn((current) => !current);
-   }
+  
  };
  const dispatch = useAppDispatch();
  
@@ -38,7 +35,7 @@ console.log(cart);
   }
  const setPriceAdd = (id:number) => {
    dispatch(increaseQuantity({id:id}))
-   console.log(id);
+   
    
  }
  const setPriceRemove = (id:number) => {

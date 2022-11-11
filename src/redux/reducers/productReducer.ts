@@ -50,7 +50,7 @@ export const deleteProducts = createAsyncThunk("delete", async (id:number) => {
    const result = await axios.delete(`https://api.escuelajs.co/api/v1/products/${id}`)
    //"https://api.escuelajs.co/api/v1/products"
    const data = result.data
-   console.log('Data returned from delete: ', data);
+
    if(data.rta ){
    return id
 }
@@ -79,8 +79,6 @@ const productSlicer = createSlice({
          }
       },
       setSearchDispatch: (state,action) =>{
-         console.log(action.payload);
-         
        return state.filter(item => item.title.includes(action.payload))
       }
 

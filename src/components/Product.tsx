@@ -1,55 +1,47 @@
-import { MenuItem, Pagination, Select, useTheme } from "@mui/material";
+import {  useTheme } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { addCartItem } from "../redux/reducers/cartReducer";
-import { setModal } from "../redux/reducers/modalClose";
 import CategoryIcon from '@mui/icons-material/Category';
 import CheckroomIcon from '@mui/icons-material/Checkroom';
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
 import BedIcon from '@mui/icons-material/Bed';
 import IceSkatingIcon from '@mui/icons-material/IceSkating';
 import AltRouteIcon from '@mui/icons-material/AltRoute';
-import { setOffsetReducer } from "../redux/reducers/productOffset";
+import { useNavigate } from "react-router-dom";
+
+
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import {
   deleteProducts,
-  editProduct,
   fetchCategory,
-  fetchPagination,
   fetchProducts,
   setProduct,
   setSearchDispatch,
 } from "../redux/reducers/productReducer";
 import { singleProduct } from "../redux/reducers/singleProductReducer";
 import { ProductType } from "../types/product";
-
-
 import Modal from "./interface/Modal";
-import ModalEdit from "./interface/ModalEdit";
-import Login from "./Login";
-import NavBar from "./NavBar";
 import NavbarOther from "./NavbarOther";
 import PaginationCustom from "./pagination/PaginationCustom";
 import PalleteButton from "./PalleteButton";
-import SingleProduct from "./SingleProduct";
+
 
 const Product = () => {
-  const fetchPaginationValue = useAppSelector((state) => state.productReducer);
+ 
   const [counter, setCounter] = useState(0)
  
   // const products = useAppSelector((state) => state.productAllReducer);
   const [products, setProducts] = useState<ProductType[]>([]);
   const [select, setSelect] = useState('');
-  const [modalShow, setModalShow] = useState(false);
+
   const user = useAppSelector(state => state.userReducer.currentUser)
   const dispatch = useAppDispatch();
-  // useEffect(() => {
-  //   dispatch(fetchPagination(offset));
-  // },[offset])
+
   
   const [search,setSearch] = useState('');
-
+ 
+  
+  // const tempList = products.filter(item=> item.title.includes(search))
   useEffect(() => {
     dispatch(setProduct(select));
     
@@ -68,11 +60,6 @@ const Product = () => {
   // })
 
   
-
-  useEffect(() => {
-    // dispatch(fetchProducts());
-    
-  },[search])
   
   const productsReducer = useAppSelector((state) => state.productReducer);
   const theme = useTheme();
@@ -115,15 +102,13 @@ const Product = () => {
     dispatch(addCartItem({ id: id, title: title, price: price, image: image, quantity: 1}));
   };
 
-  const inputHandler = (e:any) => {
-    setSearch(e);
-  }
+
   const handleChange = (e:any) => {
     setSelect(e.target.value); 
   }
-  const location = useLocation()
+ 
 
-  const modalState = useAppSelector((state) => state.modalReducer);
+
 
   const onDelete = (id:number) => {
     dispatch(deleteProducts(id))
@@ -136,18 +121,14 @@ const Product = () => {
   }
     ,[]); 
   
-   const onSearch = () => {
+  
+   const onSearch = (e:any) => {
     dispatch(setSearchDispatch(search));
-    
+    setSearch('');
    }
   const [signIn, setSignIn] = useState(false);
   const registerSign = () => {
     setSignIn((current) => !current);
-
-    // if (modalState === false) {
-    //   dispatch(setModal({ modal: !modalState }));
-    //   setSignIn((current) => !current);
-    // }
   
   }
 
@@ -178,8 +159,8 @@ const Product = () => {
       <div className="container">
        
           <div className="product-search">
-            <input value={search} onChange={(e) => { inputHandler(e.target.value); onSearch() }}  className="product__input" type="text" />
-              <button onClick={onSearch} className="button">Search</button>{" "}
+            <input value={search} onChange={(e) => { setSearch(e.target.value); }}  className="product__input" type="text" />
+              <button  className="button" onClick={onSearch}>Search</button>{" "}
           </div>
 
           <div className="product__select">
@@ -211,7 +192,7 @@ const Product = () => {
                 {user?.role ==='admin' ? 'Edit product': 'Add to cart'  } 
               </button>
               <div
-        style={{ display: modalShow ? "block" : "none" }}
+        style={{ display: signIn ? "block" : "none" }}
         className="header__modal"
       >
         
