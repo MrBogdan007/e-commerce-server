@@ -122,7 +122,7 @@ const Form = ({ signIn,setSignIn }: ModalInt) => {
             </button>
             { signIn === undefined &&
               <button
-              className="button"
+              className="button button_registrate"
               onClick={backHome}
               >
               Go back

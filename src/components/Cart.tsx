@@ -10,11 +10,13 @@ import PalleteButton from "./PalleteButton";
 import Modal from "./interface/Modal";
 import { setModal } from "../redux/reducers/modalClose";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "@mui/material";
 const Cart = () => {
   const cart = useAppSelector((state) => state.cartReducer);
+  const user = useAppSelector(state => state.userReducer.currentUser)
  const [counter,setCounter] = useState(0);
  const [initial,setInitial] = useState(0);
- 
+  const theme = useTheme()
  const modalState = useAppSelector((state) => state.modalReducer);
 const navigate = useNavigate()
  
@@ -61,8 +63,12 @@ console.log(cart);
     <div className="container">
       <h2>Cart</h2>
       
-      <div className="cart__back" ><button style={{cursor:"pointer"}} className="button cart__button"> Make an order</button></div>
-    <div className="cart ">
+      <div className="cart__back" ><button style={{cursor:"pointer"}} onClick={() => {if(user) {
+        alert('Thanks for choosing our products')
+      }else{
+        navigate('/login')
+      }}} className="button cart__button"> Make an order</button></div>
+    <div style={{ color: theme.palette.mode === "light" ? "black "  : "black"}} className="cart ">
       
       {cart.map((item) => (
         

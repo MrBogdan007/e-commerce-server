@@ -36,6 +36,7 @@ const App = () => {
 
   const dispatch = useAppDispatch();
   const token = localStorage.getItem("token")
+  
   useEffect(() => {
     dispatch(fetchAllUsers())
     dispatch(fetchProducts());

@@ -51,23 +51,28 @@ const SingleProduct = () => {
 
   return (
     <div className="container">
-      <div className="product product-single ">
+      <div className="single">
         {singleProductValue.map((item) => (
-          <div key={item.id} className="product-item">
+          <div key={item.id} className="single-block">
             {" "}
-            <div className="product__image">
+            <div className="single-item">
+            <div className="product__image single__image">
               {<img src={item.category.image} alt="shoes" />}
             </div>
-            <div className="product__title">{item.title}</div>{" "}
+            </div>
+            <div className="single-item">
+            <div className="product__title single__title">{item.title}</div>{" "}
             <div style={{ display: user?.role ==="admin" ? 'block' : 'none'}} className="product__admin">
             <input type="text" onChange={(e) => setTitle(e.target.value)} />
-            <div className="product__price">{item.price} </div>{" "}
             <input
               type="number"
               onChange={(e) => setPrice(Number(e.target.value))}
             />
             </div>
-   
+      
+            <div className="product__price single__price">{`${item.price}$`} </div>{" "}
+            <div className="product__price single__descr">{item.description} </div>{" "}
+            <div className="single__buttons">
             <button
               style={{ display: "block" }}
               onClick={() => {
@@ -77,10 +82,15 @@ const SingleProduct = () => {
                   addToCart(item.id, item.title, item.price, item.images[0]);
                 }
               }}
-              className="product__button"
+              className="button product__button"
             >
               {user?.role === "admin" ? "Edit" : "Add to cart"}{" "}
             </button>
+            <button className="button product__button" onClick={() => navigate('/product')}> Back to shopping</button>
+              </div>
+   
+            </div>
+
           </div>
         ))}
       </div>

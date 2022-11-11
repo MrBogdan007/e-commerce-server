@@ -9,7 +9,8 @@ const cartSlicer = createSlice({
   initialState,
   reducers: {
     addCartItem: (state, action) => {
-      state.push(action.payload);
+        state.push(action.payload);
+      
     },
     removeCartItem: (state, action) => {
       return state.filter((item) => item.id !== action.payload);

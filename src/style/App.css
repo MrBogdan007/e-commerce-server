@@ -163,6 +163,9 @@ section h2 {
 
 .button_registrate {
   display: inline-block;
+  margin-right: 10px;
+  padding: 7px !important;
+  margin-top: 8px !important;
 }
 
 .button {
@@ -174,6 +177,17 @@ section h2 {
 }
 .button:hover {
   cursor: pointer;
+}
+
+.counter {
+  position: absolute;
+  top: 5px;
+  right: 330px;
+  color: #fff;
+  font-size: 14px;
+  padding: 0 4px 0 4px;
+  border-radius: 100%;
+  background-color: #1E93E0;
 }
 
 .guarantee {
@@ -333,10 +347,6 @@ section h2 {
   padding: 20px;
   background-color: #fff;
 }
-.form-item:last-child {
-  margin-top: 20px;
-}
-
 .product {
   display: flex;
   justify-content: space-between;
@@ -500,4 +510,42 @@ section h2 {
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.single__buttons {
+  margin-top: 20px;
+}
+.single__buttons button {
+  display: inline-block !important;
+}
+.single__price {
+  font-size: 18px;
+  font-weight: semi-bold;
+  margin-top: 5px;
+}
+.single__descr {
+  margin-top: 20px;
+  font-size: 22px;
+}
+.single__title {
+  font-size: 25px;
+}
+.single-block {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+}
+.single-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.single-item:nth-child(1) {
+  width: 50%;
+}
+.single-item:nth-child(1) img {
+  width: 550px;
+}
+.single-item:nth-child(2) {
+  margin-right: 200px;
 }

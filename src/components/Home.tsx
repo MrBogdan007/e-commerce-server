@@ -5,7 +5,7 @@ import Modal from "./interface/Modal";
 import React, { useState } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { setModal } from "../redux/reducers/modalClose";
 import { Box, useTheme } from "@mui/material";
@@ -14,8 +14,8 @@ const Home = () => {
   const theme = useTheme();
   const dispatch = useAppDispatch();
   const modalState = useAppSelector((state) => state.modalReducer);
- 
   
+  const navigate = useNavigate()
   const location = useLocation();
 
   const [signIn, setSignIn] = useState(false);
@@ -49,8 +49,9 @@ const Home = () => {
             backgroundColor: theme.palette.mode === "light" ? "rgba(0,0,0,.4)" : "rgba(0,0,0,.7)",
             zIndex: -1,
           },
-
+          
         }}
+        
         
       >
         <div className="header">
@@ -87,7 +88,7 @@ const Home = () => {
         <Modal signIn={signIn} setSignIn={setSignIn} />
       </div>
       <div className="container">
-        <section className="guarantee">
+        <section style={{ color: theme.palette.mode === "light" ? "black "  : "black"}} className="guarantee">
           <h2 className="section-header">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. <br />{" "}
             Cumque asperiores ab fuga animi.
@@ -132,7 +133,7 @@ const Home = () => {
         </div>
       </section>
       <div className="container">
-        <section id="newProduct" className="newProducts">
+        <section id="newProduct" style={{ color: theme.palette.mode === "light" ? "black "  : "black"}} className="newProducts">
           <div className="section-header">Newest Products</div>
           <div className="newProducts-block">
             <div className="newProducts-element">
@@ -200,7 +201,7 @@ const Home = () => {
             </div>
           </div>
           <div className="button newProducts-button">
-            <button >Explore more</button>
+            <button onClick={() => navigate('/product')} >Explore more</button>
           </div>
         </section>
       </div>

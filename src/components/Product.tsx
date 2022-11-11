@@ -36,7 +36,8 @@ import SingleProduct from "./SingleProduct";
 
 const Product = () => {
   const fetchPaginationValue = useAppSelector((state) => state.productReducer);
-
+  const [counter, setCounter] = useState(0)
+ 
   // const products = useAppSelector((state) => state.productAllReducer);
   const [products, setProducts] = useState<ProductType[]>([]);
   const [select, setSelect] = useState('');
@@ -52,6 +53,21 @@ const Product = () => {
     dispatch(setProduct(select));
     
   },[select])
+
+  // useEffect(() => {
+    
+  //   const counterLocalget = JSON.parse(localStorage.getItem("counter")||0); 
+  //   if(counterLocalget) {
+  //   setCounter(counterLocalget);
+  //   }
+  // },[])
+  // useEffect(() => {
+  //   localStorage.setItem("counter", JSON.stringify(counter))
+
+  // })
+
+  
+
   useEffect(() => {
     // dispatch(fetchProducts());
     
@@ -60,6 +76,7 @@ const Product = () => {
   const productsReducer = useAppSelector((state) => state.productReducer);
   const theme = useTheme();
   const navigate = useNavigate();
+  
   const detailsShow = (id: number) => {
     navigate(`/product/${id}`);
     dispatch(singleProduct(id));
@@ -92,6 +109,8 @@ const Product = () => {
     image: string
     
   ) => {
+    setCounter(prev=> prev + 1)
+
     dispatch(addCartItem({ id: id, title: title, price: price, image: image, quantity: 1}));
   };
 
@@ -130,8 +149,7 @@ const Product = () => {
     // }
   
   }
-  console.log(signIn);
-  console.log(modalState);
+
   return (
     <>
           <div className="header header_dif">
@@ -174,6 +192,7 @@ const Product = () => {
         
 
         <div className="product product-fetch">
+          {/* <div className="counter">{counter}</div> */}
           {products.map((item) => (
             <div key={item.id} style={{color: theme.palette.mode === "light" ? "black" : "black"}}  className="product-item">
               {" "}
