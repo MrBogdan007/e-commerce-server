@@ -123,6 +123,7 @@ const Product = () => {
   
   
    const onSearch = (e:any) => {
+    
     dispatch(setSearchDispatch(search));
     setSearch('');
    }

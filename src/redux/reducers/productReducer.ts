@@ -79,6 +79,7 @@ const productSlicer = createSlice({
          }
       },
       setSearchDispatch: (state,action) =>{
+         // if prev action payload lenght less than now return all state, try to put state in var
        return state.filter(item => item.title.includes(action.payload))
       }
 

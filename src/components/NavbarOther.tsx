@@ -1,19 +1,14 @@
-import React, { useState } from 'react'
 
-import {BrowserRouter, Route, Routes, Link, useLocation} from 'react-router-dom'
-import PalleteButton from './PalleteButton'
+import { Link} from 'react-router-dom'
+
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Box, useTheme } from "@mui/material";
-import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
-import { setModal } from '../redux/reducers/modalClose';
-import Modal from './interface/Modal';
+import {  useTheme } from "@mui/material";
+
+
 const NavBar = () => {
 
-  
-  const location = useLocation()
   const theme = useTheme()
  
-
   return (
    <>
    

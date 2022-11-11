@@ -8,7 +8,6 @@ import { useTheme } from "@mui/material";
 import PalleteButton from "./PalleteButton";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { decreaseQuantity, increaseQuantity, removeCartItem } from "../redux/reducers/cartReducer";
-import NavBar from "./NavBar";
 import NavbarOther from "./NavbarOther";
 
 
@@ -18,7 +17,7 @@ const Cart = () => {
 
 
   const theme = useTheme()
- const modalState = useAppSelector((state) => state.modalReducer);
+
 const navigate = useNavigate()
  
 
