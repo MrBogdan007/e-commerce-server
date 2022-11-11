@@ -19,7 +19,7 @@ const SingleProduct = () => {
     price: number,
     image: string
   ) => {
-    dispatch(addCartItem({ id: id, title: title, price: price, image: image }));
+    dispatch(addCartItem({ id: id, title: title, price: Number(price), image: image, quantity: 1 }));
   };
   const onEdit = (id: number, title: string, price: number, images:string) => {
 
@@ -63,7 +63,9 @@ const SingleProduct = () => {
             <div className="single-item">
             <div className="product__title single__title">{item.title}</div>{" "}
             <div style={{ display: user?.role ==="admin" ? 'block' : 'none'}} className="product__admin">
+            <label style={{display: 'block'}} htmlFor="text">Change title: </label>
             <input type="text" onChange={(e) => setTitle(e.target.value)} />
+            <label style={{display: 'block'}} htmlFor="text">Change price: </label>
             <input
               type="number"
               onChange={(e) => setPrice(Number(e.target.value))}
@@ -79,7 +81,7 @@ const SingleProduct = () => {
                 if (user?.role === "admin") {
                   onEdit(item.id, item.title, item.price,item.images[0]);
                 } else {
-                  addToCart(item.id, item.title, item.price, item.images[0]);
+                  addToCart(item.id, item.title, Number(item.price) , item.images[0]);
                 }
               }}
               className="button product__button"

@@ -97,7 +97,7 @@ const Form = ({ signIn,setSignIn }: ModalInt) => {
             </div>
             <label htmlFor="email">Enter your email</label>
             <input
-              type="password"
+              type="email"
               onChange={(e) => setEmail(e.target.value)}
               name="email"
               id="email"
@@ -149,7 +149,7 @@ const Form = ({ signIn,setSignIn }: ModalInt) => {
             <input
               type="text"
               {...register("firstname")}
-              placeholder="Title"
+            
               id="title"
               onChange={(e) => setName(e.target.value)}
             />
@@ -157,7 +157,7 @@ const Form = ({ signIn,setSignIn }: ModalInt) => {
 
           <div className="form-item">
             <label htmlFor="email">Enter your email</label>
-            <input onChange={(e) => setEmail(e.target.value)} type="password" name="email" id="email" />
+            <input onChange={(e) => setEmail(e.target.value)} type="email" name="email" id="email" />
           </div>
           <div className="form-item">
             <label htmlFor="password">Enter your password</label>

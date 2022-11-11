@@ -6,6 +6,7 @@ import rootReducer from "./reducers";
 
 const localCartReducer = JSON.parse(localStorage.getItem("cart")||'[]')
 
+
 const store = configureStore({
    reducer: rootReducer,
    preloadedState: {

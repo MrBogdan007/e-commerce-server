@@ -76,7 +76,7 @@ const Product = () => {
   const productsReducer = useAppSelector((state) => state.productReducer);
   const theme = useTheme();
   const navigate = useNavigate();
-  
+
   const detailsShow = (id: number) => {
     navigate(`/product/${id}`);
     dispatch(singleProduct(id));
