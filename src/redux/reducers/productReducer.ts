@@ -79,6 +79,8 @@ const productSlicer = createSlice({
          }
       },
       setSearchDispatch: (state,action) =>{
+         console.log(action.payload);
+         
        return state.filter(item => item.title.includes(action.payload))
       }
 

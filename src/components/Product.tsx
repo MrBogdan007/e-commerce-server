@@ -47,6 +47,7 @@ const Product = () => {
   // useEffect(() => {
   //   dispatch(fetchPagination(offset));
   // },[offset])
+  
   const [search,setSearch] = useState('');
 
   useEffect(() => {
@@ -137,7 +138,7 @@ const Product = () => {
   
    const onSearch = () => {
     dispatch(setSearchDispatch(search));
-    setSearch('');
+    
    }
   const [signIn, setSignIn] = useState(false);
   const registerSign = () => {
@@ -177,7 +178,7 @@ const Product = () => {
       <div className="container">
        
           <div className="product-search">
-            <input value={search} onChange={(e) => inputHandler(e.target.value)} className="product__input" type="text" />
+            <input value={search} onChange={(e) => { inputHandler(e.target.value); onSearch() }}  className="product__input" type="text" />
               <button onClick={onSearch} className="button">Search</button>{" "}
           </div>
 

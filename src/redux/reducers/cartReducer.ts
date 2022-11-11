@@ -9,21 +9,32 @@ const cartSlicer = createSlice({
   initialState,
   reducers: {
     addCartItem: (state, action) => {
-      console.log(action.payload);
-      
-        state.push(action.payload);
-      
+      const inTheCart = state.find((item) => {
+        return item.id === action.payload.id;
+      });
+      if (inTheCart) {
+        state.map((item) => {
+          if (item.id === action.payload.id) {
+            console.log(item.quantity);
+
+            item.quantity = item.quantity + 1;
+            console.log(item.quantity);
+          }
+          return item;
+        });
+      }else {
+        state.push(action.payload)
+      }
     },
     removeCartItem: (state, action) => {
       return state.filter((item) => item.id !== action.payload);
     },
     increaseQuantity: (state, action) => {
-      
       state.map((item) => {
         if (item.id === action.payload.id) {
-          item.quantity = item.quantity + 1
-      
-          return item
+          item.quantity = item.quantity + 1;
+
+          return item;
         } else {
           return item;
         }
@@ -31,16 +42,16 @@ const cartSlicer = createSlice({
     },
     decreaseQuantity: (state, action) => {
       console.log(action.payload.id);
-      
+
       state.map((item) => {
         if (item.id === action.payload.id) {
-          if(item.quantity===0){
-            item.quantity= 0
+          if (item.quantity === 0) {
+            item.quantity = 0;
+          } else {
+            item.quantity = item.quantity - 1;
           }
-          else {item.quantity = item.quantity - 1}
-     
-          
-            return item
+
+          return item;
         } else {
           return item;
         }
@@ -50,7 +61,11 @@ const cartSlicer = createSlice({
 });
 const cartReducer = cartSlicer.reducer;
 
-export const { addCartItem, removeCartItem, increaseQuantity, decreaseQuantity } =
-  cartSlicer.actions;
+export const {
+  addCartItem,
+  removeCartItem,
+  increaseQuantity,
+  decreaseQuantity,
+} = cartSlicer.actions;
 
 export default cartReducer;
