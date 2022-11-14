@@ -6,11 +6,11 @@ import { useState } from "react";
 import { useAppSelector } from "../../hooks/reduxHooks";
 
 import { ModalInt } from "../../types/form";
-import { EditType, ProductType } from "../../types/product";
+import { EditType, ProductReducer, ProductType } from "../../types/product";
 
 import { RootState } from "../store";
 
-const initialState: ProductType[] = []
+const initialState: ProductReducer = {products: [], isLoading: false}
  
    
 
@@ -69,45 +69,54 @@ const productSlicer = createSlice({
       //methods of reducers object
       setProduct: (state,action: PayloadAction<string>) => {
          if(action.payload === 'naming') {
-            state.sort((a,b) => a.title > b.title ? 1 : -1)
+            state.products.sort((a,b) => a.title > b.title ? 1 : -1)
          }
          if(action.payload === 'cheap') {
-            state.sort((a,b) => a.price-b.price)
+            state.products.sort((a,b) => a.price-b.price)
          }
          if(action.payload === 'expensive'){
-            state.sort((a,b) => b.price - a.price)
+            state.products.sort((a,b) => b.price - a.price)
          }
       },
       setSearchDispatch: (state,action) =>{
+         //FETCH WHOLE ARRAY AT FITST
+         //every time search through whole array of products
          // if prev action payload lenght less than now return all state, try to put state in var
-       return state.filter(item => item.title.includes(action.payload))
+      state.products = state.products.filter(item => item.title.includes(action.payload))
+       return state
       }
 
    },
    extraReducers : (build) => {
       build
-      .addCase(fetchPagination.fulfilled, (state,action) =>{
-         return action.payload
+      .addCase(fetchProducts.fulfilled, (state,action) =>{
+         state.isLoading = false;
+         
+         state.products = action.payload.sort((a:ProductType,b:ProductType) => a.title > b.title ? 1 : -1)
+         return state
       })
       .addCase(fetchCategory.fulfilled, (state,action) =>{
-         return action.payload.sort((a:ProductType,b:ProductType) => a.title > b.title ? 1 : -1)
+         state.products = action.payload.sort((a:ProductType,b:ProductType) => a.title > b.title ? 1 : -1)
       })
-      .addCase(fetchProducts.fulfilled, (state,action) =>{
-         
-         return action.payload.sort((a:ProductType,b:ProductType) => a.title > b.title ? 1 : -1)
+
+      .addCase(fetchProducts.pending, (state,action)=> {
+       state.isLoading = true;
       })
       .addCase(deleteProducts.fulfilled, (state,action)=> {
-         return state.filter(item => item.id !== action.payload)
+       state.products = state.products.filter(item => item.id !== action.payload)
+         return state
       })
       .addCase(editProduct.fulfilled,(state,action) => {
-        return state.map(item =>{
+      state.products = state.products.map(item =>{
             if(item.id === action.payload.id){
                item = action.payload
             }
             return item
              
          })
+         return state
       })
+     
    }
 })
 // Points to global state withous s at the end

@@ -36,7 +36,13 @@ const Product = () => {
 
   const user = useAppSelector(state => state.userReducer.currentUser)
   const dispatch = useAppDispatch();
-
+  const prod = useAppSelector(state => state.productReducer)
+  
+  const [cat1,setCat1] = useState(false);
+  const [cat2,setCat2] = useState(false);
+  const [cat3,setCat3] = useState(false);
+  const [cat4,setCat4] = useState(false);
+  const [cat5,setCat5] = useState(false);
   
   const [search,setSearch] = useState('');
  
@@ -61,7 +67,7 @@ const Product = () => {
 
   
   
-  const productsReducer = useAppSelector((state) => state.productReducer);
+  const loading = useAppSelector((state) => state.productReducer.isLoading);
   const theme = useTheme();
   const navigate = useNavigate();
 
@@ -73,21 +79,52 @@ const Product = () => {
   const categoryAll = () => {
     dispatch(fetchProducts());
     navigate(`/product`);
+    setCat1(false)
+    setCat2(false)
+    setCat3(false)
+    setCat4(false)
+    setCat5(false)
   };
   const categoryCloth = () => {
     dispatch(fetchCategory(1));
+    setCat1(true)
+    setCat2(false)
+    setCat3(false)
+    setCat4(false)
+    setCat5(false)
   };
   const categoryElectronics = () => {
+    
     dispatch(fetchCategory(2));
+    setCat2(true)
+    setCat1(false)
+    setCat3(false)
+    setCat4(false)
+    setCat5(false)
   };
   const categoryFurniture = () => {
     dispatch(fetchCategory(3));
+    setCat3(true)
+    setCat1(false)
+    setCat2(false)
+    setCat4(false)
+    setCat5(false)
   };
   const categoryShoes = () => {
     dispatch(fetchCategory(4));
+    setCat4(true)
+    setCat1(false)
+    setCat2(false)
+    setCat3(false)
+    setCat5(false)
   };
   const categoryOthers = () => {
     dispatch(fetchCategory(5));
+    setCat5(true)
+    setCat1(false)
+    setCat2(false)
+    setCat4(false)
+    setCat3(false)
   };
 
   const addToCart = (
@@ -122,20 +159,43 @@ const Product = () => {
     ,[]); 
   
   
-   const onSearch = (e:any) => {
+   const  onSearch = (e:any) => {
+    // track e.target.value and if it less than search value to dispatch all products and filter them  
+    dispatch(fetchProducts());
+    setTimeout(() => dispatch(setSearchDispatch(search)), 500)
     
-    dispatch(setSearchDispatch(search));
-    setSearch('');
+    if(cat1 === true) {
+      dispatch(fetchCategory(1));
+      console.log(cat1,cat2,cat3,cat4,cat5);
+    }
+    if(cat2 === true) {
+      dispatch(fetchCategory(2));
+      console.log(cat1,cat2,cat3,cat4,cat5);
+    }
+    if(cat3 === true) {
+      dispatch(fetchCategory(3));
+
+    }
+    if(cat4 === true) {
+      dispatch(fetchCategory(4));
+
+    }
+    if(cat5 === true) {
+      dispatch(fetchCategory(5));
+    } 
+    
    }
   const [signIn, setSignIn] = useState(false);
   const registerSign = () => {
     setSignIn((current) => !current);
   
   }
+console.log(loading);
+
 
   return (
-    <>
-          <div className="header header_dif">
+  <>
+      <div className="header header_dif">
           <div onClick={() => navigate('/')} className="header__logo">
             <img src={require('../img/logo.png')} alt="logo" width={250} height={40} />
           </div>
@@ -160,7 +220,7 @@ const Product = () => {
       <div className="container">
        
           <div className="product-search">
-            <input value={search} onChange={(e) => { setSearch(e.target.value); }}  className="product__input" type="text" />
+             <input value={search}  onChange={(e) =>{  setSearch(e.target.value);    }}  className="product__input" type="text" /> 
               <button  className="button" onClick={onSearch}>Search</button>{" "}
           </div>
 
@@ -173,40 +233,45 @@ const Product = () => {
             </select>
           </div>
         
-
-        <div className="product product-fetch">
-          {/* <div className="counter">{counter}</div> */}
-          {products.map((item) => (
-            <div key={item.id} style={{color: theme.palette.mode === "light" ? "black" : "black"}}  className="product-item">
-              {" "}
-              <div className="product__title">{item.title}</div>{" "}
-              <div className="product__price">{`${item.price}$`} </div>{" "}
-              <div className="product__image">
-                {<img src={item.images[0]} alt="shoes" />}
-              </div>
-              <button
-                onClick={() =>{
-                  if(user?.role ==='admin'){onEdit(item.id)} else{addToCart(item.id, item.title, item.price, item.images[0])} }
-                }
-                className="button product__button"
-              >
-                {user?.role ==='admin' ? 'Edit product': 'Add to cart'  } 
-              </button>
-              <div
-        style={{ display: signIn ? "block" : "none" }}
-        className="header__modal"
-      >
-        
-      </div>
-              <button
-                onClick={() => { if(user?.role ==='admin'){onDelete(item.id)} else{detailsShow(item.id)} }}
-                className="button product__button"
-              >
-                {user?.role ==='admin' ? 'Delete': 'Details'  }
-              </button>
+            {
+              loading ? <div style={{display: 'flex', justifyContent: 'center',alignItems: 'center', fontSize:'30px', height: '100vh'}}>loading...</div>
+              : 
+              <div className="product product-fetch">
+              {/* <div className="counter">{counter}</div > */}
+              {products.map((item) => (
+                <div key={item.id} style={{color: theme.palette.mode === "light" ? "black" : "black"}}  className="product-item">
+                  {" "}
+                  <div className="product__title">{item.title}</div>{" "}
+                  <div className="product__price">{`${item.price}$`} </div>{" "}
+                  <div className="product__image">
+                    {<img src={item.images[0]} alt="shoes" />}
+                  </div>
+                  <button
+                    onClick={() =>{
+                      if(user?.role ==='admin'){onEdit(item.id)} else{addToCart(item.id, item.title, item.price, item.images[0])} }
+                    }
+                    className="button product__button"
+                  >
+                    {user?.role ==='admin' ? 'Edit product': 'Add to cart'  } 
+                  </button>
+                  <div
+            style={{ display: signIn ? "block" : "none" }}
+            className="header__modal"
+          >
+            
+          </div>
+                  <button
+                    onClick={() => { if(user?.role ==='admin'){onDelete(item.id)} else{detailsShow(item.id)} }}
+                    className="button product__button"
+                  >
+                    {user?.role ==='admin' ? 'Delete': 'Details'  }
+                  </button>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+            }
+     
+
       </div>
       <div className="product-category">
         <ul
@@ -221,9 +286,12 @@ const Product = () => {
           <li onClick={() => categoryOthers()}><AltRouteIcon/> Others</li>
         </ul>
       </div>
-      <div className="pagination">
-        <PaginationCustom setProducts={setProducts} />
-      </div>
+      {loading? '':   <div className="pagination">
+        <PaginationCustom  setProducts={setProducts} />
+      </div>}
+    
+      
+
       
     </>
   );

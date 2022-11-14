@@ -14,3 +14,7 @@ export interface EditType {
    price: number,
    
 }
+export interface ProductReducer {
+   products: ProductType[],
+   isLoading: boolean
+}

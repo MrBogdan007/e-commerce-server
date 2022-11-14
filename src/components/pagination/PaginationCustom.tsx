@@ -1,5 +1,5 @@
 import { Box, Pagination } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import {  ProductType } from "../../types/product";
 
@@ -11,38 +11,60 @@ const PaginationCustom = ({setProducts}:{setProducts: (value: ProductType[]) => 
     from: 0,
     to: pageSize
   });
-  const products = useAppSelector((state) => state.productReducer);
+  const products = useAppSelector((state) => state.productReducer.products);
+  console.log(products);
+  
 
   
-  const dispatch = useAppDispatch()
   
-  const service = {
-   
-    getData: ({from,to}:{from:number, to: number}) => {
-      const data = products.slice(from, to);
-       return new Promise<{count: number, data: ProductType[]}>((resolve,reject) => {
-         resolve({
-             count: products.length,
-             data: data
-          })
-       })
-    }
-  }
-  useEffect(() => {
-   service.getData({from: pagination.from, to: pagination.to}).then(response => {
+  //Example for custom db or personal server data
+  // const service = {
+  //   getData: ({from,to}:{from:number, to: number}) => {
+  //     const data = products.slice(from, to);
+  //      return new Promise<{count: number, data: ProductType[]}>((resolve,reject) => {
+  //        resolve({
+  //            count: products.length,
+  //            data: data
+  //         })
+  //      })
+  //   }
+  // }
+  // useEffect(() => {
+  //  service.getData({from: pagination.from, to: pagination.to}).then(response => {
     
+  //     setPagination({...pagination, count: response.count})
+  //     setProducts(response.data);
+    
+  //   })
+  // },[pagination.from, pagination.to,products]);
+
+
+    useEffect(() => {
+   const from = pagination.from;
+   const to = pagination.to
+
+   const data = products.slice(from, to);
+   const response = {
+        count: products.length,
+        data: data
+      }
       setPagination({...pagination, count: response.count})
       setProducts(response.data);
     
-    })
+    
   },[pagination.from, pagination.to,products]);
 
-  const handlePageChange = (event:React.ChangeEvent<unknown>, page:number) => {
+  const [page, setPage] = useState(1);
+  const handlePageChange =(event:React.ChangeEvent<unknown>, page:number ) => {
+   
+    setPage(page)
     const from = (page - 1) * pageSize;
     const to = (page - 1 ) * pageSize + pageSize;
-
     setPagination({...pagination, from : from, to: to});
+    
   }
+   
+  console.log(Math.ceil(pagination.count / pageSize));
    
   return (
     <div className="container">
@@ -52,12 +74,12 @@ const PaginationCustom = ({setProducts}:{setProducts: (value: ProductType[]) => 
       display={"flex"}
       sx={{ padding: "11px"}}
     > 
-     <Pagination
+  <Pagination
       count={Math.ceil(pagination.count / pageSize)}
       onChange={handlePageChange} color="secondary"
-      />
-   
- 
+      page={page}
+      /> 
+  
     </Box>
     </div>
   );
