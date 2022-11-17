@@ -15,15 +15,12 @@ const cartSlicer = createSlice({
       if (inTheCart) {
         state.map((item) => {
           if (item.id === action.payload.id) {
-      
-
             item.quantity = item.quantity + 1;
-
           }
           return item;
         });
-      }else {
-        state.push(action.payload)
+      } else {
+        state.push(action.payload);
       }
     },
     removeCartItem: (state, action) => {
@@ -33,16 +30,11 @@ const cartSlicer = createSlice({
       state.map((item) => {
         if (item.id === action.payload.id) {
           item.quantity = item.quantity + 1;
-
-          return item;
-        } else {
-          return item;
         }
+        return item;
       });
     },
     decreaseQuantity: (state, action) => {
-
-
       state.map((item) => {
         if (item.id === action.payload.id) {
           if (item.quantity === 0) {
@@ -50,11 +42,8 @@ const cartSlicer = createSlice({
           } else {
             item.quantity = item.quantity - 1;
           }
-
-          return item;
-        } else {
-          return item;
         }
+        return item;
       });
     },
   },

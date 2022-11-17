@@ -30,16 +30,20 @@ import SingleProduct from "./components/SingleProduct";
 import { fetchProducts } from "./redux/reducers/productReducer";
 import { authenticate, fetchAllUsers } from "./redux/reducers/users";
 import Login from "./components/Login";
+import { fetchCategories } from "./redux/reducers/categoryReducer";
 
 export const ThemeContext = createContext({ toggleMode: () => {} });
 const App = () => {
 
   const dispatch = useAppDispatch();
   const token = localStorage.getItem("token")
-  
+  useEffect(() => {
+    dispatch(fetchCategories());
+    dispatch(fetchProducts());
+  },[])
   useEffect(() => {
     dispatch(fetchAllUsers())
-    dispatch(fetchProducts());
+    
     if(token) { dispatch(authenticate(token))}
   }, []);
   const [mode, setMode] = useState<"dark" | "light">("light");

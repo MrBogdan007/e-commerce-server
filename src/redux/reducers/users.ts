@@ -13,21 +13,7 @@ export const fetchAllUsers = createAsyncThunk(
       return response.data
    }
 )
-// export const login = createAsyncThunk(
-//    "login",
-//    async(data:UserEncript) => {
-//       try{
-//          const responce = await axios.post("https://api.escuelajs.co/api/v1/auth/login",data)
-//          const token = responce.data
-//          localStorage.setItem("token", token.access_token)
-//       }
-//      catch (e) {
-//       console.log(e);
-      
-//      }
 
-//    }
-// )
 
 export const authenticate = createAsyncThunk(
    "authenticate",

@@ -1,58 +1,36 @@
 import { Box, Pagination } from "@mui/material";
+import { Draft } from "@reduxjs/toolkit";
 import React, { useCallback, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import {  ProductType } from "../../types/product";
+import {  ProductReducer, ProductType } from "../../types/product";
 
 
 const pageSize = 12;
-const PaginationCustom = ({setProducts}:{setProducts: (value: ProductType[]) => void}) => {
+const PaginationCustom = ({tempList,setProductsList}:any) => {
+  const products = useAppSelector((state) => state.productReducer.products);
   const [pagination, setPagination] = useState({
     count: 0,
     from: 0,
     to: pageSize
   });
-  const products = useAppSelector((state) => state.productReducer.products);
-  console.log(products);
+
+  //pass the filtered list into pagination
   
 
   
-  
-  //Example for custom db or personal server data
-  // const service = {
-  //   getData: ({from,to}:{from:number, to: number}) => {
-  //     const data = products.slice(from, to);
-  //      return new Promise<{count: number, data: ProductType[]}>((resolve,reject) => {
-  //        resolve({
-  //            count: products.length,
-  //            data: data
-  //         })
-  //      })
-  //   }
-  // }
-  // useEffect(() => {
-  //  service.getData({from: pagination.from, to: pagination.to}).then(response => {
-    
-  //     setPagination({...pagination, count: response.count})
-  //     setProducts(response.data);
-    
-  //   })
-  // },[pagination.from, pagination.to,products]);
-
-
     useEffect(() => {
    const from = pagination.from;
    const to = pagination.to
 
-   const data = products.slice(from, to);
+   const data = tempList.slice(from, to);
    const response = {
-        count: products.length,
+        count: tempList.length,
         data: data
       }
       setPagination({...pagination, count: response.count})
-      setProducts(response.data);
+      setProductsList(response.data)
     
-    
-  },[pagination.from, pagination.to,products]);
+  },[pagination.from, pagination.to,tempList.length]);
 
   const [page, setPage] = useState(1);
   const handlePageChange =(event:React.ChangeEvent<unknown>, page:number ) => {
@@ -63,8 +41,7 @@ const PaginationCustom = ({setProducts}:{setProducts: (value: ProductType[]) => 
     setPagination({...pagination, from : from, to: to});
     
   }
-   
-  console.log(Math.ceil(pagination.count / pageSize));
+
    
   return (
     <div className="container">

@@ -14,14 +14,7 @@ const initialState: ProductReducer = {products: [], isLoading: false}
  
    
 
-export const fetchPagination = createAsyncThunk("fetchPagination", async (offset:number) => {
-   
-   const result = await axios.get(`https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=12`)
-   //"https://api.escuelajs.co/api/v1/products"
-   //`https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=10}`
-   const data = result.data
-   return data
-} )
+
 export const fetchCategory = createAsyncThunk("fetchCategory", async (id:number) => {
    
    const result = await axios.get(`https://api.escuelajs.co/api/v1/products`)

@@ -16,5 +16,5 @@ export interface EditType {
 }
 export interface ProductReducer {
    products: ProductType[],
-   isLoading: boolean
+   isLoading?: boolean
 }
