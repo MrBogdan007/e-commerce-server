@@ -1,9 +1,12 @@
 import { title } from "process";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
+
+import {
+  deleteProducts,
+
+} from "../redux/reducers/productReducer";
 import { addCartItem } from "../redux/reducers/cartReducer";
 import { editProduct } from "../redux/reducers/productReducer";
 
@@ -11,6 +14,8 @@ const SingleProduct = () => {
   const singleProductValue = useAppSelector(
     (state) => state.singleProductReducer
   );
+  console.log(singleProductValue);
+  
   const dispatch = useAppDispatch();
   const [titleValue, setTitle] = useState("");
   const [priceValue, setPrice] = useState(0);

@@ -10,7 +10,7 @@ import { RootState } from "../store";
 
 const initialState: Category[] = []
  
-export const fetchCategories = createAsyncThunk("singleProduct", async () => {
+export const fetchCategories = createAsyncThunk("category", async () => {
    const result = await axios.get(`https://api.escuelajs.co/api/v1/categories`)
    const data = result.data
    
