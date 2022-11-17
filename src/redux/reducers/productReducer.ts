@@ -59,37 +59,18 @@ const productSlicer = createSlice({
    name: "incomes",
    initialState,
    reducers: {
-      //methods of reducers object
-      setProduct: (state,action: PayloadAction<string>) => {
-         if(action.payload === 'naming') {
-            state.products.sort((a,b) => a.title > b.title ? 1 : -1)
-         }
-         if(action.payload === 'cheap') {
-            state.products.sort((a,b) => a.price-b.price)
-         }
-         if(action.payload === 'expensive'){
-            state.products.sort((a,b) => b.price - a.price)
-         }
-      },
-      setSearchDispatch: (state,action) =>{
-         //FETCH WHOLE ARRAY AT FITST
-         //every time search through whole array of products
-         // if prev action payload lenght less than now return all state, try to put state in var
-      state.products = state.products.filter(item => item.title.includes(action.payload))
-       return state
-      }
-
+    
    },
    extraReducers : (build) => {
       build
       .addCase(fetchProducts.fulfilled, (state,action) =>{
          state.isLoading = false;
-         
          state.products = action.payload.sort((a:ProductType,b:ProductType) => a.title > b.title ? 1 : -1)
          return state
       })
       .addCase(fetchCategory.fulfilled, (state,action) =>{
          state.products = action.payload.sort((a:ProductType,b:ProductType) => a.title > b.title ? 1 : -1)
+         return state
       })
 
       .addCase(fetchProducts.pending, (state,action)=> {
@@ -116,6 +97,6 @@ const productSlicer = createSlice({
 const productReducer = productSlicer.reducer
 
 
-export const { setProduct,setSearchDispatch} = productSlicer.actions
+export const { } = productSlicer.actions
 
 export default productReducer

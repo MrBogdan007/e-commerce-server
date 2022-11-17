@@ -14,7 +14,6 @@ import {
   deleteProducts,
   fetchCategory,
   fetchProducts,
-  setProduct,
 } from "../redux/reducers/productReducer";
 import { singleProduct } from "../redux/reducers/singleProductReducer";
 import { ProductType } from "../types/product";
@@ -22,7 +21,6 @@ import Modal from "./interface/Modal";
 import NavbarOther from "./NavbarOther";
 import PaginationCustom from "./pagination/PaginationCustom";
 import PalleteButton from "./PalleteButton";
-
 
 const Product = () => {
   const [search, setSearch] = useState("");
@@ -42,10 +40,6 @@ const Product = () => {
   const tempList = products.filter(tempListFilter);
   const user = useAppSelector((state) => state.userReducer.currentUser);
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(setProduct(select));
-  }, [select]);
 
   // useEffect(() => {
 
@@ -127,10 +121,6 @@ const Product = () => {
     );
   };
 
-  const handleChange = (e: any) => {
-    setSelect(e.target.value);
-  };
-
   const onDelete = (id: number) => {
     dispatch(deleteProducts(id));
   };
@@ -147,7 +137,19 @@ const Product = () => {
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
+  const selectOptions = () => {
+    if (select === "cheap") {
+      productsList.sort((a, b) => a.price - b.price);
+    }
+    if (select === "naming") {
+      productsList.sort((a, b) => (a.title > b.title ? 1 : -1));
+    }
 
+    if (select === "expensive") {
+      productsList.sort((a, b) => b.price - a.price);
+    }
+  };
+  selectOptions();
   return (
     <>
       <div className="header header_dif">
@@ -191,7 +193,11 @@ const Product = () => {
         </div>
 
         <div className="product__select">
-          <select name="properties" id="properties" onChange={handleChange}>
+          <select
+            name="properties"
+            id="properties"
+            onChange={(e) => setSelect(e.target.value)}
+          >
             {" "}
             <option value="naming">by naming</option>{" "}
             <option value="cheap">from cheap</option>{" "}
