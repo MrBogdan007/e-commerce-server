@@ -68,7 +68,45 @@ const Product = () => {
     dispatch(singleProduct(id));
   };
 
- 
+  const categoryAll = () => {
+    dispatch(fetchProducts());
+    navigate(`/product`);
+  };
+  const categoryCloth = (clothes: string) => {
+    categories.map((categoryObj) => {
+      if (clothes === categoryObj.name) {
+        dispatch(fetchCategory(categoryObj.id));
+      }
+    });
+  };
+  const categoryElectronics = (electronics: string) => {
+    categories.map((categoryObj) => {
+      if (electronics === categoryObj.name) {
+        dispatch(fetchCategory(categoryObj.id));
+      }
+    });
+  };
+  const categoryFurniture = (furniture: string) => {
+    categories.map((categoryObj) => {
+      if (furniture === categoryObj.name) {
+        dispatch(fetchCategory(categoryObj.id));
+      }
+    });
+  };
+  const categoryShoes = (shoes: string) => {
+    categories.map((categoryObj) => {
+      if (shoes === categoryObj.name) {
+        dispatch(fetchCategory(categoryObj.id));
+      }
+    });
+  };
+  const categoryOthers = (others: string) => {
+    categories.map((categoryObj) => {
+      if (others === categoryObj.name) {
+        dispatch(fetchCategory(categoryObj.id));
+      }
+    });
+  };
 
   const addToCart = (
     id: number,
@@ -228,7 +266,57 @@ const Product = () => {
           </div>
         )}
       </div>
-
+      <div className="product-category">
+        <ul
+          className="product-ul"
+          style={{ color: theme.palette.mode === "light" ? "black" : "black" }}
+        >
+          <li onClick={() => categoryAll()}>
+            <CategoryIcon /> All products
+          </li>
+          <li
+            onClick={() => {
+              const clothes = "Clothes";
+              categoryCloth(clothes);
+            }}
+          >
+            <CheckroomIcon /> Clothes
+          </li>
+          <li
+            onClick={() => {
+              const electronics = "Electronics";
+              categoryElectronics(electronics);
+            }}
+          >
+            {" "}
+            <ElectricBoltIcon /> Electronics
+          </li>
+          <li
+            onClick={() => {
+              const furniture = "Furniture";
+              categoryFurniture(furniture);
+            }}
+          >
+            <BedIcon /> Furniture
+          </li>
+          <li
+            onClick={() => {
+              const shoes = "Shoes";
+              categoryShoes(shoes);
+            }}
+          >
+            <IceSkatingIcon /> Shoes
+          </li>
+          <li
+            onClick={() => {
+              const others = "Others";
+              categoryOthers(others);
+            }}
+          >
+            <AltRouteIcon /> Others
+          </li>
+        </ul>
+      </div>
       {loading ? (
         ""
       ) : (
