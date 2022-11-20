@@ -175,6 +175,9 @@ section h2 {
   border: none;
   padding: 4px;
 }
+.button a {
+  color: #fff;
+}
 .button:hover {
   cursor: pointer;
 }

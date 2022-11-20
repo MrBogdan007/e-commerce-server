@@ -11,10 +11,11 @@ import { addCartItem } from "../redux/reducers/cartReducer";
 import { editProduct } from "../redux/reducers/productReducer";
 
 const SingleProduct = () => {
+  const user = useAppSelector((state) => state.userReducer.currentUser);
   const singleProductValue = useAppSelector(
     (state) => state.singleProductReducer
   );
-  console.log(singleProductValue);
+  console.log(singleProductValue.category.image);
   
   const dispatch = useAppDispatch();
   const [titleValue, setTitle] = useState("");
@@ -54,21 +55,20 @@ const SingleProduct = () => {
     );
     navigate('/product')
   };
-  const user = useAppSelector((state) => state.userReducer.currentUser);
+  
 
   return (
     <div className="container">
       <div className="single">
-        {singleProductValue.map((item) => (
-          <div key={item.id} className="single-block">
+          <div key={singleProductValue.id} className="single-block">
             {" "}
             <div className="single-item">
             <div className="product__image single__image">
-              {<img src={item.category.image} alt="shoes" />}
+              <img src={singleProductValue.category.image} alt="shoes" />
             </div>
             </div>
             <div className="single-item">
-            <div className="product__title single__title">{item.title}</div>{" "}
+            <div className="product__title single__title">{singleProductValue.title}</div>{" "}
             <div style={{ display: user?.role ==="admin" ? 'block' : 'none'}} className="product__admin">
             <label style={{display: 'block'}} htmlFor="text">Change title: </label>
             <input type="text" onChange={(e) => setTitle(e.target.value)} />
@@ -79,21 +79,21 @@ const SingleProduct = () => {
             />
             </div>
       
-            <div className="product__price single__price">{`${item.price}$`} </div>{" "}
-            <div className="product__price single__descr">{item.description} </div>{" "}
+            <div className="product__price single__price">{`${singleProductValue.price}$`} </div>{" "}
+            <div className="product__price single__descr">{singleProductValue.description} </div>{" "}
             <div className="single__buttons">
             <button
               style={{ display: "block" }}
               onClick={() => {
                 if (user?.role === "admin") {
-                  onEdit(item.id, item.title, item.price,item.images[0]);
+                  onEdit(singleProductValue.id, singleProductValue.title, singleProductValue.price,singleProductValue.images[0]);
                 } else {
-                  addToCart(item.id, item.title, Number(item.price) , item.images[0]);
+                  addToCart(singleProductValue.id, singleProductValue.title, Number(singleProductValue.price) , singleProductValue.images[0]);
                 }
               }}
               className="button product__button"
             >
-              {user?.role === "admin" ? "Edit" : "Add to cart"}{" "}
+              {user?.role === "admin" ? <a style={{textDecoration:'none',color:'ffffff !important'}} href="/product" >Edit</a> : "Add to cart"}{" "}
             </button>
             <button className="button product__button" onClick={() => navigate('/product')}> Back to shopping</button>
               </div>
@@ -101,7 +101,7 @@ const SingleProduct = () => {
             </div>
 
           </div>
-        ))}
+        
       </div>
     </div>
   );

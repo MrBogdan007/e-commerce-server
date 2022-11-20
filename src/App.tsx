@@ -31,6 +31,7 @@ import { fetchProducts } from "./redux/reducers/productReducer";
 import { authenticate, fetchAllUsers } from "./redux/reducers/users";
 import Login from "./components/Login";
 import { fetchCategories } from "./redux/reducers/categoryReducer";
+import axios from "axios";
 
 export const ThemeContext = createContext({ toggleMode: () => {} });
 const App = () => {
@@ -86,16 +87,15 @@ const App = () => {
       setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
     },
   };
-
-  
-  
   return (
+    
     <ThemeContext.Provider value={manageTheme}>
       <ThemeProvider theme={theme}>
         <Box
           sx={{ backgroundColor: "background.default",  height:"100vh",  color: 'text.primary' }}
           className="App"
         >
+         
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Home/>}></Route>

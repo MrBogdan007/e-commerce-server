@@ -7,13 +7,11 @@ import { ModalInt } from "../../types/form";
 import { ProductType } from "../../types/product";
 import { RootState } from "../store";
 
-const initialState: ProductType[] = []
+const initialState: ProductType = {id:2,title:"some",price:2,description:'lorem10',category: {id:2,name:'others',image:"image"},images:'assd'}
  
 export const singleProduct = createAsyncThunk("singleProduct", async (id:number) => {
    const result = await axios.get(`https://api.escuelajs.co/api/v1/products/${id}`)
    const data = result.data
-   console.log(data);
-   
    return data
 } )
 
@@ -26,9 +24,7 @@ const singleProductSlicer = createSlice({
    extraReducers : (build) => {
       build
       .addCase(singleProduct.fulfilled, (state,action) =>{
-         console.log(action.payload);
-         
-         return [action.payload]
+         return action.payload
       })
    }
 })

@@ -23,6 +23,7 @@ import PaginationCustom from "./pagination/PaginationCustom";
 import PalleteButton from "./PalleteButton";
 
 const Product = () => {
+
   const [search, setSearch] = useState("");
   const [counter, setCounter] = useState(0);
   const [signIn, setSignIn] = useState(false);
@@ -31,12 +32,12 @@ const Product = () => {
   const products = useAppSelector((state) => state.productReducer.products);
   const categories = useAppSelector((state) => state.categoryReducer);
 
-  const tempListFilter = useCallback(
+  const tempListFilter = 
     (item: any) => {
       return item.title.includes(search);
-    },
-    [search]
-  );
+    };
+    
+ 
   const tempList = products.filter(tempListFilter);
   const user = useAppSelector((state) => state.userReducer.currentUser);
   const dispatch = useAppDispatch();
