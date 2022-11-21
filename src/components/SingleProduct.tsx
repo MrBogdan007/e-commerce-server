@@ -15,11 +15,14 @@ const SingleProduct = () => {
   const singleProductValue = useAppSelector(
     (state) => state.singleProductReducer
   );
-  console.log(singleProductValue.category.image);
+  console.log(singleProductValue.id);
   
   const dispatch = useAppDispatch();
   const [titleValue, setTitle] = useState("");
   const [priceValue, setPrice] = useState(0);
+  console.log(titleValue);
+  console.log(priceValue);
+  
   const navigate = useNavigate();
   const addToCart = (
     id: number,
@@ -29,13 +32,13 @@ const SingleProduct = () => {
   ) => {
     dispatch(addCartItem({ id: id, title: title, price: Number(price), image: image, quantity: 1 }));
   };
-  const onEdit = (id: number, title: string, price: number, images:string) => {
+  const onEdit = (id: number, images:string) => {
 
     dispatch(
       editProduct({
         id: id,
         data: {
-          id: id,
+          id:id,
           title: titleValue,
           price: Number(priceValue),
           description:
@@ -53,7 +56,7 @@ const SingleProduct = () => {
         },
       })
     );
-    navigate('/product')
+      navigate("/product")
   };
   
 
@@ -86,14 +89,14 @@ const SingleProduct = () => {
               style={{ display: "block" }}
               onClick={() => {
                 if (user?.role === "admin") {
-                  onEdit(singleProductValue.id, singleProductValue.title, singleProductValue.price,singleProductValue.images[0]);
+                  onEdit(singleProductValue.id, singleProductValue.images[0]);
                 } else {
                   addToCart(singleProductValue.id, singleProductValue.title, Number(singleProductValue.price) , singleProductValue.images[0]);
                 }
               }}
               className="button product__button"
             >
-              {user?.role === "admin" ? <a style={{textDecoration:'none',color:'ffffff !important'}} href="/product" >Edit</a> : "Add to cart"}{" "}
+              {user?.role === "admin" ?  'Edit' : "Add to cart"}{" "}
             </button>
             <button className="button product__button" onClick={() => navigate('/product')}> Back to shopping</button>
               </div>

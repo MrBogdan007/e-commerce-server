@@ -40,7 +40,6 @@ const App = () => {
   const token = localStorage.getItem("token")
   useEffect(() => {
     dispatch(fetchCategories());
-    dispatch(fetchProducts());
   },[])
   useEffect(() => {
     dispatch(fetchAllUsers())

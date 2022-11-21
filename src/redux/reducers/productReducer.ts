@@ -36,6 +36,8 @@ export const editProduct = createAsyncThunk("edit", async ({id, data}: {id: numb
    const result = await axios.put(`https://api.escuelajs.co/api/v1/products/${id}`,data)
  
    const finalData = result.data
+   console.log(finalData);
+   
    return finalData
 } )
 export const deleteProducts = createAsyncThunk("delete", async (id:number) => {

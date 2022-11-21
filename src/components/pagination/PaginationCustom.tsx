@@ -30,7 +30,7 @@ const PaginationCustom = ({tempList,setProductsList}:any) => {
       setPagination({...pagination, count: response.count})
       setProductsList(response.data)
     
-  },[pagination.from, pagination.to,tempList.length]);
+  },[pagination.from, pagination.to,tempList.length,products]);
 
   const [page, setPage] = useState(1);
   const handlePageChange =(event:React.ChangeEvent<unknown>, page:number ) => {

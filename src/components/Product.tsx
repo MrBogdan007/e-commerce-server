@@ -23,7 +23,9 @@ import PaginationCustom from "./pagination/PaginationCustom";
 import PalleteButton from "./PalleteButton";
 
 const Product = () => {
-
+  useEffect(() => {
+    dispatch(fetchProducts());
+  },[])
   const [search, setSearch] = useState("");
   const [counter, setCounter] = useState(0);
   const [signIn, setSignIn] = useState(false);
@@ -42,6 +44,7 @@ const Product = () => {
   const user = useAppSelector((state) => state.userReducer.currentUser);
   const dispatch = useAppDispatch();
 
+    
   // useEffect(() => {
 
   //   const counterLocalget = JSON.parse(localStorage.getItem("counter")||0);
