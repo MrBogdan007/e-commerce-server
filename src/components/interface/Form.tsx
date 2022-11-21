@@ -1,32 +1,28 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { userSchema } from "../../schema/userForm";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { useForm } from "react-hook-form";
 import axios from "axios";
-import React, { useState } from "react";
-
-
-import { ModalInt } from "../../types/form";
-import { authenticate } from "../../redux/reducers/users";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const Form = ({ signIn,setSignIn }: ModalInt) => {
+import { useAppDispatch } from "../../hooks/reduxHooks";
+import { ModalInt } from "../../types/form";
+import { authenticate } from "../../redux/reducers/users";
+
+const Form = ({ signIn, setSignIn }: ModalInt) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name,setName] = useState('')
+  const [name, setName] = useState("");
   const navigate = useNavigate();
   const [modalReg, setModalReg] = useState(true);
   interface IFormInput {
     firstname: string;
   }
-  const location = useLocation()
+  const location = useLocation();
   const dispatch = useAppDispatch();
   const { register, handleSubmit } = useForm<IFormInput>({
     resolver: yupResolver(userSchema),
   });
-  // const onSubmit: SubmitHandler<IFormInput> = async data => {
-
-  // };
 
   const registrationModal = () => {
     setModalReg((current) => !current);
@@ -41,54 +37,50 @@ const Form = ({ signIn,setSignIn }: ModalInt) => {
       );
       const token = responce.data;
 
-
       localStorage.setItem("token", token.access_token);
       dispatch(authenticate(token.access_token));
     } catch (e) {
       console.log(e);
     }
     if (email != "" && password != "") {
-      if(setSignIn)
-      setSignIn(false)
-      if(location.pathname === '/product'){
-        navigate('/product')
-      }else{
+      if (setSignIn) setSignIn(false);
+      if (location.pathname === "/product") {
+        navigate("/product");
+      } else {
         navigate("/");
       }
-      
     }
   };
   const onSubmit2 = async (e: any) => {
     e.preventDefault();
     try {
-      const avatar = "https://api.lorem.space/image/face?w=640&h=480"
+      const avatar = "https://api.lorem.space/image/face?w=640&h=480";
       const responce = await axios.post(
         "https://api.escuelajs.co/api/v1/users/",
-        { email, password,name,avatar }
+        { email, password, name, avatar }
       );
       const result = responce.data;
-      
-      if(setSignIn)
-      setSignIn(false)
-      navigate("/");
-      return result
 
+      if (setSignIn) setSignIn(false);
+      navigate("/");
+      return result;
     } catch (e) {
       console.log(e);
     }
- 
-  };
- 
-  
-  const backHome = () => {
-    navigate('/')
   };
 
+  const backHome = () => {
+    navigate("/");
+  };
 
   return (
     <>
       {modalReg ? (
-        <form className={signIn === undefined ?"form": '' }  action="" onSubmit={onSubmit}>
+        <form
+          className={signIn === undefined ? "form" : ""}
+          action=""
+          onSubmit={onSubmit}
+        >
           <div className="form-item">
             <div className="modal-title">
               {signIn === undefined
@@ -120,15 +112,11 @@ const Form = ({ signIn,setSignIn }: ModalInt) => {
             >
               Sign In
             </button>
-            { signIn === undefined &&
-              <button
-              className="button button_registrate"
-              onClick={backHome}
-              >
-              Go back
+            {signIn === undefined && (
+              <button className="button button_registrate" onClick={backHome}>
+                Go back
               </button>
-            }
-           
+            )}
           </div>
           <div className="form-item">
             <span>You don't have an account?</span>
@@ -149,7 +137,6 @@ const Form = ({ signIn,setSignIn }: ModalInt) => {
             <input
               type="text"
               {...register("firstname")}
-            
               id="title"
               onChange={(e) => setName(e.target.value)}
             />
@@ -157,18 +144,26 @@ const Form = ({ signIn,setSignIn }: ModalInt) => {
 
           <div className="form-item">
             <label htmlFor="email">Enter your email</label>
-            <input onChange={(e) => setEmail(e.target.value)} type="email" name="email" id="email" />
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              name="email"
+              id="email"
+            />
           </div>
           <div className="form-item">
             <label htmlFor="password">Enter your password</label>
-            <input onChange={(e) => setPassword(e.target.value)} type="password" name="password" id="password" />
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              name="password"
+              id="password"
+            />
           </div>
-
 
           <div className="form-item">
             <button
               type="submit"
-              
               className="button button_sm  button_registrate"
             >
               Registrate

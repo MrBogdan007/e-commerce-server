@@ -2,28 +2,24 @@ import NavBar from "./NavBar";
 import PalleteButton from "./PalleteButton";
 import Modal from "./interface/Modal";
 
-import  { useState } from "react";
+import { useState } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import { useNavigate } from "react-router-dom";
 import { Box, useTheme } from "@mui/material";
 
 const Home = () => {
   const theme = useTheme();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [signIn, setSignIn] = useState(false);
 
   const registerSign = () => {
     setSignIn((current) => !current);
   };
-  //  after x press , sign in true; modal state false
-  //after 1 click at sign in
-  //signIn false and modalState true
-  //after 2 click sign in true modalState true
 
   return (
     <>
       <Box
-      className="main"
+        className="main"
         sx={{
           "&::before ": {
             content: '""',
@@ -31,22 +27,27 @@ const Home = () => {
             width: "100%",
             height: "100vh",
             padding: 0,
-            backgroundColor: theme.palette.mode === "light" ? "rgba(0,0,0,.4)" : "rgba(0,0,0,.7)",
+            backgroundColor:
+              theme.palette.mode === "light"
+                ? "rgba(0,0,0,.4)"
+                : "rgba(0,0,0,.7)",
             zIndex: -1,
           },
-          
         }}
-        
-        
       >
         <div className="header">
           <div className="header__logo">
-            <img src={require('../img/logo.png')} alt="logo" width={250} height={40} />
+            <img
+              src={require("../img/logo.png")}
+              alt="logo"
+              width={250}
+              height={40}
+            />
           </div>
           <NavBar />
           <span
             className="header__signIn"
-            onClick={() => setSignIn(prev=> !prev)}
+            onClick={() => setSignIn((prev) => !prev)}
           >
             Sign In
           </span>
@@ -66,14 +67,16 @@ const Home = () => {
         </div>
       </Box>
       <div
-        style={{ display: signIn  ? "block" : "none" }}
+        style={{ display: signIn ? "block" : "none" }}
         className="header__modal"
-        
       >
         <Modal signIn={signIn} setSignIn={setSignIn} />
       </div>
       <div className="container">
-        <section style={{ color: theme.palette.mode === "light" ? "black "  : "black"}} className="guarantee">
+        <section
+          style={{ color: theme.palette.mode === "light" ? "black " : "black" }}
+          className="guarantee"
+        >
           <h2 className="section-header">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. <br />{" "}
             Cumque asperiores ab fuga animi.
@@ -118,7 +121,11 @@ const Home = () => {
         </div>
       </section>
       <div className="container">
-        <section id="newProduct" style={{ color: theme.palette.mode === "light" ? "black "  : "black"}} className="newProducts">
+        <section
+          id="newProduct"
+          style={{ color: theme.palette.mode === "light" ? "black " : "black" }}
+          className="newProducts"
+        >
           <div className="section-header">Newest Products</div>
           <div className="newProducts-block">
             <div className="newProducts-element">
@@ -186,7 +193,7 @@ const Home = () => {
             </div>
           </div>
           <div className="button newProducts-button">
-            <button onClick={() => navigate('/product')} >Explore more</button>
+            <button onClick={() => navigate("/product")}>Explore more</button>
           </div>
         </section>
       </div>

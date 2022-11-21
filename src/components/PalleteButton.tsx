@@ -8,12 +8,12 @@ import { useLocation } from "react-router-dom";
 const PalleteButton = () => {
   const colorMode = useContext(ThemeContext);
   const theme = useTheme();
-  const location = useLocation()
+  const location = useLocation();
 
   return (
     <div className="header-nav__button">
       <IconButton
-        style={{ color: location.pathname ==='/'? "#ffffff" : "#000000" }}
+        style={{ color: location.pathname === "/" ? "#ffffff" : "#000000" }}
         onClick={() => colorMode.toggleMode()}
       >
         {theme.palette.mode === "light" ? (

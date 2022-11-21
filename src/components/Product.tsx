@@ -25,7 +25,7 @@ import PalleteButton from "./PalleteButton";
 const Product = () => {
   useEffect(() => {
     dispatch(fetchProducts());
-  },[])
+  }, []);
   const [search, setSearch] = useState("");
   const [counter, setCounter] = useState(0);
   const [signIn, setSignIn] = useState(false);
@@ -34,28 +34,13 @@ const Product = () => {
   const products = useAppSelector((state) => state.productReducer.products);
   const categories = useAppSelector((state) => state.categoryReducer);
 
-  const tempListFilter = 
-    (item: any) => {
-      return item.title.includes(search);
-    };
-    
- 
+  const tempListFilter = (item: any) => {
+    return item.title.includes(search);
+  };
+
   const tempList = products.filter(tempListFilter);
   const user = useAppSelector((state) => state.userReducer.currentUser);
   const dispatch = useAppDispatch();
-
-    
-  // useEffect(() => {
-
-  //   const counterLocalget = JSON.parse(localStorage.getItem("counter")||0);
-  //   if(counterLocalget) {
-  //   setCounter(counterLocalget);
-  //   }
-  // },[])
-  // useEffect(() => {
-  //   localStorage.setItem("counter", JSON.stringify(counter))
-
-  // })
 
   const loading = useAppSelector((state) => state.productReducer.isLoading);
   const theme = useTheme();
@@ -223,7 +208,6 @@ const Product = () => {
           </div>
         ) : (
           <div className="product product-fetch">
-            {/* <div className="counter">{counter}</div > */}
             {productsList.map((item) => (
               <div
                 key={item.id}
