@@ -126,7 +126,7 @@ export const Product = () => {
   const onEdit = useCallback((id: number) => {
     navigate(`/product/${id}`);
     dispatch(singleProduct(id));
-  }, []);
+  }, [productsList]);
 
   const registerSign = () => {
     setSignIn((current) => !current);
@@ -135,7 +135,7 @@ export const Product = () => {
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
-  const selectOptions = () => {
+  const selectOptions = useCallback(() => {
     if (select === "cheap") {
       productsList.sort((a, b) => a.price - b.price);
     }
@@ -146,11 +146,13 @@ export const Product = () => {
     if (select === "expensive") {
       productsList.sort((a, b) => b.price - a.price);
     }
-  };
+  }, [select]);
+  selectOptions();
+
   useEffect(() => {
     setCounter(cart.length);
   }, [cart]);
-  selectOptions();
+
   return (
     <>
       <div className="header header_dif">
@@ -197,10 +199,12 @@ export const Product = () => {
           <select
             name="properties"
             id="properties"
-            onChange={(e) => setSelect(e.target.value)}
+            onChange={(e) => {
+              setSelect(e.target.value);
+            }}
           >
             {" "}
-            <option value="naming">by naming</option>{" "}
+            <option defaultValue={'by naming'} value="naming">by naming</option>{" "}
             <option value="cheap">from cheap</option>{" "}
             <option value="expensive">from expensive</option>
           </select>
@@ -336,6 +340,5 @@ export const Product = () => {
     </>
   );
 };
-
 
 export const MemoizedProduct = React.memo(Product);
