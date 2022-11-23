@@ -448,7 +448,8 @@ section h2 {
   background-color: rgba(176, 212, 247, 0.4235294118);
 }
 .product__image img {
-  width: 248px;
+  width: 220px;
+  height: 150px;
 }
 
 .product-fetch {
