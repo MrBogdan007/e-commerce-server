@@ -36,9 +36,10 @@ const Form = ({ signIn, setSignIn }: ModalInt) => {
         { email, password }
       );
       const token = responce.data;
-
       localStorage.setItem("token", token.access_token);
-      dispatch(authenticate(token.access_token));
+      if(token){
+        dispatch(authenticate(token.access_token));
+      }
     } catch (e) {
       console.log(e);
     }

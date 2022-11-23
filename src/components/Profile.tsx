@@ -11,13 +11,18 @@ const Profile = () => {
   const user = useAppSelector((state) => state.userReducer.currentUser);
   const userList = useAppSelector((state) => state.userReducer.users);
   const navigate = useNavigate();
-
+  const cart = useAppSelector((state) => state.cartReducer);
   useEffect(() => {
     if (!user) {
       navigate("/login");
     }
   });
-
+  useEffect(() => {
+    const counterLocalget = JSON.parse(localStorage.getItem("counter") || "0");
+    if (counterLocalget) {
+      setCounter(cart.length);
+    }
+  }, []);
   const dispatch = useAppDispatch();
   const logOutProfile = () => {
     dispatch(logOut());
@@ -73,7 +78,7 @@ const Profile = () => {
             <div>
               <h3 className="profile-admin__h3">Site users list: </h3>
               {userList.map((item) => (
-                <div className="profile-block">
+                <div key={item.id} className="profile-block">
                   <div className="profile-item">
                     <div className="profile-block__avatar">
                       <img src={item.avatar} alt="avatar" />{" "}

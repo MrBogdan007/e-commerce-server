@@ -23,7 +23,6 @@ const App = () => {
   }, []);
   useEffect(() => {
     dispatch(fetchAllUsers());
-
     if (token) {
       dispatch(authenticate(token));
     }

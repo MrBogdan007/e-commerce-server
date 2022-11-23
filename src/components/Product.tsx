@@ -39,11 +39,10 @@ const Product = () => {
     return item.title.includes(search);
   };
 
-
   useEffect(() => {
-    const counterLocalget = JSON.parse(localStorage.getItem("counter")||'0');
-    if(counterLocalget) {
-      setCounter(cart.length)
+    const counterLocalget = JSON.parse(localStorage.getItem("counter") || "0");
+    if (counterLocalget) {
+      setCounter(cart.length);
     }
   }, []);
   useEffect(() => {
@@ -101,7 +100,6 @@ const Product = () => {
       }
     });
   };
-  
 
   const addToCart = (
     id: number,
@@ -148,9 +146,9 @@ const Product = () => {
       productsList.sort((a, b) => b.price - a.price);
     }
   };
-  useEffect(()=> {
-    setCounter(cart.length)
-  },[cart])
+  useEffect(() => {
+    setCounter(cart.length);
+  }, [cart]);
   selectOptions();
   return (
     <>

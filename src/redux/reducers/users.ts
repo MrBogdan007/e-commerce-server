@@ -16,19 +16,23 @@ export const fetchAllUsers = createAsyncThunk("fetchAllUsers", async () => {
 export const authenticate = createAsyncThunk(
   "authenticate",
   async (token: string) => {
-    try {
-      const response = await axios.get(
-        "https://api.escuelajs.co/api/v1/auth/profile",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      return response.data;
-    } catch (e) {
-      console.log(e);
+    if(token){
+      try {
+        const response = await axios.get(
+          "https://api.escuelajs.co/api/v1/auth/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        return response.data;
+      } 
+      catch (e) {
+        console.log(e);
+      }
     }
+
   }
 );
 
