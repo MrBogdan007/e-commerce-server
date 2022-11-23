@@ -10,13 +10,10 @@ const SingleProduct = () => {
   const singleProductValue = useAppSelector(
     (state) => state.singleProductReducer
   );
-  console.log(singleProductValue.id);
 
   const dispatch = useAppDispatch();
   const [titleValue, setTitle] = useState("");
   const [priceValue, setPrice] = useState(0);
-  console.log(titleValue);
-  console.log(priceValue);
 
   const navigate = useNavigate();
   const addToCart = (

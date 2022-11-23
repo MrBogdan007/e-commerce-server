@@ -38,7 +38,7 @@ const Profile = () => {
             height={40}
           />
         </div>
-        <NavbarOther counter={counter}/>
+        <NavbarOther counter={counter} />
 
         <PalleteButton />
       </div>

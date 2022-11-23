@@ -2,10 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
+import axios from "axios";
 
 import "./index.css";
 import App from "./App";
 import store from "./redux/store";
+
+axios.defaults.baseURL = 'https://api.escuelajs.co/api/v1/';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

@@ -8,7 +8,7 @@ const initialState: ProductReducer = { products: [], isLoading: false };
 export const fetchCategory = createAsyncThunk(
   "fetchCategory",
   async (id: number) => {
-    const result = await axios.get(`https://api.escuelajs.co/api/v1/products`);
+    const result = await axios.get(`products`);
     const data = result.data;
 
     return data.filter(
@@ -18,7 +18,7 @@ export const fetchCategory = createAsyncThunk(
 );
 
 export const fetchProducts = createAsyncThunk("fetchAll", async () => {
-  const result = await axios.get("https://api.escuelajs.co/api/v1/products");
+  const result = await axios.get("products");
 
   const data = result.data;
   return data;
@@ -26,10 +26,7 @@ export const fetchProducts = createAsyncThunk("fetchAll", async () => {
 export const editProduct = createAsyncThunk(
   "edit",
   async ({ id, data }: { id: number; data: ProductType }) => {
-    const result = await axios.put(
-      `https://api.escuelajs.co/api/v1/products/${id}`,
-      data
-    );
+    const result = await axios.put(`products/${id}`, data);
 
     const finalData = result.data;
     console.log(finalData);
@@ -38,9 +35,7 @@ export const editProduct = createAsyncThunk(
   }
 );
 export const deleteProducts = createAsyncThunk("delete", async (id: number) => {
-  const result = await axios.delete(
-    `https://api.escuelajs.co/api/v1/products/${id}`
-  );
+  const result = await axios.delete(`products/${id}`);
 
   const data = result.data;
 

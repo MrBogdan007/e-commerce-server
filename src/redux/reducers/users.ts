@@ -9,30 +9,25 @@ const initialState: UserReducer = {
 };
 
 export const fetchAllUsers = createAsyncThunk("fetchAllUsers", async () => {
-  const response = await axios.get("https://api.escuelajs.co/api/v1/users");
+  const response = await axios.get("users");
   return response.data;
 });
 
 export const authenticate = createAsyncThunk(
   "authenticate",
   async (token: string) => {
-    if(token){
+    if (token) {
       try {
-        const response = await axios.get(
-          "https://api.escuelajs.co/api/v1/auth/profile",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get("auth/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         return response.data;
-      } 
-      catch (e) {
+      } catch (e) {
         console.log(e);
       }
     }
-
   }
 );
 

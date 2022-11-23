@@ -31,13 +31,10 @@ const Form = ({ signIn, setSignIn }: ModalInt) => {
   const onSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const responce = await axios.post(
-        "https://api.escuelajs.co/api/v1/auth/login",
-        { email, password }
-      );
+      const responce = await axios.post("auth/login", { email, password });
       const token = responce.data;
       localStorage.setItem("token", token.access_token);
-      if(token){
+      if (token) {
         dispatch(authenticate(token.access_token));
       }
     } catch (e) {
@@ -56,10 +53,12 @@ const Form = ({ signIn, setSignIn }: ModalInt) => {
     e.preventDefault();
     try {
       const avatar = "https://api.lorem.space/image/face?w=640&h=480";
-      const responce = await axios.post(
-        "https://api.escuelajs.co/api/v1/users/",
-        { email, password, name, avatar }
-      );
+      const responce = await axios.post("users", {
+        email,
+        password,
+        name,
+        avatar,
+      });
       const result = responce.data;
 
       if (setSignIn) setSignIn(false);

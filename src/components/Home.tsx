@@ -18,11 +18,11 @@ const Home = () => {
     setSignIn((current) => !current);
   };
   useEffect(() => {
-    const counterLocalget = JSON.parse(localStorage.getItem("counter")||"0");
-    if(counterLocalget) {
+    const counterLocalget = JSON.parse(localStorage.getItem("counter") || "0");
+    if (counterLocalget) {
       setCounter(cart.length);
     }
-  },[])
+  }, []);
   return (
     <>
       <Box
@@ -43,7 +43,6 @@ const Home = () => {
         }}
       >
         <div className="header">
-        
           <div className="header__logo">
             <img
               src={require("../img/logo.png")}
@@ -52,7 +51,7 @@ const Home = () => {
               height={40}
             />
           </div>
-          <NavBar counter={counter}/>
+          <NavBar counter={counter} />
           <span
             className="header__signIn"
             onClick={() => setSignIn((prev) => !prev)}

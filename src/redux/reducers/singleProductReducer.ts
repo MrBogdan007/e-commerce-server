@@ -14,9 +14,7 @@ const initialState: ProductType = {
 export const singleProduct = createAsyncThunk(
   "singleProduct",
   async (id: number) => {
-    const result = await axios.get(
-      `https://api.escuelajs.co/api/v1/products/${id}`
-    );
+    const result = await axios.get(`products/${id}`);
     const data = result.data;
     return data;
   }
