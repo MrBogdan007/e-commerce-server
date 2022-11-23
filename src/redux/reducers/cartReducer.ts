@@ -38,7 +38,12 @@ const cartSlicer = createSlice({
           }
         });
     },
-
+    filterQuantity: (state,action) => {
+      const q0 = state.find((item) => item.quantity === 0);
+      if (q0) {
+        return state.filter((item) => item.id !== action.payload.id);
+      }
+    }
   },
 });
 const cartReducer = cartSlicer.reducer;
@@ -48,7 +53,7 @@ export const {
   removeCartItem,
   increaseQuantity,
   decreaseQuantity,
-  
+  filterQuantity
 } = cartSlicer.actions;
 
 export default cartReducer;

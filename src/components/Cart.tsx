@@ -8,7 +8,7 @@ import PalleteButton from "./PalleteButton";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import {
   decreaseQuantity,
-  // filterQuantity,
+  filterQuantity,
   increaseQuantity,
   removeCartItem,
 } from "../redux/reducers/cartReducer";
@@ -49,7 +49,7 @@ const Cart = () => {
   };
   const setPriceRemove = (id: number) => {
     dispatch(decreaseQuantity({ id: id }));
-    // dispatch(filterQuantity({ id: id }));
+    dispatch(filterQuantity({ id: id }));
   };
 
   return (
