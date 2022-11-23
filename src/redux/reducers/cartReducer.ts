@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { Cart } from "../../types/cart";
 
 const initialState: Cart[] = [];
-
+// try count using use effect in one state through cart.map and set totPrice
 const cartSlicer = createSlice({
   name: "cart",
   initialState,
@@ -13,9 +13,7 @@ const cartSlicer = createSlice({
       });
       if (inTheCart) {
         state.map((item) => {
-          if (item.id === action.payload.id) {
-            item.quantity = item.quantity + 1;
-          }
+          item.quantity = item.quantity + 1;
           return item;
         });
       } else {
@@ -34,17 +32,13 @@ const cartSlicer = createSlice({
       });
     },
     decreaseQuantity: (state, action) => {
-      state.map((item) => {
-        if (item.id === action.payload.id) {
-          if (item.quantity === 0) {
-            item.quantity = 0;
-          } else {
+        state.map((item) => {
+          if (item.id === action.payload.id) {
             item.quantity = item.quantity - 1;
           }
-        }
-        return item;
-      });
+        });
     },
+
   },
 });
 const cartReducer = cartSlicer.reducer;
@@ -54,6 +48,7 @@ export const {
   removeCartItem,
   increaseQuantity,
   decreaseQuantity,
+  
 } = cartSlicer.actions;
 
 export default cartReducer;

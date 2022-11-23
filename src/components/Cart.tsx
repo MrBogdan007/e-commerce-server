@@ -1,6 +1,6 @@
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material";
 
@@ -8,6 +8,7 @@ import PalleteButton from "./PalleteButton";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import {
   decreaseQuantity,
+  // filterQuantity,
   increaseQuantity,
   removeCartItem,
 } from "../redux/reducers/cartReducer";
@@ -16,7 +17,20 @@ import NavbarOther from "./NavbarOther";
 const Cart = () => {
   const cart = useAppSelector((state) => state.cartReducer);
   const user = useAppSelector((state) => state.userReducer.currentUser);
+  const [totalPrice, setTotalPrice] = useState(0);
 
+  useEffect(() => {
+    const array = cart.map((item) => item.price * item.quantity);
+    let sum = 0;
+    for (let i = 0; i < array.length; i++) {
+      sum += array[i];
+      console.log(sum);
+      setTotalPrice(sum);
+    }
+  }, [cart]);
+
+  console.log(cart);
+  
   const theme = useTheme();
 
   const navigate = useNavigate();
@@ -35,6 +49,7 @@ const Cart = () => {
   };
   const setPriceRemove = (id: number) => {
     dispatch(decreaseQuantity({ id: id }));
+    // dispatch(filterQuantity({ id: id }));
   };
 
   return (
@@ -74,6 +89,7 @@ const Cart = () => {
               {" "}
               Make an order
             </button>
+            <div className="totalPrice">{`Total price: ${totalPrice}$`}</div>
           </div>
           <div
             style={{
