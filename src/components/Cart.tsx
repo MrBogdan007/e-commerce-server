@@ -13,6 +13,7 @@ import {
   removeCartItem,
 } from "../redux/reducers/cartReducer";
 import NavbarOther from "./NavbarOther";
+import React from "react";
 
 const Cart = () => {
   const cart = useAppSelector((state) => state.cartReducer);
@@ -30,12 +31,9 @@ const Cart = () => {
     let sum = 0;
     for (let i = 0; i < array.length; i++) {
       sum += array[i];
-      console.log(sum);
       setTotalPrice(sum);
     }
   }, [cart]);
-
-  console.log(cart);
 
   const theme = useTheme();
 
@@ -154,4 +152,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export const MemoizedCart = React.memo(Cart);

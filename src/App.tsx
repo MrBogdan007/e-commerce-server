@@ -1,8 +1,8 @@
-import Home from "./components/Home";
+import {MemoizedHome} from "./components/Home";
 import "./style/App.css";
-import Product from "./components/Product";
+import  { MemoizedProduct } from "./components/Product";
 import Profile from "./components/Profile";
-import Cart from "./components/Cart";
+import {MemoizedCart} from "./components/Cart";
 
 import { useState, useEffect, createContext } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
@@ -79,11 +79,11 @@ const App = () => {
         >
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Home />}></Route>
-              <Route path="/product" element={<Product />} />
+              <Route path="/" element={<MemoizedHome />}></Route>
+              <Route path="/product" element={<MemoizedProduct />} />
               <Route path="/product/:id" element={<SingleProduct />}></Route>
               <Route path="/profile" element={<Profile />}></Route>
-              <Route path="/cart" element={<Cart />}></Route>
+              <Route path="/cart" element={<MemoizedCart />}></Route>
               <Route path="/redirect" element={<Navigate to="/cart" />} />
               <Route path="/login" element={<Login />} />
             </Routes>

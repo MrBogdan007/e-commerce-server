@@ -7,6 +7,7 @@ import StarIcon from "@mui/icons-material/Star";
 import { useNavigate } from "react-router-dom";
 import { Box, useTheme } from "@mui/material";
 import { useAppSelector } from "../hooks/reduxHooks";
+import React from "react";
 
 const Home = () => {
   const theme = useTheme();
@@ -208,4 +209,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export const MemoizedHome = React.memo(Home);

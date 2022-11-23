@@ -21,8 +21,9 @@ import Modal from "./interface/Modal";
 import NavbarOther from "./NavbarOther";
 import PaginationCustom from "./pagination/PaginationCustom";
 import PalleteButton from "./PalleteButton";
+import React from "react";
 
-const Product = () => {
+export const Product = () => {
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
@@ -336,4 +337,5 @@ const Product = () => {
   );
 };
 
-export default Product;
+
+export const MemoizedProduct = React.memo(Product);
