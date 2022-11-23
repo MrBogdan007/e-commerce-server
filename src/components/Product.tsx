@@ -123,17 +123,27 @@ export const Product = () => {
     dispatch(deleteProducts(id));
   };
 
-  const onEdit = useCallback((id: number) => {
-    navigate(`/product/${id}`);
-    dispatch(singleProduct(id));
-  }, [productsList]);
+  const onEdit = useCallback(
+    (id: number) => {
+      navigate(`/product/${id}`);
+      dispatch(singleProduct(id));
+    },
+    [productsList]
+  );
 
   const registerSign = () => {
     setSignIn((current) => !current);
   };
-
+  let filterTimeout: number;
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
+    clearTimeout(filterTimeout);
+    filterTimeout = setTimeout(
+      () => {
+        setSearch(e.target.value);
+      },
+      800,
+      e
+    );
   };
   const selectOptions = useCallback(() => {
     if (select === "cheap") {
@@ -185,11 +195,11 @@ export const Product = () => {
       <div className="container">
         <div className="product-search">
           <input
-            value={search}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               inputChange(e)
             }
             className="product__input"
+            placeholder="search here..."
             type="text"
           />
           <button className="button">Search</button>{" "}
@@ -204,7 +214,9 @@ export const Product = () => {
             }}
           >
             {" "}
-            <option defaultValue={'by naming'} value="naming">by naming</option>{" "}
+            <option defaultValue={"by naming"} value="naming">
+              by naming
+            </option>{" "}
             <option value="cheap">from cheap</option>{" "}
             <option value="expensive">from expensive</option>
           </select>

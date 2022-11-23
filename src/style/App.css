@@ -197,6 +197,10 @@ section h2 {
   background-color: #1E93E0;
 }
 
+.css-1f5yofo nav ul li button {
+  color: #000 !important;
+}
+
 .guarantee {
   padding-bottom: 120px;
 }
