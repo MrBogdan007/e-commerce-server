@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
@@ -7,6 +7,7 @@ import NavbarOther from "./NavbarOther";
 import PalleteButton from "./PalleteButton";
 
 const Profile = () => {
+  const [counter, setCounter] = useState(0);
   const user = useAppSelector((state) => state.userReducer.currentUser);
   const userList = useAppSelector((state) => state.userReducer.users);
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const Profile = () => {
             height={40}
           />
         </div>
-        <NavbarOther />
+        <NavbarOther counter={counter}/>
 
         <PalleteButton />
       </div>

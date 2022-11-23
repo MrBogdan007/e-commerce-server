@@ -2,20 +2,27 @@ import NavBar from "./NavBar";
 import PalleteButton from "./PalleteButton";
 import Modal from "./interface/Modal";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import { useNavigate } from "react-router-dom";
 import { Box, useTheme } from "@mui/material";
+import { useAppSelector } from "../hooks/reduxHooks";
 
 const Home = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const [signIn, setSignIn] = useState(false);
-
+  const cart = useAppSelector((state) => state.cartReducer);
+  const [counter, setCounter] = useState(0);
   const registerSign = () => {
     setSignIn((current) => !current);
   };
-
+  useEffect(() => {
+    const counterLocalget = JSON.parse(localStorage.getItem("counter")||"0");
+    if(counterLocalget) {
+      setCounter(cart.length);
+    }
+  },[])
   return (
     <>
       <Box
@@ -36,6 +43,7 @@ const Home = () => {
         }}
       >
         <div className="header">
+        
           <div className="header__logo">
             <img
               src={require("../img/logo.png")}
@@ -44,7 +52,7 @@ const Home = () => {
               height={40}
             />
           </div>
-          <NavBar />
+          <NavBar counter={counter}/>
           <span
             className="header__signIn"
             onClick={() => setSignIn((prev) => !prev)}

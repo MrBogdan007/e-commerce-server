@@ -33,11 +33,22 @@ const Product = () => {
   const [select, setSelect] = useState("");
   const products = useAppSelector((state) => state.productReducer.products);
   const categories = useAppSelector((state) => state.categoryReducer);
+  const cart = useAppSelector((state) => state.cartReducer);
 
   const tempListFilter = (item: any) => {
     return item.title.includes(search);
   };
 
+
+  useEffect(() => {
+    const counterLocalget = JSON.parse(localStorage.getItem("counter")||'0');
+    if(counterLocalget) {
+      setCounter(cart.length)
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("counter", JSON.stringify(counter));
+  });
   const tempList = products.filter(tempListFilter);
   const user = useAppSelector((state) => state.userReducer.currentUser);
   const dispatch = useAppDispatch();
@@ -90,6 +101,7 @@ const Product = () => {
       }
     });
   };
+  
 
   const addToCart = (
     id: number,
@@ -97,8 +109,6 @@ const Product = () => {
     price: number,
     image: string
   ) => {
-    setCounter((prev) => prev + 1);
-
     dispatch(
       addCartItem({
         id: id,
@@ -138,6 +148,9 @@ const Product = () => {
       productsList.sort((a, b) => b.price - a.price);
     }
   };
+  useEffect(()=> {
+    setCounter(cart.length)
+  },[cart])
   selectOptions();
   return (
     <>
@@ -150,7 +163,7 @@ const Product = () => {
             height={40}
           />
         </div>
-        <NavbarOther />
+        <NavbarOther counter={counter} />
         <span
           className="header__signIn"
           onClick={() => {

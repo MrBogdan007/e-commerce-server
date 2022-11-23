@@ -18,7 +18,13 @@ const Cart = () => {
   const cart = useAppSelector((state) => state.cartReducer);
   const user = useAppSelector((state) => state.userReducer.currentUser);
   const [totalPrice, setTotalPrice] = useState(0);
-
+  const [counter, setCounter] = useState(0);
+  useEffect(() => {
+    const counterLocalget = JSON.parse(localStorage.getItem("counter")||'0');
+    if(counterLocalget) {
+      setCounter(cart.length);
+    }
+  },[])
   useEffect(() => {
     const array = cart.map((item) => item.price * item.quantity);
     let sum = 0;
@@ -51,7 +57,9 @@ const Cart = () => {
     dispatch(decreaseQuantity({ id: id }));
     dispatch(filterQuantity({ id: id }));
   };
-
+  useEffect(()=> {
+    setCounter(cart.length)
+  },[cart])
   return (
     <>
       <div className="header header_dif">
@@ -63,7 +71,7 @@ const Cart = () => {
             height={40}
           />
         </div>
-        <NavbarOther />
+        <NavbarOther counter={counter} />
 
         <PalleteButton />
       </div>

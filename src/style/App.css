@@ -113,6 +113,10 @@
   padding-right: 5px;
 }
 
+.homeLink {
+  position: relative;
+}
+
 .overlay {
   width: 100vw;
   height: 100vh;
@@ -184,11 +188,11 @@ section h2 {
 
 .counter {
   position: absolute;
-  top: 5px;
-  right: 330px;
+  left: 17px;
+  top: 2px;
   color: #fff;
   font-size: 14px;
-  padding: 0 4px 0 4px;
+  padding: 0 5px 0 5px;
   border-radius: 100%;
   background-color: #1E93E0;
 }
@@ -476,6 +480,10 @@ section h2 {
 }
 .cart-item__bottom {
   display: flex;
+}
+
+.cartLink {
+  position: relative;
 }
 
 .profile {
