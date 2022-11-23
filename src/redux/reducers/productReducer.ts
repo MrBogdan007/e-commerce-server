@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Create } from "../../types/createProduct";
 
 import { ProductReducer, ProductType } from "../../types/product";
 
@@ -16,7 +17,13 @@ export const fetchCategory = createAsyncThunk(
     );
   }
 );
-
+export const createProduct = createAsyncThunk('createProduct', async(data:Create) => {
+  const result = await axios.post("products",data);
+  const finalData = result.data;
+  console.log(finalData);
+  
+  return finalData;
+})
 export const fetchProducts = createAsyncThunk("fetchAll", async () => {
   const result = await axios.get("products");
 

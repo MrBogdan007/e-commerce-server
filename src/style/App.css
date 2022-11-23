@@ -495,6 +495,10 @@ section h2 {
   color: #000;
   height: 100vh;
 }
+.profile_form {
+  margin-top: 15px;
+  padding-left: 15px;
+}
 .profile-admin__h3 {
   margin-left: 8px;
 }
@@ -511,6 +515,9 @@ section h2 {
   font-weight: bold;
   display: block;
   margin-top: 5px;
+}
+.profile-block__title {
+  display: block;
 }
 .profile-block__avatar img {
   max-width: 100%;
