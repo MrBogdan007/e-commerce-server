@@ -60,12 +60,15 @@ const productSlicer = createSlice({
         return state;
       })
       .addCase(fetchCategory.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.products = action.payload.sort((a: ProductType, b: ProductType) =>
           a.title > b.title ? 1 : -1
         );
         return state;
       })
-
+      .addCase(fetchCategory.pending, (state, action) => {
+        state.isLoading = true;
+      })
       .addCase(fetchProducts.pending, (state, action) => {
         state.isLoading = true;
       })
