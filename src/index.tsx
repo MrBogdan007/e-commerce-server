@@ -8,7 +8,7 @@ import "./index.css";
 import App from "./App";
 import store from "./redux/store";
 
-axios.defaults.baseURL = 'https://api.escuelajs.co/api/v1/';
+axios.defaults.baseURL = "https://api.escuelajs.co/api/v1/";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

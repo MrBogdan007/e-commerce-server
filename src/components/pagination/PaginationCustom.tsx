@@ -42,7 +42,7 @@ const PaginationCustom = ({ tempList, setProductsList }: any) => {
         justifyContent={"center"}
         alignItems="center"
         display={"flex"}
-        sx={{color:"FFFFFF" ,padding: "11px" }}
+        sx={{ color: "FFFFFF", padding: "11px" }}
       >
         <Pagination
           count={Math.ceil(pagination.count / pageSize)}

@@ -201,6 +201,12 @@ section h2 {
   color: #000 !important;
 }
 
+.search {
+  padding: 0;
+  width: 26px;
+  height: 26px;
+}
+
 .guarantee {
   padding-bottom: 120px;
 }

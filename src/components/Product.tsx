@@ -9,6 +9,7 @@ import IceSkatingIcon from "@mui/icons-material/IceSkating";
 import AltRouteIcon from "@mui/icons-material/AltRoute";
 import { useNavigate } from "react-router-dom";
 
+
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import {
   deleteProducts,
@@ -202,7 +203,7 @@ export const Product = () => {
             placeholder="search here..."
             type="text"
           />
-          <button className="button">Search</button>{" "}
+          <button className="button"> Search</button>{" "}
         </div>
 
         <div className="product__select">

@@ -1,8 +1,8 @@
-import {MemoizedHome} from "./components/Home";
+import { MemoizedHome } from "./components/Home";
 import "./style/App.css";
-import  { MemoizedProduct } from "./components/Product";
+import { MemoizedProduct } from "./components/Product";
 import Profile from "./components/Profile";
-import {MemoizedCart} from "./components/Cart";
+import { MemoizedCart } from "./components/Cart";
 
 import { useState, useEffect, createContext } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";

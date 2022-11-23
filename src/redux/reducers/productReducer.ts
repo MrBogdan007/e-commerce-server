@@ -17,13 +17,14 @@ export const fetchCategory = createAsyncThunk(
     );
   }
 );
-export const createProduct = createAsyncThunk('createProduct', async(data:Create) => {
-  const result = await axios.post("products",data);
-  const finalData = result.data;
-  console.log(finalData);
-  
-  return finalData;
-})
+export const createProduct = createAsyncThunk(
+  "createProduct",
+  async (data: Create) => {
+    const result = await axios.post("products", data);
+    const finalData = result.data;
+    return finalData;
+  }
+);
 export const fetchProducts = createAsyncThunk("fetchAll", async () => {
   const result = await axios.get("products");
 

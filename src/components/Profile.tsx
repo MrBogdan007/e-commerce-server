@@ -14,7 +14,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const [titleValue, setTitle] = useState("");
   const [priceValue, setPrice] = useState(0);
-  const [descriptionValue, setDescription] = useState('');
+  const [descriptionValue, setDescription] = useState("");
   const cart = useAppSelector((state) => state.cartReducer);
   useEffect(() => {
     if (!user) {
@@ -33,12 +33,20 @@ const Profile = () => {
   };
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(createProduct({title:titleValue,price:priceValue,description:descriptionValue,categoryId:1,images: [
-      "https://api.lorem.space/image?w=640&h=480&r=6903",
-      "https://api.lorem.space/image?w=640&h=480&r=5577",
-      "https://api.lorem.space/image?w=640&h=480&r=9765"
-      ]}))
-  }
+    dispatch(
+      createProduct({
+        title: titleValue,
+        price: priceValue,
+        description: descriptionValue,
+        categoryId: 1,
+        images: [
+          "https://api.lorem.space/image?w=640&h=480&r=6903",
+          "https://api.lorem.space/image?w=640&h=480&r=5577",
+          "https://api.lorem.space/image?w=640&h=480&r=9765",
+        ],
+      })
+    );
+  };
   return (
     <>
       <div className="header header_dif">
@@ -84,19 +92,44 @@ const Profile = () => {
                   Logout
                 </button>
               </div>
-       
             </div>
           )}
           {user?.role === "admin" && (
-            
             <div>
               <form className="profile_form" onSubmit={(e) => onSubmit(e)}>
-              <div className="profile-item">
-                <div className="profile-block__title"><label htmlFor="text" style={{display: 'block'}}>Enter title: </label><input type="text" onChange={(e)=> setTitle(e.target.value)} /></div>
-                <div className="profile-block__price"><label htmlFor="text" style={{display: 'block'}}>Enter price: </label><input type="number" onChange={(e)=> setPrice(Number(e.target.value))}/></div>
-                <div className="profile-block__description"><label htmlFor="text" style={{display: 'block'}}>Enter description: </label><input type="text" style={{marginBottom:10}} onChange={(e)=> setDescription(e.target.value)}/></div>
-                <button type="submit" className="button product__button">Create a new product</button>
-              </div>
+                <div className="profile-item">
+                  <div className="profile-block__title">
+                    <label htmlFor="text" style={{ display: "block" }}>
+                      Enter title:{" "}
+                    </label>
+                    <input
+                      type="text"
+                      onChange={(e) => setTitle(e.target.value)}
+                    />
+                  </div>
+                  <div className="profile-block__price">
+                    <label htmlFor="text" style={{ display: "block" }}>
+                      Enter price:{" "}
+                    </label>
+                    <input
+                      type="number"
+                      onChange={(e) => setPrice(Number(e.target.value))}
+                    />
+                  </div>
+                  <div className="profile-block__description">
+                    <label htmlFor="text" style={{ display: "block" }}>
+                      Enter description:{" "}
+                    </label>
+                    <input
+                      type="text"
+                      style={{ marginBottom: 10 }}
+                      onChange={(e) => setDescription(e.target.value)}
+                    />
+                  </div>
+                  <button type="submit" className="button product__button">
+                    Create a new product
+                  </button>
+                </div>
               </form>
               <h3 className="profile-admin__h3">Site users list: </h3>
               {userList.map((item) => (
