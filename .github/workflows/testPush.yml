@@ -1,4 +1,4 @@
-name: React-Advanced test pull
+name: React-Advanced test push
 on: [push]
 jobs:
   build:
