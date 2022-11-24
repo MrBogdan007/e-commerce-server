@@ -1,0 +1,10 @@
+name: React-Advanced test pull
+on: [pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test pull pull_request
+        run: echo "test pull request"
+      - run: echo "another"
+      
