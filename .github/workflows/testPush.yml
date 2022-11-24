@@ -3,6 +3,8 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    env: 
+      CI: false
     steps:
       - name: Print name
         run: echo "test push request"
