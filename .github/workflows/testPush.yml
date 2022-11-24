@@ -6,4 +6,13 @@ jobs:
     steps:
       - name: Print name
         run: echo "test push request"
-      
+      - name: print project name
+        run: echo "react"
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Nodejs
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 16
+      - name: Build project
+        run: npm run build
