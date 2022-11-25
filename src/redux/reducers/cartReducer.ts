@@ -9,12 +9,13 @@ const cartSlicer = createSlice({
   reducers: {
     addCartItem: (state, action) => {
       const inTheCart = state.find((item) => {
-        return item.id === action.payload.id;
+        return item.id === action.payload.id; 
       });
       if (inTheCart) {
         state.map((item) => {
-          item.quantity = item.quantity + 1;
-          return item;
+          if(item.id === action.payload.id){
+            item.quantity = item.quantity + 1;
+          }
         });
       } else {
         state.push(action.payload);
@@ -36,6 +37,7 @@ const cartSlicer = createSlice({
         if (item.id === action.payload.id) {
           item.quantity = item.quantity - 1;
         }
+        return item;
       });
     },
     filterQuantity: (state, action) => {
